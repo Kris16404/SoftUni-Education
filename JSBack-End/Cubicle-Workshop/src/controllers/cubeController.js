@@ -20,6 +20,15 @@ router.get('/about', (req, res) => {
   res.render('about');
 });
 
+router.get('/details/:id', (req, res) => {
+  const id = req.params.id;
+  const allCubes = cubeService.getAllCubes();
+
+  const cube = allCubes.find((cube) => (cube.id = id));
+
+  res.render('details', { cube });
+});
+
 router.get('/404', (req, res) => {
   res.render('404');
 });
