@@ -24,9 +24,12 @@ router.get('/details/:id', (req, res) => {
   const id = req.params.id;
   const allCubes = cubeService.getAllCubes();
 
-  const cube = allCubes.find((cube) => (cube.id = id));
-
-  res.render('details', { cube });
+  const cube = allCubes.find((cube) => cube.id == id);
+  if (!cube) {
+    res.redirect('/404');
+  } else {
+    res.render('details', { cube });
+  }
 });
 
 router.get('/404', (req, res) => {
