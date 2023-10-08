@@ -11,7 +11,8 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-  const { name, description, imageUrl, difficultyLevel } = req.body;
+  let { name, description, imageUrl, difficultyLevel } = req.body;
+  difficultyLevel = Number(difficultyLevel);
   cubeService.createCube(name, description, imageUrl, difficultyLevel);
   res.redirect('/');
 });
@@ -30,6 +31,12 @@ router.get('/details/:id', (req, res) => {
   } else {
     res.render('details', { cube });
   }
+});
+
+router.get('/search', (req, res) => {
+  const { search, from, to } = req.query;
+  const cubes = cubeService.searchCubes(search, from, to);
+  res.render('index', { cubes, search, from, to });
 });
 
 router.get('/404', (req, res) => {
