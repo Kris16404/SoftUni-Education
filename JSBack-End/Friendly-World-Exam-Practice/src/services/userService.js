@@ -22,3 +22,16 @@ exports.register = async (email, password) => {
 
   await user.save();
 };
+
+exports.login = async (email, password) => {
+  const user = await User.find({ email: email });
+
+  if (!user[0]) {
+    throw new Error('Wrong email or password');
+  }
+
+  const isValid = await bcrypt.compare(password, user[0].password);
+  if (!isValid) {
+    throw new Error('Wrong email or password');
+  }
+};
