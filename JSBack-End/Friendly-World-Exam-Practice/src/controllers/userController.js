@@ -25,14 +25,10 @@ router.get('/register', (req, res) => {
 router.post('/register', async (req, res) => {
   let { email, password, rePass } = req.body;
 
-  if (password !== rePass) {
-    throw new Error('Passwords do not match');
-  }
   try {
-    await userService.register(email, password);
+    await userService.register(email, password, rePass);
     res.redirect('/');
   } catch (err) {
-    console.log(err.message);
     res.redirect('/users/register');
   }
 });
