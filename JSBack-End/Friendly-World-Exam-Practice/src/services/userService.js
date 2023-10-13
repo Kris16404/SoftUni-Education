@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -16,7 +17,7 @@ const User = mongoose.model('User', userSchema);
 exports.register = async (email, password) => {
   const user = new User({
     email: email,
-    password: password,
+    password: await bcrypt.hash(password, 10),
   });
 
   await user.save();
