@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const userService = require('../services/userService.js');
+const { MongooseError } = require('mongoose');
 const extractMongooseErrors = require('../errorHandler.js');
 
 router.get('/login', (req, res) => {
@@ -16,8 +17,8 @@ router.post('/login', async (req, res) => {
     res.cookie('token', token);
     res.redirect('/');
   } catch (err) {
-    const errorMessages = extractMongooseErrors(err);
-    res.status(404).render('login', { errorMessages });
+    const errorMessage = extractMongooseErrors(err);
+    res.status(404).render('login', { errorMessage });
   }
 });
 
@@ -29,11 +30,16 @@ router.post('/register', async (req, res) => {
   let { email, password, rePass } = req.body;
 
   try {
-    await userService.register(email, password, rePass);
+    if (rePass !== password) {
+      throw new MongooseError('Passwords dont match');
+    }
+
+    const token = await userService.register(email, password, rePass);
+    res.cookie('token', token);
     res.redirect('/');
   } catch (err) {
-    const errorMessages = extractMongooseErrors(err);
-    res.status(404).render('register', { errorMessages });
+    const errorMessage = extractMongooseErrors(err);
+    res.status(404).render('register', { errorMessage });
   }
 });
 

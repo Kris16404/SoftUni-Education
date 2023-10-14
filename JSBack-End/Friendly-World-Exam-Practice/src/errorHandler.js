@@ -2,14 +2,11 @@ const { MongooseError } = require('mongoose');
 
 const extractMongooseErrors = (err) => {
   const isInstanceOfMongoose = err instanceof MongooseError;
-
   if (isInstanceOfMongoose) {
-    const errors = Object.values(err.errors);
-    const messages = errors.map((e) => e.message);
-    return messages;
+    return [err.message];
   }
 
-  return [error.message];
+  return ['Not an mongoose error'];
 };
 
 module.exports = extractMongooseErrors;

@@ -18,11 +18,11 @@ userSchema.path('email').validate(function (email) {
   return !!dbEmail;
 }, 'Email already exist');
 
-userSchema.virtual('rePass').set(function (v) {
-  if (v !== this.password) {
-    throw new Error('Passwords dont match');
-  }
-});
+// userSchema.virtual('rePass').set(function (v) {
+//   if (v !== this.password) {
+//     throw new Error('Passwords dont match');
+//   }
+// });
 
 userSchema.pre('save', async function () {
   const hashedPass = await bcrypt.hash(this.password, 10);

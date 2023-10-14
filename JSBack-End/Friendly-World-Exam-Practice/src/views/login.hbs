@@ -1,4 +1,11 @@
 <main class='login'>
+  {{#each errorMessage}}
+    <div>
+      <div class='errorContainer'>
+        <p>{{this}}</p>
+      </div>
+    </div>
+  {{/each}}
   <!-- Login Page (Only for Guest users) -->
   <section id='login'>
     <div class='form'>

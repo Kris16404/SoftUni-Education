@@ -10,13 +10,13 @@ exports.auth = async function (req, res, next) {
       res.locals.user = decodedToken;
       res.locals.isAuthenticated = true;
 
-      next();
+      return next();
     } catch (err) {
       res.clearCookie('token');
       res.redirect('/users/login');
     }
   }
-  next();
+  return next();
 };
 
 exports.isAuth = (req, res, next) => {
