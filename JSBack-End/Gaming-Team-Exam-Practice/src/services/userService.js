@@ -1,6 +1,9 @@
 const User = require('../models/User.js');
 const bcrypt = require('bcrypt');
 
+const jwt = require('../lib/jwt.js');
+const { SECRET } = require('../utils/constants.js');
+
 exports.login = (email, password) => {
   //
 };
@@ -38,5 +41,14 @@ exports.register = async (username, email, password, rePass) => {
   const user = new User(userObj);
   await user.save();
 
-  // TODO: Make cookie token
+  const currentUser = await User.findOne({ email: email }).exec();
+
+  const payload = {
+    _id: currentUser.id,
+    email: currentUser.id,
+  };
+
+  const token = jwt.sign(payload, SECRET, { expiresIn: '2d' });
+
+  return token;
 };
