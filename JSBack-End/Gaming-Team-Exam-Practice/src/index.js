@@ -6,7 +6,7 @@ const { handlebarsConfig } = require('./config/handlebarsConfig.js');
 
 const app = express();
 
-expressConfig(app);
 handlebarsConfig(app);
+expressConfig(app);
 
 app.listen(PORT, () => console.log(`The app is listening on port : ${PORT}`));
