@@ -1,5 +1,6 @@
 const jwt = require('../lib/jwt.js');
 const { SECRET } = require('../constants.js');
+const extractMongooseErrors = require('../errorHandler.js');
 
 exports.auth = async function (req, res, next) {
   const token = req.cookies['token'];
@@ -12,11 +13,13 @@ exports.auth = async function (req, res, next) {
 
       return next();
     } catch (err) {
+      const errorMessage = extractMongooseErrors(err);
+      res.status(404).render('login', { errorMessage });
       res.clearCookie('token');
-      res.redirect('/users/login');
     }
+  } else {
+    return next();
   }
-  return next();
 };
 
 exports.isAuth = (req, res, next) => {

@@ -5,8 +5,10 @@ const extractMongooseErrors = (err) => {
   if (isInstanceOfMongoose) {
     return [err.message];
   }
-
-  return ['Not an mongoose error'];
+  if (err.code === 11000) {
+    return ['And user with this email already exists'];
+  }
+  return [`Not an mongoose error | ${err.message}`];
 };
 
 module.exports = extractMongooseErrors;

@@ -5,15 +5,15 @@ const bcrypt = require('bcrypt');
 const { MongooseError } = require('mongoose');
 
 exports.register = async (email, password, rePass) => {
-  User.create({ email, password, rePass });
+  User.create({ email, password, rePass }).then(async () => {
+    const user = await User.findOne({ email: email });
 
-  const user = await User.findOne({ email: email });
+    const payload = { _id: user.id, email: user.email };
 
-  const payload = { _id: user.id, email: user.email };
+    const token = await jwt.sign(payload, SECRET, { expiresIn: '2d' });
 
-  const token = await jwt.sign(payload, SECRET, { expiresIn: '2d' });
-
-  return token;
+    return token;
+  });
 };
 
 exports.login = async (email, password) => {
