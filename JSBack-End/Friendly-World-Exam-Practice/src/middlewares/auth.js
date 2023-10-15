@@ -4,6 +4,7 @@ const extractMongooseErrors = require('../errorHandler.js');
 
 exports.auth = async function (req, res, next) {
   const token = req.cookies['token'];
+  console.log('log from middleware');
   if (token) {
     try {
       const decodedToken = await jwt.verify(token, SECRET);

@@ -14,6 +14,9 @@ router.get('/catalog', (req, res) => {
 
 router.get('/create', (req, res) => {
   const token = req.cookies['token'];
+  if (!token) {
+    res.redirect('/users/login');
+  }
 
   res.render('create', { token });
 });

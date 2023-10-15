@@ -3,6 +3,7 @@ const { SECRET } = require('../utils/constants.js');
 
 exports.auth = async (req, res, next) => {
   const token = req.cookies['token'];
+  console.log('log form autgh');
   if (token) {
     try {
       const decodedToken = await jwt.verify(token, SECRET);
@@ -18,4 +19,13 @@ exports.auth = async (req, res, next) => {
   } else {
     return next();
   }
+};
+
+exports.isAuth = (req, res, next) => {
+  console.log('log from isAuth');
+  if (!req.user) {
+    return res.redirect('/users/login');
+  }
+
+  return next();
 };

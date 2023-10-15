@@ -4,8 +4,29 @@ const bcrypt = require('bcrypt');
 const jwt = require('../lib/jwt.js');
 const { SECRET } = require('../utils/constants.js');
 
-exports.login = (email, password) => {
-  //
+exports.login = async (email, password) => {
+  if (!email || !password) {
+    throw new Error('Email and password are required');
+  }
+  const user = await User.findOne({ email: email }).exec();
+  if (!user) {
+    throw new Error('Wrong email or password');
+  }
+
+  const isValid = await bcrypt.compare(password, user.password);
+
+  if (!isValid) {
+    throw new Error('Wrong email or password');
+  }
+
+  const payload = {
+    _id: user.id,
+    email: user.email,
+  };
+
+  const token = await jwt.sign(payload, SECRET, { expiresIn: '2d' });
+
+  return token;
 };
 
 exports.register = async (username, email, password, rePass) => {
@@ -45,7 +66,7 @@ exports.register = async (username, email, password, rePass) => {
 
   const payload = {
     _id: currentUser.id,
-    email: currentUser.id,
+    email: currentUser.email,
   };
 
   const token = jwt.sign(payload, SECRET, { expiresIn: '2d' });
