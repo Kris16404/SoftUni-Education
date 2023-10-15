@@ -39,9 +39,7 @@ const gameSchema = new mongoose.Schema({
       },
     },
   },
-  boughtBy: {
-    type: Array,
-  },
+  boughtBy: [String],
   owner: {
     type: String,
   },

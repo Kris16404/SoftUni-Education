@@ -29,6 +29,17 @@ exports.createGame = async (
 
 exports.findAllGames = async () => {
   const allGames = await Game.find().lean().exec();
-  console.log(allGames);
   return allGames;
+};
+
+exports.findGameById = async (id) => {
+  const foundGame = await Game.findById(id).lean().exec();
+
+  return foundGame;
+};
+
+exports.buyAGame = async (userId, gameId) => {
+  await Game.findByIdAndUpdate(gameId, {
+    $push: { boughtBy: userId },
+  });
 };

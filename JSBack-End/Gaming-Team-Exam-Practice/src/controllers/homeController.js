@@ -45,6 +45,33 @@ router.post('/create', async (req, res) => {
   }
 });
 
+router.get('/details/:id', async (req, res) => {
+  const token = req.cookies['token'];
+  const isLogged = token;
+  const id = req.params.id;
+  const user = res.locals.user;
+  const game = await gameService.findGameById(id);
+
+  let isAuthor;
+  let isLoggedAndBought;
+  if (user) {
+    isAuthor = user._id === game.owner;
+    isLoggedAndBought = !game.boughtBy.includes(user._id);
+  } else {
+    isAuthor = false;
+    isLoggedAndBought = false;
+  }
+
+  res.render('details', { token, game, isLogged, isAuthor, isLoggedAndBought });
+});
+
+router.get('/buy/:id', async (req, res) => {
+  const userId = res.locals.user._id;
+  const gameId = req.params.id;
+  await gameService.buyAGame(userId, gameId);
+  res.redirect(`/details/${gameId}`);
+});
+
 router.get('/404', (req, res) => {
   const token = req.cookies['token'];
 
