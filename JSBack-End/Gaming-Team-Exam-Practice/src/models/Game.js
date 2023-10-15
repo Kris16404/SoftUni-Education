@@ -27,10 +27,10 @@ const gameSchema = new mongoose.Schema({
     validate: {
       validator: function (val) {
         if (
-          val !== 'PC' ||
-          val !== 'Nintendo' ||
-          val !== 'PS4' ||
-          val !== 'PS5' ||
+          val !== 'PC' &&
+          val !== 'Nintendo' &&
+          val !== 'PS4' &&
+          val !== 'PS5' &&
           val !== 'XBOX'
         ) {
           return false;
