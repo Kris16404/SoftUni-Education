@@ -26,3 +26,9 @@ exports.createGame = async (
   const game = new Game(gameTemplate);
   await game.save();
 };
+
+exports.findAllGames = async () => {
+  const allGames = await Game.find().lean().exec();
+  console.log(allGames);
+  return allGames;
+};

@@ -8,10 +8,11 @@ router.get('/', (req, res) => {
   res.render('home', { token });
 });
 
-router.get('/catalog', (req, res) => {
+router.get('/catalog', async (req, res) => {
   const token = req.cookies['token'];
+  const games = await gameService.findAllGames();
 
-  res.render('catalog', { token });
+  res.render('catalog', { token, games });
 });
 
 router.get('/create', (req, res) => {
