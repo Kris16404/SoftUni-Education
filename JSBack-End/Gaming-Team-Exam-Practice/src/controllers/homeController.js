@@ -123,6 +123,14 @@ router.post('/edit/:id', async (req, res) => {
   }
 });
 
+router.get('/delete/:id', async (req, res) => {
+  const gameId = req.params.id;
+
+  await gameService.deleteGameById(gameId);
+
+  res.redirect('/catalog');
+});
+
 router.get('/404', (req, res) => {
   const token = req.cookies['token'];
 
