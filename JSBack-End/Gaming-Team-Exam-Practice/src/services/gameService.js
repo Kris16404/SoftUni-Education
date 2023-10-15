@@ -21,7 +21,7 @@ exports.createGame = async (
   if (name.length < 4) {
     throw new Error('Game name must be at least 4 characters long');
   }
-  if (!image.startsWith('http://') || !image.startsWith('https://')) {
+  if (!image.startsWith('http://') && !image.startsWith('https://')) {
     throw new Error('Game image must start with http:// or https://');
   }
   if (Number(price) < 0) {
@@ -89,7 +89,7 @@ exports.editGame = async (
   if (name.length < 4) {
     throw new Error('Game name must be at least 4 characters long');
   }
-  if (!image.startsWith('http://') || !image.startsWith('https://')) {
+  if (!image.startsWith('http://', 0) && !image.startsWith('https://', 0)) {
     throw new Error('Game image must start with http:// or https://');
   }
   if (Number(price) < 0) {
