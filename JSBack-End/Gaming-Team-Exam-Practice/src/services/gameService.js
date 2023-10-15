@@ -119,3 +119,19 @@ exports.editGame = async (
 exports.deleteGameById = async (gameId) => {
   await Game.findByIdAndDelete(gameId);
 };
+
+exports.searchGames = async (search, platform) => {
+  let games = await this.findAllGames();
+
+  if (search) {
+    games = games.filter((game) =>
+      game.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+
+  if (platform) {
+    games = games.filter((game) => game.platform === platform);
+  }
+
+  return games;
+};

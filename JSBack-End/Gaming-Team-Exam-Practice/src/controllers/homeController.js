@@ -131,6 +131,21 @@ router.get('/delete/:id', async (req, res) => {
   res.redirect('/catalog');
 });
 
+router.get('/search', async (req, res) => {
+  const token = req.cookies['token'];
+  const games = await gameService.findAllGames();
+  res.render('search', { token, games });
+});
+
+router.post('/search', async (req, res) => {
+  const token = req.cookies['token'];
+  const { search, platform } = req.body;
+
+  const games = await gameService.searchGames(search, platform);
+
+  res.render('search', { token, games });
+});
+
 router.get('/404', (req, res) => {
   const token = req.cookies['token'];
 
