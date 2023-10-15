@@ -16,6 +16,7 @@ const gameSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true,
+    trim: true,
   },
   genre: {
     type: String,

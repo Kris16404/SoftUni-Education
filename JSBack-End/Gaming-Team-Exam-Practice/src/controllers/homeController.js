@@ -72,6 +72,57 @@ router.get('/buy/:id', async (req, res) => {
   res.redirect(`/details/${gameId}`);
 });
 
+router.get('/edit/:id', async (req, res) => {
+  const token = req.cookies['token'];
+  const gameId = req.params.id;
+  const game = await gameService.findGameById(gameId);
+  const isPC = game.platform === 'PC';
+  const isNintendo = game.platform === 'Nintendo';
+  const isPS4 = game.platform === 'PS4';
+  const isPS5 = game.platform === 'PS5';
+  const isXbox = game.platform === 'XBOX';
+
+  res.render('edit', { token, game, isPC, isNintendo, isPS4, isPS5, isXbox });
+});
+
+router.post('/edit/:id', async (req, res) => {
+  const { platform, name, image, price, genre, description } = req.body;
+  const gameId = req.params.id;
+  const token = req.cookies['token'];
+
+  try {
+    await gameService.editGame(
+      platform,
+      name,
+      image,
+      price,
+      genre,
+      description,
+      gameId
+    );
+
+    res.redirect(`/details/${gameId}`);
+  } catch (err) {
+    const game = await gameService.findGameById(gameId);
+    const isPC = game.platform === 'PC';
+    const isNintendo = game.platform === 'Nintendo';
+    const isPS4 = game.platform === 'PS4';
+    const isPS5 = game.platform === 'PS5';
+    const isXbox = game.platform === 'XBOX';
+    const errorMessages = [err.message];
+    res.render('edit', {
+      token,
+      game,
+      isPC,
+      isNintendo,
+      isPS4,
+      isPS5,
+      isXbox,
+      errorMessages,
+    });
+  }
+});
+
 router.get('/404', (req, res) => {
   const token = req.cookies['token'];
 

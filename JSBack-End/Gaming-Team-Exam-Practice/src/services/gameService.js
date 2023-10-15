@@ -43,3 +43,28 @@ exports.buyAGame = async (userId, gameId) => {
     $push: { boughtBy: userId },
   });
 };
+
+exports.editGame = async (
+  platform,
+  name,
+  image,
+  price,
+  genre,
+  description,
+  gameId
+) => {
+  if (!platform || !name || !image || !price || !genre || !description) {
+    throw new Error('All fields are required');
+  }
+
+  const updatedGame = {
+    name: name,
+    image: image,
+    price: price,
+    description: description,
+    genre: genre,
+    platform: platform,
+  };
+
+  await Game.findByIdAndUpdate(gameId, updatedGame);
+};
