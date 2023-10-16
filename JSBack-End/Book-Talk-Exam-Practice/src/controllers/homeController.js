@@ -4,4 +4,13 @@ router.get('/', (req, res) => {
   res.render('home');
 });
 
+router.get('/catalog', (req, res) => {
+  res.render('catalog');
+  // TODO: Connect with DB and pull data
+});
+
+router.get('/404', (req, res) => {
+  res.render('404');
+});
+
 module.exports = router;
