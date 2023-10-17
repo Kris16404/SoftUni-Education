@@ -5,10 +5,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    validate: {
+      validator: function (val) {
+        return val.length > 10;
+      },
+    },
   },
   username: {
     type: String,
     required: true,
+    validate: {
+      validator: function (val) {
+        return val.length > 4;
+      },
+    },
   },
   password: {
     type: String,
