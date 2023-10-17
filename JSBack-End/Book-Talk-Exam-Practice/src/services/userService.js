@@ -36,8 +36,35 @@ exports.register = async (email, username, password, rePass) => {
   const currentUser = await User.findOne({ email: email }).lean().exec();
 
   const payload = {
-    _id: currentUser.id,
+    _id: currentUser._id,
     email: currentUser.email,
+  };
+
+  const token = await jwt.sign(payload, SECRET, { expiresIn: '2d' });
+
+  return token;
+};
+
+exports.login = async (email, password) => {
+  if (!email || !password) {
+    throw new Error('Invalid password or email');
+  }
+
+  const user = await User.findOne({ email: email }).lean().exec();
+
+  if (!user) {
+    throw new Error('Invalid password or email');
+  }
+
+  const isValid = await bcrypt.compare(password, user.password);
+
+  if (!isValid) {
+    throw new Error('Invalid password or email');
+  }
+
+  const payload = {
+    _id: user._id,
+    email: user.email,
   };
 
   const token = await jwt.sign(payload, SECRET, { expiresIn: '2d' });
