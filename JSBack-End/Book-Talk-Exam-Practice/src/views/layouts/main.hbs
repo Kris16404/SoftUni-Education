@@ -23,12 +23,15 @@
           <a href='/catalog'>Catalog</a>
           <!--Only for logged user-->
           <!-- Make it work with id -->
-          <a href='/profile'>Profile</a>
-          <a href='/create'>Create Review</a>
-          <a href='/users/logout'>Logout</a>
-          <!--Only for guest-->
-          <a href='/users/login'>Login</a>
-          <a href='/users/register'>Register</a>
+          {{#if token}}
+            <a href='/profile'>Profile</a>
+            <a href='/create'>Create Review</a>
+            <a href='/users/logout'>Logout</a>
+            <!--Only for guest-->
+          {{else}}
+            <a href='/users/login'>Login</a>
+            <a href='/users/register'>Register</a>
+          {{/if}}
         </nav>
       </div>
 

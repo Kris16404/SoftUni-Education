@@ -3,7 +3,8 @@ const router = require('express').Router();
 const userService = require('../services/userService.js');
 
 router.get('/register', (req, res) => {
-  res.render('register');
+  const token = req.cookies['token'];
+  res.render('register', { token });
 });
 
 router.post('/register', async (req, res) => {
@@ -32,6 +33,12 @@ router.post('/login', async (req, res) => {
     const errorMessages = [err.message];
     res.render('login', { errorMessages });
   }
+});
+
+router.get('/logout', async (req, res) => {
+  res.clearCookie('token');
+  res.redirect('/');
+  console.log(res.locals);
 });
 
 module.exports = router;
