@@ -2,7 +2,6 @@ const Book = require('../models/Book.js');
 
 exports.getAllBooks = async () => {
   const books = await Book.find().lean().exec();
-  console.log(books);
   return books;
 };
 
@@ -47,4 +46,10 @@ exports.createBook = async (
   const book = new Book(bookTemplate);
 
   await book.save();
+};
+
+exports.findBookById = async (bookId) => {
+  const foundBook = await Book.findById(bookId).lean().exec();
+
+  return foundBook;
 };

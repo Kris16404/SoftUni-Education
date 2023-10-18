@@ -3,25 +3,20 @@ const router = require('express').Router();
 const bookService = require('../services/bookService.js');
 
 router.get('/', (req, res) => {
-  const token = req.cookies['token'];
-  res.render('home', { token });
+  res.render('home');
 });
 
 router.get('/catalog', async (req, res) => {
-  const token = req.cookies['token'];
   const books = await bookService.getAllBooks();
 
-  res.render('catalog', { token, books });
+  res.render('catalog', { books });
 });
 
 router.get('/create', (req, res) => {
-  const token = req.cookies['token'];
-
-  res.render('create', { token });
+  res.render('create');
 });
 
 router.post('/create', async (req, res) => {
-  const token = req.cookies['token'];
   let { title, author, genre, stars, image, review } = req.body;
   stars = Number(stars);
   try {
@@ -38,14 +33,22 @@ router.post('/create', async (req, res) => {
     res.redirect('/catalog');
   } catch (err) {
     const errorMessages = [err.message];
-    res.render('create', { token, errorMessages });
+    res.render('create', { errorMessages });
   }
 });
 
-router.get('/404', (req, res) => {
-  const token = req.cookies['token'];
+router.get('/details/:id', async (req, res) => {
+  const bookId = req.params.id;
+  const userId = req.user?._id;
+  const book = await bookService.findBookById(bookId);
+  const isAuthor = book.owner.toString() === userId;
+  const isWished = book.wishingList.includes(userId);
 
-  res.render('404', { token });
+  res.render('details', { book, isAuthor, isWished });
+});
+
+router.get('/404', (req, res) => {
+  res.render('404');
 });
 
 module.exports = router;
