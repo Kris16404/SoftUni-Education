@@ -97,12 +97,15 @@ router.get('/wish-to-read/:id', async (req, res) => {
   res.redirect(`/details/${bookId}`);
 });
 
-router.get('/404', (req, res) => {
-  res.render('404');
+router.get('/profile', async (req, res) => {
+  const user = req.user;
+  const books = await bookService.findWhishlistedBooks(user);
+
+  res.render('profile', { books });
 });
 
-router.get('/profile', (req, res) => {
-  const user = req.user;
+router.get('/404', (req, res) => {
+  res.render('404');
 });
 
 module.exports = router;
