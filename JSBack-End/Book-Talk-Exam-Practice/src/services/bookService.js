@@ -108,11 +108,10 @@ exports.wishToRead = async (bookId, user) => {
 };
 
 exports.findWhishlistedBooks = async (user) => {
-  const userId = user._id;
+  const userId = user?._id;
   const allBooks = await this.getAllBooks();
   const filteredBooks = allBooks.filter((book) =>
     book.wishingList.toString().includes(userId)
   );
-  console.log(filteredBooks);
   return filteredBooks;
 };

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const bookService = require('../services/bookService.js');
+const { isAuth } = require('../middlewares/auth.js');
 
 router.get('/', (req, res) => {
   res.render('home');
@@ -12,11 +13,11 @@ router.get('/catalog', async (req, res) => {
   res.render('catalog', { books });
 });
 
-router.get('/create', (req, res) => {
+router.get('/create', isAuth, (req, res) => {
   res.render('create');
 });
 
-router.post('/create', async (req, res) => {
+router.post('/create', isAuth, async (req, res) => {
   let { title, author, genre, stars, image, review } = req.body;
   stars = Number(stars);
   try {
@@ -47,7 +48,7 @@ router.get('/details/:id', async (req, res) => {
   res.render('details', { book, isAuthor, isWished });
 });
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', isAuth, async (req, res) => {
   const bookId = req.params.id;
 
   try {
@@ -59,7 +60,7 @@ router.get('/edit/:id', async (req, res) => {
   }
 });
 
-router.post('/edit/:id', async (req, res) => {
+router.post('/edit/:id', isAuth, async (req, res) => {
   const bookId = req.params.id;
   let { title, author, genre, stars, image, review } = req.body;
   stars = Number(stars);
@@ -84,20 +85,20 @@ router.post('/edit/:id', async (req, res) => {
   }
 });
 
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:id', isAuth, async (req, res) => {
   const bookId = req.params.id;
   await bookService.deleteBook(bookId);
   res.redirect('/catalog');
 });
 
-router.get('/wish-to-read/:id', async (req, res) => {
+router.get('/wish-to-read/:id', isAuth, async (req, res) => {
   const user = req.user;
   const bookId = req.params.id;
   await bookService.wishToRead(bookId, user);
   res.redirect(`/details/${bookId}`);
 });
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', isAuth, async (req, res) => {
   const user = req.user;
   const books = await bookService.findWhishlistedBooks(user);
 
