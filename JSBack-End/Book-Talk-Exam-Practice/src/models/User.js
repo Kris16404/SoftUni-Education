@@ -5,24 +5,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    validate: {
-      validator: function (val) {
-        return val.length > 10;
-      },
-    },
+    minLength: 10,
   },
   username: {
     type: String,
     required: true,
-    validate: {
-      validator: function (val) {
-        return val.length > 4;
-      },
-    },
+    minLength: 4,
   },
   password: {
     type: String,
     required: true,
+    minLength: 3,
   },
 });
 
