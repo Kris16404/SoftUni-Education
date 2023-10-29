@@ -4,7 +4,7 @@ export default function () {
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg custom_nav-container">
           <a className="navbar-brand" href="index.html">
-            <span>Hostit</span>
+            <span>Tech Store</span>
           </a>
 
           <button
@@ -33,32 +33,22 @@ export default function () {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="service.html">
-                  Services
+                <a className="nav-link" href="price.html">
+                  Login
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="price.html">
-                  Pricing
+                  Register
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="contact.html">
-                  Contact Us
+                  Contacts
                 </a>
               </li>
             </ul>
-            <div className="quote_btn-container">
-              <form className="form-inline">
-                <button className="btn nav_search-btn" type="submit">
-                  <i className="fa fa-search" aria-hidden="true"></i>
-                </button>
-              </form>
-              <a href="">
-                <i className="fa fa-phone" aria-hidden="true"></i>
-                <span> Call : +01 123455678990 </span>
-              </a>
-            </div>
+            <div className="quote_btn-container"></div>
           </div>
         </nav>
       </div>
