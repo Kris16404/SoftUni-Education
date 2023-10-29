@@ -1,5 +1,7 @@
 import Navbar from './components/Navbar.jsx';
 import SliderSection from './components/SliderSection.jsx';
+import ServiceSection from './components/ServiceSection.jsx';
+
 function App() {
   return (
     <>
@@ -7,6 +9,7 @@ function App() {
         <Navbar />
         <SliderSection />
       </div>
+      <ServiceSection />
     </>
   );
 }
