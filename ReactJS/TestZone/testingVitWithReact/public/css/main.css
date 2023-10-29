@@ -1,0 +1,9 @@
+nav {
+  background-color: gray;
+  border-radius: 1rem;
+}
+a.navTag {
+  margin: 5%;
+  display: block;
+  align-items: center;
+}
