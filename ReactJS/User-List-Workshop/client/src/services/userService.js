@@ -47,3 +47,17 @@ export const createUser = async (user) => {
     console.log(err);
   }
 };
+
+export const getOneUser = async (id) => {
+  try {
+    const response = fetch(`${url}/${id}`);
+
+    const result = await response.json();
+
+    const data = Object.values(result);
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

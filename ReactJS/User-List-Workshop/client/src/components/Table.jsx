@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import * as userService from '../services/userService.js';
 import UserTr from './UserTr.jsx';
 import AddUserModal from './AddUserModal.jsx';
+import UserInfoModal from './UserInfoModal.jsx';
 
 export default function Table() {
   //TODO: Map every user with userTr component
   const [users, setUsers] = useState([]);
   const [showUserModal, setShowUserModal] = useState(false);
+  const [showUserInfoModal, setshowUserInfoModal] = useState(false);
 
   useEffect(() => {
     userService.getAllUsers().then((result) => setUsers(result));
@@ -20,9 +22,34 @@ export default function Table() {
   const onHideAddUserHandler = () => {
     setShowUserModal(false);
   };
+
+  const onShowUserInfoHandler = (e) => {
+    e.preventDefault();
+
+    const id = e.target.parentElement.parentElement.id;
+    const user = userService.getOneUser(id);
+    setshowUserInfoModal(true);
+  };
+
+  const onHideUserInfoHandler = () => {
+    setshowUserInfoModal(false);
+  };
   return (
     <>
       {showUserModal && <AddUserModal hideUserHandler={onHideAddUserHandler} />}
+      {showUserInfoModal && (
+        <UserInfoModal
+          hideUserInfoModal={onHideUserInfoHandler}
+          key={user._id}
+          _id={user._id}
+          firstName={user.firstName}
+          lastName={user.lastName}
+          email={user.email}
+          imageUrl={user.imageUrl}
+          phoneNumber={user.phoneNumber}
+          createdAt={user.createdAt}
+        />
+      )}
       <div className="table-wrapper">
         <table className="table">
           <thead>
@@ -125,12 +152,15 @@ export default function Table() {
             {users.map((user) => (
               <UserTr
                 key={user._id}
+                _id={user._id}
                 firstName={user.firstName}
                 lastName={user.lastName}
                 email={user.email}
                 imageUrl={user.imageUrl}
                 phoneNumber={user.phoneNumber}
                 createdAt={user.createdAt}
+                hideUserInfoHandler={onHideUserInfoHandler}
+                showUserInfoHandler={onShowUserInfoHandler}
               />
             ))}
           </tbody>

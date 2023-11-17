@@ -16,7 +16,7 @@ const UserTr = (props) => {
         <td>{props.phoneNumber}</td>
         <td>{props.createdAt}</td>
 
-        <td className="actions">
+        <td className="actions" id={props._id}>
           <button className="btn edit-btn" title="Edit">
             <svg
               aria-hidden="true"
@@ -51,7 +51,11 @@ const UserTr = (props) => {
               ></path>
             </svg>
           </button>
-          <button className="btn info-btn" title="Info">
+          <button
+            className="btn info-btn"
+            title="Info"
+            onClick={props.showUserInfoHandler}
+          >
             <svg
               aria-hidden="true"
               focusable="false"
