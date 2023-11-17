@@ -1,4 +1,4 @@
-export default function () {
+export default function SearchBar() {
   return (
     <form className="search-form">
       <h2>

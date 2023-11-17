@@ -13,10 +13,6 @@ function App() {
         <section className="card users-container">
           <SearchBar />
           <Table />
-
-          {/* New user button   */}
-          <button className="btn-add btn">Add new user</button>
-
           <Pagination />
         </section>
       </main>
