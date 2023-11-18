@@ -97,3 +97,18 @@ export const editUser = async (user, id) => {
     console.log(err);
   }
 };
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: 'DELETE',
+    });
+
+    const result = response.json();
+    const data = result;
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

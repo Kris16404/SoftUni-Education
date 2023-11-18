@@ -38,11 +38,11 @@ export default function SearchBar() {
       <div className="filter">
         <span>Search Criteria:</span>
         <select name="criteria" className="criteria">
-          <option value="">Not selected</option>
-          <option value="">First Name</option>
-          <option value="">Last Name</option>
-          <option value="">Email</option>
-          <option value="">Phone</option>
+          <option value="notSelected">Not selected</option>
+          <option value="firstName">First Name</option>
+          <option value="LastName">Last Name</option>
+          <option value="Email">Email</option>
+          <option value="Phone">Phone</option>
         </select>
       </div>
     </form>

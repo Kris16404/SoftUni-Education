@@ -5,6 +5,7 @@ import UserTr from './UserTr.jsx';
 import AddUserModal from './AddUserModal.jsx';
 import UserInfoModal from './UserInfoModal.jsx';
 import EditUserModal from './EditUserModal.jsx';
+import DeleteUserModal from './DeleteUserModal.jsx';
 
 export default function Table() {
   //TODO: Map every user with userTr component
@@ -14,10 +15,12 @@ export default function Table() {
   const [userInfo, setUserInfo] = useState({});
   const [showEditUserModal, setShowEditUserModal] = useState(false);
   const [editUserInfo, setEditUserInfo] = useState({});
+  const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
+  const [deleteUserId, setDeleteUserId] = useState('');
 
   useEffect(() => {
     userService.getAllUsers().then((result) => setUsers(result));
-  }, [showUserModal, showEditUserModal]);
+  }, [showUserModal, showEditUserModal, showDeleteUserModal]);
 
   const onShowAddUserHandler = () => {
     setShowUserModal(true);
@@ -51,9 +54,27 @@ export default function Table() {
   const onHideEditUserHandler = () => {
     setShowEditUserModal(false);
   };
+
+  const onHideDeleteUserHandler = () => {
+    setShowDeleteUserModal(false);
+  };
+
+  const onShowDeleteUserHandler = (e) => {
+    const id = e.currentTarget.parentElement.id;
+    setDeleteUserId(id);
+    setShowDeleteUserModal(true);
+  };
+
+  const deleteUserHandler = async (e) => {
+    e.preventDefault();
+
+    const data = await userService.deleteUser(deleteUserId);
+    onHideDeleteUserHandler();
+  };
   return (
     <>
       {showUserModal && <AddUserModal hideUserHandler={onHideAddUserHandler} />}
+
       {showUserInfoModal && (
         <UserInfoModal
           hideUserInfoModal={onHideUserInfoHandler}
@@ -83,6 +104,13 @@ export default function Table() {
           address={editUserInfo.address}
           createdAt={editUserInfo.createdAt}
           updatedAt={editUserInfo.updatedAt}
+        />
+      )}
+
+      {showDeleteUserModal && (
+        <DeleteUserModal
+          hideDeleteModal={onHideDeleteUserHandler}
+          deleteUserHandler={deleteUserHandler}
         />
       )}
       <div className="table-wrapper">
@@ -197,6 +225,7 @@ export default function Table() {
                 hideUserInfoHandler={onHideUserInfoHandler}
                 showUserInfoHandler={onShowUserInfoHandler}
                 showEditUserHandler={onShowEditUserHandler}
+                showDeleteModal={onShowDeleteUserHandler}
               />
             ))}
           </tbody>

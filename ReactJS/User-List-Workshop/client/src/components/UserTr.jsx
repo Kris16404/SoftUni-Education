@@ -38,7 +38,11 @@ const UserTr = (props) => {
               ></path>
             </svg>
           </button>
-          <button className="btn delete-btn" title="Delete">
+          <button
+            className="btn delete-btn"
+            title="Delete"
+            onClick={props.showDeleteModal}
+          >
             <svg
               aria-hidden="true"
               focusable="false"
