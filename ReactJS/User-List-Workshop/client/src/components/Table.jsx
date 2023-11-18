@@ -4,16 +4,20 @@ import * as userService from '../services/userService.js';
 import UserTr from './UserTr.jsx';
 import AddUserModal from './AddUserModal.jsx';
 import UserInfoModal from './UserInfoModal.jsx';
+import EditUserModal from './EditUserModal.jsx';
 
 export default function Table() {
   //TODO: Map every user with userTr component
   const [users, setUsers] = useState([]);
   const [showUserModal, setShowUserModal] = useState(false);
   const [showUserInfoModal, setshowUserInfoModal] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+  const [showEditUserModal, setShowEditUserModal] = useState(false);
+  const [editUserInfo, setEditUserInfo] = useState({});
 
   useEffect(() => {
     userService.getAllUsers().then((result) => setUsers(result));
-  }, []);
+  }, [showUserModal, showEditUserModal]);
 
   const onShowAddUserHandler = () => {
     setShowUserModal(true);
@@ -23,16 +27,29 @@ export default function Table() {
     setShowUserModal(false);
   };
 
-  const onShowUserInfoHandler = (e) => {
+  const onShowUserInfoHandler = async (e) => {
     e.preventDefault();
 
-    const id = e.target.parentElement.parentElement.id;
-    const user = userService.getOneUser(id);
+    const id = e.currentTarget.parentElement.id;
+    const user = await userService.getOneUser(id);
+    setUserInfo(user);
     setshowUserInfoModal(true);
   };
 
   const onHideUserInfoHandler = () => {
     setshowUserInfoModal(false);
+  };
+
+  const onShowEditUserHandler = async (e) => {
+    e.preventDefault();
+    const id = e.currentTarget.parentElement.id;
+    const user = await userService.getOneUser(id);
+    setEditUserInfo(user);
+    setShowEditUserModal(true);
+  };
+
+  const onHideEditUserHandler = () => {
+    setShowEditUserModal(false);
   };
   return (
     <>
@@ -40,14 +57,32 @@ export default function Table() {
       {showUserInfoModal && (
         <UserInfoModal
           hideUserInfoModal={onHideUserInfoHandler}
-          key={user._id}
-          _id={user._id}
-          firstName={user.firstName}
-          lastName={user.lastName}
-          email={user.email}
-          imageUrl={user.imageUrl}
-          phoneNumber={user.phoneNumber}
-          createdAt={user.createdAt}
+          key={userInfo._id}
+          _id={userInfo._id}
+          firstName={userInfo.firstName}
+          lastName={userInfo.lastName}
+          email={userInfo.email}
+          imageUrl={userInfo.imageUrl}
+          phoneNumber={userInfo.phoneNumber}
+          address={userInfo.address}
+          createdAt={userInfo.createdAt}
+          updatedAt={userInfo.updatedAt}
+        />
+      )}
+
+      {showEditUserModal && (
+        <EditUserModal
+          hideEditUserHandler={onHideEditUserHandler}
+          key={editUserInfo._id}
+          _id={editUserInfo._id}
+          firstName={editUserInfo.firstName}
+          lastName={editUserInfo.lastName}
+          email={editUserInfo.email}
+          imageUrl={editUserInfo.imageUrl}
+          phoneNumber={editUserInfo.phoneNumber}
+          address={editUserInfo.address}
+          createdAt={editUserInfo.createdAt}
+          updatedAt={editUserInfo.updatedAt}
         />
       )}
       <div className="table-wrapper">
@@ -161,6 +196,7 @@ export default function Table() {
                 createdAt={user.createdAt}
                 hideUserInfoHandler={onHideUserInfoHandler}
                 showUserInfoHandler={onShowUserInfoHandler}
+                showEditUserHandler={onShowEditUserHandler}
               />
             ))}
           </tbody>

@@ -17,7 +17,11 @@ const UserTr = (props) => {
         <td>{props.createdAt}</td>
 
         <td className="actions" id={props._id}>
-          <button className="btn edit-btn" title="Edit">
+          <button
+            className="btn edit-btn"
+            title="Edit"
+            onClick={props.showEditUserHandler}
+          >
             <svg
               aria-hidden="true"
               focusable="false"

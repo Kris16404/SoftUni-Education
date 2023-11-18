@@ -3,12 +3,12 @@ import { formatDate } from '../utils/isoFormater.js';
 export default function UserInfoModal(props) {
   return (
     <div className="overlay">
-      <div className="backdrop"></div>
+      <div className="backdrop" onClick={props.hideUserInfoModal}></div>
       <div className="modal">
         <div className="detail-container">
           <header className="headers">
             <h2>User Detail</h2>
-            <button className="btn close">
+            <button className="btn close" onClick={props.hideUserInfoModal}>
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -43,7 +43,7 @@ export default function UserInfoModal(props) {
                 <strong> {`${props.firstName} ${props.lastName}`} </strong>
               </p>
               <p>
-                Email: <strong>${props.email}</strong>
+                Email: <strong>{props.email}</strong>
               </p>
               <p>
                 Phone Number: <strong>{props.phoneNumber}</strong>
