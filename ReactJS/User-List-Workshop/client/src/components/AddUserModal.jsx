@@ -16,8 +16,8 @@ export default function AddUserModal(props) {
   });
 
   const inputChangeHandler = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const name = e.currentTarget.name;
+    const value = e.currentTarget.value;
     setInputData((state) => ({
       ...state,
       [name]: value,

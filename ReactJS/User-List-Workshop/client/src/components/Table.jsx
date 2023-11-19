@@ -12,7 +12,7 @@ import Pagination from './Pagination.jsx';
 import LoadingSpinner from './LoadingSpiner.jsx';
 
 export default function Table() {
-  const [users, setUsers] = useState([]);
+  let [users, setUsers] = useState([]);
   const [showUserModal, setShowUserModal] = useState(false);
   const [showUserInfoModal, setshowUserInfoModal] = useState(false);
   const [userInfo, setUserInfo] = useState({});
@@ -26,7 +26,7 @@ export default function Table() {
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
+  let currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
   const nPages = Math.ceil(users.length / recordsPerPage);
 
   useEffect(() => {
@@ -94,6 +94,16 @@ export default function Table() {
     const data = await userService.deleteUser(deleteUserId);
     onHideDeleteUserHandler();
   };
+
+  const onSortClickHandler = (e) => {
+    console.log(users);
+    users = users.sort((a, b) => {
+      return a[e.currentTarget.id].localeCompare(b[e.currentTarget.id]);
+    });
+    console.log(users);
+    currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
+  };
+
   return (
     <>
       <SearchBar searchHandler={searchHandler} />
@@ -143,7 +153,7 @@ export default function Table() {
           <thead>
             <tr>
               <th>Image</th>
-              <th>
+              <th id="firstName" onClick={onSortClickHandler}>
                 First name
                 <svg
                   aria-hidden="true"
@@ -161,7 +171,7 @@ export default function Table() {
                   ></path>
                 </svg>
               </th>
-              <th>
+              <th id="lastName" onClick={onSortClickHandler}>
                 Last name
                 <svg
                   aria-hidden="true"
@@ -179,7 +189,7 @@ export default function Table() {
                   ></path>
                 </svg>
               </th>
-              <th>
+              <th id="email" onClick={onSortClickHandler}>
                 Email
                 <svg
                   aria-hidden="true"
@@ -197,7 +207,7 @@ export default function Table() {
                   ></path>
                 </svg>
               </th>
-              <th>
+              <th id="phoneNumber" onClick={onSortClickHandler}>
                 Phone
                 <svg
                   aria-hidden="true"
@@ -215,7 +225,7 @@ export default function Table() {
                   ></path>
                 </svg>
               </th>
-              <th>
+              <th id="createdAt" onClick={onSortClickHandler}>
                 Created
                 <svg
                   aria-hidden="true"
