@@ -1,7 +1,25 @@
 import { useState } from 'react';
 
-export default function Pagination() {
-  const [recordsPerPage, setRecordsPerPage] = useState(5);
+export default function Pagination(props) {
+  const goToNextPage = () => {
+    if (props.currentPage !== props.nPages)
+      props.setCurrentPage(props.currentPage + 1);
+  };
+  const goToPrevPage = () => {
+    if (props.currentPage !== 1) {
+      props.setCurrentPage(props.currentPage - 1);
+    }
+  };
+
+  const goToFirstPage = () => {
+    if (props.currentPage !== 1) {
+      props.setCurrentPage(1);
+    }
+  };
+
+  const goToLastPage = () => {
+    if (props.currentPage !== props.nPages) props.setCurrentPage(props.nPages);
+  };
 
   return (
     <div className="pagination position">
@@ -10,8 +28,8 @@ export default function Pagination() {
         <select
           name="limit"
           className="limit"
-          value={recordsPerPage}
-          onChange={(e) => setRecordsPerPage(e.currentTarget.value)}
+          value={props.recordsPerPage}
+          onChange={(e) => props.setRecordsPerPage(e.currentTarget.value)}
         >
           <option value={5}>5</option>
           <option value={10}>10</option>
@@ -19,9 +37,11 @@ export default function Pagination() {
           <option value={20}>20</option>
         </select>
       </div>
-      <p className="pages">1 - 1 of 1</p>
+      <p className="pages">
+        1 - {props.currentPage} of {props.nPages}
+      </p>
       <div className="actions">
-        <button className="btn" title="First Page">
+        <button className="btn" title="First Page" onClick={goToFirstPage}>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -39,7 +59,7 @@ export default function Pagination() {
           </svg>
         </button>
 
-        <button className="btn" title="Previous Page">
+        <button className="btn" title="Previous Page" onClick={goToPrevPage}>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -56,7 +76,7 @@ export default function Pagination() {
             ></path>
           </svg>
         </button>
-        <button className="btn" title="Next Page">
+        <button className="btn" title="Next Page" onClick={goToNextPage}>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -74,7 +94,7 @@ export default function Pagination() {
           </svg>
         </button>
 
-        <button className="btn" title="Last Page">
+        <button className="btn" title="Last Page" onClick={goToLastPage}>
           <svg
             aria-hidden="true"
             focusable="false"

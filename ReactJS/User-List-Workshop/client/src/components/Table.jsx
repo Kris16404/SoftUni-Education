@@ -20,6 +20,13 @@ export default function Table() {
   const [editUserInfo, setEditUserInfo] = useState({});
   const [showDeleteUserModal, setShowDeleteUserModal] = useState(false);
   const [deleteUserId, setDeleteUserId] = useState('');
+  const [recordsPerPage, setRecordsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
+  const nPages = Math.ceil(users.length / recordsPerPage);
 
   useEffect(() => {
     userService.getAllUsers().then((result) => setUsers(result));
@@ -226,7 +233,7 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {currentRecords.map((user) => (
               <UserTr
                 key={user._id}
                 _id={user._id}
@@ -249,7 +256,13 @@ export default function Table() {
       <button className="btn-add btn" onClick={onShowAddUserHandler}>
         Add new user
       </button>
-      <Pagination />
+      <Pagination
+        recordsPerPage={recordsPerPage}
+        setRecordsPerPage={setRecordsPerPage}
+        nPages={nPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 }
