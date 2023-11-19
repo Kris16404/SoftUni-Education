@@ -1,4 +1,20 @@
-export default function SearchBar() {
+import { useState } from 'react';
+
+export default function SearchBar(props) {
+  const [searchField, setSearchField] = useState('');
+  const [searchCriteria, setSearchCriteria] = useState('notSelected');
+
+  const clearSearch = (e) => {
+    e.preventDefault();
+    setSearchField('');
+  };
+
+  const onSearchHandler = (e) => {
+    e.preventDefault();
+
+    props.searchHandler(searchField, searchCriteria);
+  };
+
   return (
     <form className="search-form">
       <h2>
@@ -24,25 +40,37 @@ export default function SearchBar() {
           type="text"
           placeholder="Please, select the search criteria"
           name="search"
+          value={searchField}
+          onChange={(e) => setSearchField(e.currentTarget.value)}
         />
-        {/* Show the clear button only if input field length !== 0  */}
-        <button className="btn close-btn">
-          <i className="fa-solid fa-xmark"></i>
-        </button>
+        {searchField.length !== 0 && (
+          <button className="btn close-btn" onClick={clearSearch}>
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+        )}
 
-        <button className="btn" title="Please, select the search criteria">
+        <button
+          className="btn"
+          title="Please, select the search criteria"
+          onClick={onSearchHandler}
+        >
           <i className="fa-solid fa-magnifying-glass"></i>
         </button>
       </div>
 
       <div className="filter">
         <span>Search Criteria:</span>
-        <select name="criteria" className="criteria">
+        <select
+          name="criteria"
+          className="criteria"
+          value={searchCriteria}
+          onChange={(e) => setSearchCriteria(e.currentTarget.value)}
+        >
           <option value="notSelected">Not selected</option>
           <option value="firstName">First Name</option>
-          <option value="LastName">Last Name</option>
-          <option value="Email">Email</option>
-          <option value="Phone">Phone</option>
+          <option value="lastName">Last Name</option>
+          <option value="email">Email</option>
+          <option value="phoneNumber">Phone</option>
         </select>
       </div>
     </form>

@@ -1,13 +1,22 @@
+import { useState } from 'react';
+
 export default function Pagination() {
+  const [recordsPerPage, setRecordsPerPage] = useState(5);
+
   return (
     <div className="pagination position">
       <div className="limits">
         <span>Items per page:</span>
-        <select name="limit" className="limit">
-          <option>5</option>
-          <option>10</option>
-          <option>15</option>
-          <option>20</option>
+        <select
+          name="limit"
+          className="limit"
+          value={recordsPerPage}
+          onChange={(e) => setRecordsPerPage(e.currentTarget.value)}
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={15}>15</option>
+          <option value={20}>20</option>
         </select>
       </div>
       <p className="pages">1 - 1 of 1</p>

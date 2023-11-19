@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 
 import * as userService from '../services/userService.js';
+import * as searchService from '../services/searchService.js';
 import UserTr from './UserTr.jsx';
 import AddUserModal from './AddUserModal.jsx';
 import UserInfoModal from './UserInfoModal.jsx';
 import EditUserModal from './EditUserModal.jsx';
 import DeleteUserModal from './DeleteUserModal.jsx';
+import SearchBar from './SearchBar.jsx';
+import Pagination from './Pagination.jsx';
 
 export default function Table() {
   //TODO: Map every user with userTr component
@@ -65,6 +68,15 @@ export default function Table() {
     setShowDeleteUserModal(true);
   };
 
+  const searchHandler = async (searchField, searchCriteria) => {
+    const users = await searchService.searchByCriteria(
+      searchField,
+      searchCriteria
+    );
+
+    setUsers(users);
+  };
+
   const deleteUserHandler = async (e) => {
     e.preventDefault();
 
@@ -73,6 +85,8 @@ export default function Table() {
   };
   return (
     <>
+      <SearchBar searchHandler={searchHandler} />
+
       {showUserModal && <AddUserModal hideUserHandler={onHideAddUserHandler} />}
 
       {showUserInfoModal && (
@@ -235,6 +249,7 @@ export default function Table() {
       <button className="btn-add btn" onClick={onShowAddUserHandler}>
         Add new user
       </button>
+      <Pagination />
     </>
   );
 }
