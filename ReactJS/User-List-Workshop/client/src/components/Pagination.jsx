@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 export default function Pagination(props) {
   const goToNextPage = () => {
     if (props.currentPage !== props.nPages)

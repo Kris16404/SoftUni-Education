@@ -9,9 +9,9 @@ import EditUserModal from './EditUserModal.jsx';
 import DeleteUserModal from './DeleteUserModal.jsx';
 import SearchBar from './SearchBar.jsx';
 import Pagination from './Pagination.jsx';
+import LoadingSpinner from './LoadingSpiner.jsx';
 
 export default function Table() {
-  //TODO: Map every user with userTr component
   const [users, setUsers] = useState([]);
   const [showUserModal, setShowUserModal] = useState(false);
   const [showUserInfoModal, setshowUserInfoModal] = useState(false);
@@ -22,6 +22,7 @@ export default function Table() {
   const [deleteUserId, setDeleteUserId] = useState('');
   const [recordsPerPage, setRecordsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
@@ -29,7 +30,11 @@ export default function Table() {
   const nPages = Math.ceil(users.length / recordsPerPage);
 
   useEffect(() => {
-    userService.getAllUsers().then((result) => setUsers(result));
+    setIsLoading(true);
+    userService.getAllUsers().then((result) => {
+      setUsers(result);
+      setIsLoading(false);
+    });
   }, [showUserModal, showEditUserModal, showDeleteUserModal]);
 
   const onShowAddUserHandler = () => {
@@ -42,7 +47,6 @@ export default function Table() {
 
   const onShowUserInfoHandler = async (e) => {
     e.preventDefault();
-
     const id = e.currentTarget.parentElement.id;
     const user = await userService.getOneUser(id);
     setUserInfo(user);
@@ -233,22 +237,30 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            {currentRecords.map((user) => (
-              <UserTr
-                key={user._id}
-                _id={user._id}
-                firstName={user.firstName}
-                lastName={user.lastName}
-                email={user.email}
-                imageUrl={user.imageUrl}
-                phoneNumber={user.phoneNumber}
-                createdAt={user.createdAt}
-                hideUserInfoHandler={onHideUserInfoHandler}
-                showUserInfoHandler={onShowUserInfoHandler}
-                showEditUserHandler={onShowEditUserHandler}
-                showDeleteModal={onShowDeleteUserHandler}
-              />
-            ))}
+            {isLoading ? (
+              <tr>
+                <td>
+                  <LoadingSpinner />
+                </td>
+              </tr>
+            ) : (
+              currentRecords.map((user) => (
+                <UserTr
+                  key={user._id}
+                  _id={user._id}
+                  firstName={user.firstName}
+                  lastName={user.lastName}
+                  email={user.email}
+                  imageUrl={user.imageUrl}
+                  phoneNumber={user.phoneNumber}
+                  createdAt={user.createdAt}
+                  hideUserInfoHandler={onHideUserInfoHandler}
+                  showUserInfoHandler={onShowUserInfoHandler}
+                  showEditUserHandler={onShowEditUserHandler}
+                  showDeleteModal={onShowDeleteUserHandler}
+                />
+              ))
+            )}
           </tbody>
         </table>
       </div>
