@@ -10,3 +10,14 @@ export const getAllGames = async () => {
     console.log(err);
   }
 };
+
+export const getGameById = async (gameId) => {
+  try {
+    const response = await fetch(`${url}/${gameId}`);
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

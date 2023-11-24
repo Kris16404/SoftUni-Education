@@ -7,7 +7,7 @@ const GameArticle = ({ title, category, imageUrl, _id }) => {
         <img src={imageUrl} />
         <h6>{title}</h6>
         <h2>{category}</h2>
-        <Link to={`/details/${_id}`} className="details-button">
+        <Link to={`/games/details/${_id}`} className="details-button">
           Details
         </Link>
       </div>
