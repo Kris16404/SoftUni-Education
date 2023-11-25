@@ -23,7 +23,6 @@ const Navigation = ({ isLogged }) => {
                 to="/users/logout"
                 style={{ color: 'white' }}
                 className="nav-link-with-animation"
-                onClick={() => setIsLogged(false)}
               >
                 Logout
               </Nav.Link>
