@@ -1,16 +1,15 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './navigation.css';
 
-const Navigation = () => {
-  const [isLogged, setIsLogged] = useState(false);
-
+const Navigation = ({ isLogged }) => {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand
-          href="#home"
+          as={Link}
+          to="/"
           style={{ color: 'white' }}
           className="nav-link-with-animation"
         >
@@ -20,7 +19,8 @@ const Navigation = () => {
           {isLogged ? (
             <>
               <Nav.Link
-                href="#pricing"
+                as={Link}
+                to="/users/logout"
                 style={{ color: 'white' }}
                 className="nav-link-with-animation"
                 onClick={() => setIsLogged(false)}
@@ -28,14 +28,16 @@ const Navigation = () => {
                 Logout
               </Nav.Link>
               <Nav.Link
-                href="#pricing"
+                as={Link}
+                to="/songs/my-songs"
                 style={{ color: 'white' }}
                 className="nav-link-with-animation"
               >
                 My Songs
               </Nav.Link>
               <Nav.Link
-                href="#pricing"
+                as={Link}
+                to="/songs/find-songs"
                 style={{ color: 'white' }}
                 className="nav-link-with-animation"
               >
@@ -45,15 +47,16 @@ const Navigation = () => {
           ) : (
             <>
               <Nav.Link
-                href="#home"
+                as={Link}
+                to="/users/login"
                 style={{ color: 'white' }}
                 className="nav-link-with-animation"
-                onClick={() => setIsLogged(true)}
               >
                 Login
               </Nav.Link>
               <Nav.Link
-                href="#features"
+                as={Link}
+                to="/users/register"
                 style={{ color: 'white' }}
                 className="nav-link-with-animation"
               >
@@ -63,7 +66,8 @@ const Navigation = () => {
           )}
 
           <Nav.Link
-            href="#pricing"
+            as={Link}
+            to="/community/all"
             style={{ color: 'white' }}
             className="nav-link-with-animation"
           >
