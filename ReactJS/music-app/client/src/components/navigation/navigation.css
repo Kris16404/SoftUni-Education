@@ -1,0 +1,8 @@
+.nav-link-with-animation {
+  transition: color 0.3s ease-in-out;
+  border-radius: 8px;
+}
+
+.nav-link-with-animation:hover {
+  background-color: darkslategray; /* Change to your desired hover color */
+}
