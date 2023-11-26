@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import './login.css'; // Import the CSS file for custom styling
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -31,12 +31,29 @@ const Login = () => {
           label="Email address"
           className="mb-3"
         >
-          <Form.Control type="email" placeholder="name@example.com" />
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="name@example.com"
+            value={formData.email}
+            onChange={handleChange}
+          />
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Password">
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
         </FloatingLabel>
-        <Button variant="primary" type="submit" className="mt-3">
+        <Button
+          variant="primary"
+          type="submit"
+          className="mt-3"
+          onClick={handleSubmit}
+        >
           Login
         </Button>
       </div>

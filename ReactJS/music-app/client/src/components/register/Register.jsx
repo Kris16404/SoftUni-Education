@@ -3,13 +3,23 @@ import { Form, Button, FloatingLabel } from 'react-bootstrap';
 
 import './register.css';
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    rePass: '',
+  });
+  console.log(formData);
+  const handleChange = (e) => {
+    const { name, value } = e.currentTarget;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleRegister = () => {
     // Implement registration logic here
-    console.log('Registering...');
+    console.log('Registering... ', formData);
   };
 
   return (
@@ -24,8 +34,9 @@ const Register = () => {
           <Form.Control
             type="email"
             placeholder="name@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
           />
         </FloatingLabel>
         <br />
@@ -33,8 +44,9 @@ const Register = () => {
           <Form.Control
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
           />
         </FloatingLabel>
         <br />
@@ -45,8 +57,9 @@ const Register = () => {
           <Form.Control
             type="password"
             placeholder="Repeat Password"
-            value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
+            name="rePass"
+            value={formData.rePass}
+            onChange={handleChange}
           />
         </FloatingLabel>
         <Button
