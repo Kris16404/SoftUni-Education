@@ -1,8 +1,14 @@
+html,
 body {
   margin: 0;
   padding: 0;
-  background-image: url('../../public/music_concert-wallpaper-2560x1440.jpg'); /* Replace with your image file path */
-  background-size: cover;
-  background-position: center;
   height: 100vh;
+  overflow: hidden; /* Prevent vertical scrolling */
+}
+
+body {
+  background-image: url('../../public/music_concert-wallpaper-2560x1440.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  min-height: 100vh;
 }

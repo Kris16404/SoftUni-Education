@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 
 import './register.css';
@@ -8,7 +8,6 @@ const Register = () => {
     password: '',
     rePass: '',
   });
-  console.log(formData);
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
     setFormData((prevData) => ({
