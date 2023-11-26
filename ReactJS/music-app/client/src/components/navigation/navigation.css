@@ -1,8 +1,15 @@
+.ml-auto {
+  margin-left: auto !important;
+}
+
 .nav-link-with-animation {
-  transition: color 0.3s ease-in-out;
-  border-radius: 8px;
+  margin-right: 15px;
 }
 
 .nav-link-with-animation:hover {
-  background-color: darkslategray; /* Change to your desired hover color */
+  background-color: #555;
+  border-radius: 5px;
+}
+.bold-nav-link {
+  font-weight: bold;
 }

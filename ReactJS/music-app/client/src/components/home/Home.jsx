@@ -1,4 +1,5 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import './home.css';
 
@@ -13,7 +14,9 @@ const Home = () => {
               Explore, manage, and enjoy your favorite music all in one place.
             </p>
             <p>
-              <Button variant="primary">Get Started</Button>
+              <Button as={Link} variant="primary" to="/users/login">
+                Get Started
+              </Button>
             </p>
           </div>
         </Col>

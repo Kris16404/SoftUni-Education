@@ -1,9 +1,17 @@
 .home-container {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .jumbotron {
-  background-color: #f0f0f0;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Add an overlay to improve text visibility */
   padding: 40px;
   text-align: center;
   border-radius: 10px;
