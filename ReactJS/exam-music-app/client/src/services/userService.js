@@ -43,3 +43,30 @@ export const logout = async (authToken) => {
   isSuccessful = true;
   return isSuccessful;
 };
+
+export const register = async (email, password) => {
+  const userSample = {
+    email: email,
+    password: password,
+  };
+
+  const res = await fetch(urls.registerUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userSample),
+  });
+
+  const token = await res.json();
+
+  if (res.status === 409) {
+    return {
+      alreadyExists: true,
+    };
+  }
+  if (res.status !== 200) {
+    throw new Error(token.message);
+  }
+  return token;
+};

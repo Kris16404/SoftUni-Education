@@ -32,3 +32,10 @@
 .register-box .form-group:last-child {
   margin-bottom: 0;
 }
+
+.form-control-failed {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+  color: #721c24;
+  border-radius: 8px;
+}

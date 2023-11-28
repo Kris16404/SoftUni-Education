@@ -1,0 +1,7 @@
+.ToastContainer {
+  position: absolute;
+  margin-top: -500px;
+  right: 50%;
+  transform: translateX(50%);
+  min-width: 200px;
+}
