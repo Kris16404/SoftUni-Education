@@ -15,6 +15,7 @@ const Login = () => {
 
   const { setToken } = useAuth();
   const navigate = useNavigate();
+  const usernameFromEmailRegex = /([^@]+)@/;
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
     setFormData((prevData) => ({
@@ -25,15 +26,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your login logic here
     try {
-      if ((formData.email === '', formData.password === '')) {
+      if (formData.email === '' || formData.password === '') {
         throw new Error('Lol');
       }
       const token = await userService.login(formData.email, formData.password);
       const userInfo = {
         userEmail: token.email,
-        userUsername: token.username,
+        userUsername: token.email.match(usernameFromEmailRegex)[1],
         userId: token._id,
         accessToken: token.accessToken,
       };
