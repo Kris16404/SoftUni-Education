@@ -1452,6 +1452,7 @@
         title: 'Song 1',
         artist: 'Artist 1',
         album: 'Album 1',
+        description: 'Very cool song',
         youtubeId: 'abcdefghijk',
       },
       2: {
@@ -1459,6 +1460,7 @@
         title: 'Song 2',
         artist: 'Artist 2',
         album: 'Album 2',
+        description: 'Very bad song',
         youtubeId: 'lmnopqrstuv',
       },
       3: {
@@ -1466,6 +1468,7 @@
         title: 'Song 3',
         artist: 'Artist 3',
         album: 'Album 3',
+        description: 'Very hitting song',
         youtubeId: 'xyz123456',
       },
     },

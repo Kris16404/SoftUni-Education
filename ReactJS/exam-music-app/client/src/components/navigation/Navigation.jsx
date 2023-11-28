@@ -1,9 +1,25 @@
 import { Navbar, Container, Nav } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import { useAuth } from '../../contexts/authContext.jsx';
+import * as userService from '../../services/userService.js';
 import './navigation.css';
 
-const Navigation = ({ isLogged }) => {
+const Navigation = () => {
+  const { authToken, removeToken } = useAuth();
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    const isSuccessful = await userService.logout(authToken);
+    if (!isSuccessful) {
+      console.log('SMTH WENT WRONG WHEN LOGGING OUT');
+    } else {
+      removeToken();
+      navigate('/');
+    }
+  };
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -18,15 +34,15 @@ const Navigation = ({ isLogged }) => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ml-auto">
-            {isLogged ? (
+            {authToken ? (
               <>
                 <Nav.Link
                   as={Link}
-                  to="/users/logout"
+                  to="/users/me"
                   style={{ color: 'white' }}
                   className="nav-link-with-animation"
                 >
-                  Logout
+                  Hello, {authToken.userUsername}
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
@@ -43,6 +59,24 @@ const Navigation = ({ isLogged }) => {
                   className="nav-link-with-animation"
                 >
                   Find Songs
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/community/all"
+                  style={{ color: 'white' }}
+                  className="nav-link-with-animation"
+                >
+                  Community
+                </Nav.Link>
+
+                <Nav.Link
+                  as={Link}
+                  to="/users/logout"
+                  style={{ color: 'white' }}
+                  className="nav-link-with-animation"
+                  onClick={logout}
+                >
+                  Logout
                 </Nav.Link>
               </>
             ) : (
@@ -63,16 +97,16 @@ const Navigation = ({ isLogged }) => {
                 >
                   Register
                 </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/community/all"
+                  style={{ color: 'white' }}
+                  className="nav-link-with-animation"
+                >
+                  Community
+                </Nav.Link>
               </>
             )}
-            <Nav.Link
-              as={Link}
-              to="/community/all"
-              style={{ color: 'white' }}
-              className="nav-link-with-animation"
-            >
-              Community
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
