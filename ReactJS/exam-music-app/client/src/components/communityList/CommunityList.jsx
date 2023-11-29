@@ -21,9 +21,11 @@ const CommunityList = () => {
     <div className="posts-container">
       <h1 className="header">Latest Added Songs</h1>
       <div className="post-cards">
-        {songs.map((song) => (
-          <CommunityListSong key={song._id} song={song} />
-        ))}
+        {songs.length !== 0 ? (
+          songs.map((song) => <CommunityListSong key={song._id} song={song} />)
+        ) : (
+          <h1 className="no-songs">There are no songs added Yet.</h1>
+        )}
       </div>
     </div>
   );
