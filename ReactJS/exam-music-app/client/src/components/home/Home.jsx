@@ -20,7 +20,7 @@ const Home = () => {
               <Button
                 as={Link}
                 variant="primary"
-                to={authToken ? '/songs/find-songs' : '/users/login'}
+                to={authToken ? '/songs/add-song' : '/users/login'}
               >
                 Get Started
               </Button>

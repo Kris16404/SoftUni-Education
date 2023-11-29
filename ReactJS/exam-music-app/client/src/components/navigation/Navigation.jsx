@@ -54,11 +54,11 @@ const Navigation = () => {
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
-                  to="/songs/find-songs"
+                  to="/songs/add-song"
                   style={{ color: 'white' }}
                   className="nav-link-with-animation"
                 >
-                  Find Songs
+                  Post Song
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
