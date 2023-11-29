@@ -40,3 +40,10 @@ export const createSong = async (
 
   return result;
 };
+
+export const getSongById = async (songId) => {
+  const res = await fetch(`${url}/${songId}`);
+  const song = await res.json();
+
+  return song;
+};

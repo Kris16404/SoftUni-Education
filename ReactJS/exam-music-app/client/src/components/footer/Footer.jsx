@@ -5,7 +5,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <Container>
-        <p>This website is made for educational purposes</p>
+        <p className="footer-p">
+          This website is made for educational purposes
+        </p>
       </Container>
     </footer>
   );
