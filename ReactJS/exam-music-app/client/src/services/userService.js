@@ -35,7 +35,6 @@ export const logout = async (authToken) => {
       'X-Authorization': authToken.accessToken,
     },
   });
-
   if (res.status !== 204) {
     return isSuccessful;
   }

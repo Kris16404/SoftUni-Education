@@ -3,7 +3,6 @@ import { useAuth } from '../../contexts/authContext.jsx';
 
 const PrivateRoute = ({ element }) => {
   const { authToken } = useAuth();
-  console.log(authToken);
   // Redirect to the login page if there is no authToken
   return authToken ? element : <Navigate to="/users/login" replace />;
 };

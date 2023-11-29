@@ -1,10 +1,14 @@
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './createSong.css';
+import * as songService from '../../services/songService.js';
+import { useAuth } from '../../contexts/authContext.jsx';
+
 const CreateSong = () => {
   const [formData, setFormData] = useState({
-    songName: '',
+    title: '',
     description: '',
     album: '',
     creationYear: '',
@@ -13,7 +17,7 @@ const CreateSong = () => {
   });
 
   const [validation, setValidation] = useState({
-    songName: false,
+    title: false,
     description: false,
     album: false,
     creationYear: false,
@@ -22,13 +26,21 @@ const CreateSong = () => {
   });
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const { authToken } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Validate the form whenever formData changes
+    validateForm();
+  }, [formData]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.currentTarget;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    isFormValid();
     // Reset validation status when the user types
     setValidation((prevValidation) => ({
       ...prevValidation,
@@ -36,7 +48,7 @@ const CreateSong = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Set the form as submitted
@@ -47,8 +59,21 @@ const CreateSong = () => {
 
     // Check if the form is valid before submitting
     if (isFormValid()) {
-      // Add logic to handle the submission of the form data
-      console.log('Form submitted:', formData);
+      try {
+        const result = await songService.createSong(
+          authToken,
+          formData.title,
+          formData.artist,
+          formData.album,
+          formData.creationYear,
+          formData.youtubeUrl,
+          formData.description
+        );
+
+        navigate('/community/all');
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       console.log('Form validation failed');
     }
@@ -58,8 +83,8 @@ const CreateSong = () => {
     const newValidation = { ...validation };
 
     // Add your validation logic here
-    newValidation.songName =
-      formData.songName.trim() !== '' && !(formData.songName.trim().length < 3);
+    newValidation.title =
+      formData.title.trim() !== '' && !(formData.title.trim().length < 3);
     newValidation.description =
       formData.description.trim() !== '' &&
       !(formData.description.trim().length < 10);
@@ -70,7 +95,6 @@ const CreateSong = () => {
     newValidation.artist =
       formData.artist.trim() !== '' && !(formData.artist.trim().length < 3);
 
-    console.log(newValidation);
     setValidation(newValidation);
   };
 
@@ -93,16 +117,16 @@ const CreateSong = () => {
       <Form onSubmit={handleSubmit}>
         <FloatingLabel
           controlId="formSongName"
-          label="Song Name"
+          label="Song Title"
           className={`mb-3 ${
-            isFormSubmitted && !validation.songName ? 'invalid' : ''
+            isFormSubmitted && !validation.title ? 'invalid' : ''
           }`}
         >
           <Form.Control
             type="text"
-            name="songName"
+            name="title"
             placeholder="Freddie Dredd"
-            value={formData.songName}
+            value={formData.title}
             onChange={handleChange}
           />
         </FloatingLabel>
