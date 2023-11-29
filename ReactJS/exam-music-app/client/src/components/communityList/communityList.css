@@ -1,0 +1,17 @@
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-top: 30px;
+}
+
+.post-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}

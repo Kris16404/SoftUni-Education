@@ -24,9 +24,9 @@ export const createSong = async (
     creationYear: creationYear,
     youtubeUrl: youtubeUrl,
     description: description,
+    createdAt: new Date().toISOString(),
   };
 
-  console.log(token.accessToken);
   const res = await fetch(url, {
     method: 'POST',
     headers: {
