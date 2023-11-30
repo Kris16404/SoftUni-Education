@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext.jsx';
 import { Button } from 'react-bootstrap';
 
+import DeleteSongModal from '../deleteSongModal/DeleteSongModal.jsx';
 import * as songService from '../../services/songService.js';
 import './songDetails.css';
 
 const SongDetails = () => {
   const [song, setSong] = useState({});
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { songId } = useParams();
   const { authToken } = useAuth();
-  const showButtons = authToken.userId === song.ownerId;
+  const navigate = useNavigate();
+  const showButtons = authToken
+    ? authToken.userId === song.ownerId
+      ? true
+      : false
+    : false;
 
   useEffect(() => {
     songService
@@ -18,6 +25,16 @@ const SongDetails = () => {
       .then((song) => setSong(song))
       .catch((err) => console.log(err));
   }, []);
+
+  const handleShowDeleteModal = () => setShowDeleteModal(true);
+  const handleCloseDeleteModal = () => setShowDeleteModal(false);
+
+  const handleDelete = async () => {
+    await songService.deleteSong(song._id, authToken);
+    // Close the modal after deletion
+    handleCloseDeleteModal();
+    navigate('/community/all');
+  };
 
   return (
     <div className="overlay">
@@ -61,17 +78,19 @@ const SongDetails = () => {
               >
                 Edit
               </Button>{' '}
-              <Button
-                as={Link}
-                to={`/songs/delete/${song._id}`}
-                variant="danger"
-              >
+              <Button onClick={handleShowDeleteModal} variant="danger">
                 Delete
               </Button>
             </div>
           )}
         </div>
       </div>
+
+      <DeleteSongModal
+        show={showDeleteModal}
+        handleClose={handleCloseDeleteModal}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };
