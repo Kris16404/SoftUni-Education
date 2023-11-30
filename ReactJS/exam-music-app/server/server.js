@@ -1447,33 +1447,6 @@
   };
   var seedData = {
     music: {
-      1: {
-        title: 'Song 1',
-        artist: 'Artist 1',
-        album: 'Album 1',
-        creationYear: 2000,
-        youtubeUrl: 'abcdefghijk',
-        description: 'Very cool song',
-        createdAt: '2023-11-29T18:27:03.666Z',
-      },
-      2: {
-        title: 'Song 2',
-        artist: 'Artist 2',
-        album: 'Album 2',
-        creationYear: 2001,
-        youtubeUrl: 'lmnopqrstuv',
-        description: 'Very bad song',
-        createdAt: '2023-11-29T19:15:03.335Z',
-      },
-      3: {
-        title: 'Song 3',
-        artist: 'Artist 3',
-        album: 'Album 3',
-        creationYear: 2010,
-        youtubeUrl: 'xyz123456',
-        description: 'Very hitting song',
-        createdAt: '2023-11-29T19:10:03.957Z',
-      },
       'f9dc2580-4ab3-4da0-8d09-3de9ff58699e': {
         ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
         title: 'GTG',
@@ -1481,6 +1454,8 @@
         album: 'Dredd',
         creationYear: '2022',
         youtubeId: 'fslK9YTkcc0',
+        youtubeUrl:
+          'https://www.youtube.com/watch?v=fslK9YTkcc0&ab_channel=FreddieDredd',
         description: 'asdffdsafsdafasd',
         createdAt: '2023-11-29T19:27:03.997Z',
       },
@@ -1491,6 +1466,8 @@
         album: 'GTR Goo Brr',
         creationYear: '2022',
         youtubeId: 'cOm1zjAABfI',
+        youtubeUrl:
+          'https://www.youtube.com/watch?v=cOm1zjAABfI&ab_channel=%EF%BC%B4%EF%BC%B2%EF%BC%A1%EF%BC%B3%EF%BC%A8%E6%96%B0%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3',
         description: 'Very cool song def reccommend it',
         createdAt: '2023-11-30T14:34:42.355Z',
       },
