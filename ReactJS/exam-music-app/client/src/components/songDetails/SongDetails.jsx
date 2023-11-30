@@ -1,4 +1,3 @@
-import { Form, FloatingLabel } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -17,46 +16,39 @@ const SongDetails = () => {
   }, []);
 
   return (
-    <div className="info-container">
-      <div className="info-box-container">
-        <div className="info-box">
-          {/* YouTube player container on the left */}
+    <div className="overlay">
+      <div className="song-details-box">
+        {/* YouTube Player on the left */}
+        {song.youtubeId && (
           <div className="youtube-player">
-            {/* Include your YouTube player component or iframe here */}
-            {/* Example iframe: */}
             <iframe
               width="100%"
-              height="300"
-              src={`https://www.youtube.com/embed/${song.youtubeVideoId}`}
+              height="315"
+              src={`https://www.youtube.com/embed/${song.youtubeId}`}
               title="YouTube Video Player"
               frameBorder="0"
               allowFullScreen
-            ></iframe>
+            />
           </div>
-          {/* Info property template */}
-          <div className="info-property">
-            <div className="label">Title:</div>
-            <p className="label-p">{song.title}</p>
-          </div>
-          <div className="info-property">
-            <div className="label">Artist:</div>
-            <p className="label-p">{song.artist}</p>
-          </div>
-          <div className="info-property">
-            <div className="label">Album:</div>
-            <p className="label-p">{song.album}</p>
-          </div>
-          <div className="info-property">
-            <div className="label">Year Of Creation:</div>
-            <p className="label-p">{song.creationYear}</p>
-          </div>
-          <div className="info-property">
-            <div className="label">Description:</div>
-            <p className="label-p">
-              asdffasdfsadfgsfdgfsdgdsfgdsfgdssadfsdadfsasad
-            </p>
-          </div>
-          {/* Repeat this pattern for additional properties */}
+        )}
+
+        {/* Song Properties on the right */}
+        <div className="song-properties">
+          <h2>
+            <strong>Title: </strong> {song.title}
+          </h2>
+          <p>
+            <strong>Artist:</strong> {song.artist}
+          </p>
+          <p>
+            <strong>Album:</strong> {song.album}
+          </p>
+          <p>
+            <strong>Year:</strong> {song.creationYear}
+          </p>
+          <p>
+            <strong>Description:</strong> {song.description}
+          </p>
         </div>
       </div>
     </div>

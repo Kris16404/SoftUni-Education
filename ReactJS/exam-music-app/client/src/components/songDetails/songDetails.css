@@ -1,81 +1,33 @@
-.info-container {
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  height: 100vh; /* Set height to 100% of the viewport height */
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
-.info-box-container {
-  display: flex;
-  justify-content: center; /* Center the box horizontally */
-  align-items: center; /* Center the box vertically */
-  margin: 20px; /* Adjust margin as needed */
-  height: 50%; /* Set height to 50% of the viewport height */
+.song-details-box {
+  max-width: 800px;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+
+  overflow: hidden;
 }
 
-.info-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  width: 50%; /* Set width to 50% of the viewport width */
-  max-width: 800px; /* Set a maximum width for the info-box */
-  max-height: 50%; /* Set a maximum height for the info-box */
-  background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
-  padding: 30px; /* Add padding for spacing */
-  border-radius: 12px; /* Add border-radius for rounded corners */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add box-shadow for depth */
-  margin-top: 50%;
-  overflow: hidden; /* Hide any overflowing content */
-}
-
-.info-box h2 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 2.5rem; /* Increased font size for h2 */
-}
-
-/* Style for the info content container */
-.info-content {
-  display: flex;
-  align-items: flex-start; /* Align items to the start of the flex container */
-}
-
-/* Style for the YouTube player container on the left */
 .youtube-player {
-  width: 50%; /* Set width to 50% of the viewport width */
-  max-height: 50%; /* Set a maximum height for the YouTube player */
-  margin-bottom: 30px; /* Adjusted the margin as needed */
-  background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
-  border-radius: 12px; /* Add border-radius for rounded corners */
-  overflow: hidden; /* Hide any overflowing content */
+  flex: 1;
+  margin-right: 20px;
+  pointer-events: auto;
 }
 
-/* Style for the info properties container on the right */
-.info-properties {
-  width: 50%; /* Set width to 50% of the viewport width */
-  max-height: 50%; /* Set a maximum height for the info-properties */
-}
-
-/* Style for the info property container */
-.info-property {
-  display: flex;
-  align-items: center; /* Center items vertically */
-  margin-bottom: 15px; /* Adjust the margin as needed */
-}
-
-/* Style for the label on the right side */
-.label {
-  font-weight: bold;
-  margin-right: 15px; /* Adjust the margin as needed */
-  font-size: 1.6rem; /* Increased font size for labels */
-}
-
-/* Style for the content on the right side */
-.label-p {
-  margin: 0;
-  text-align: right;
-  font-size: 1.8rem; /* Increased font size for paragraphs */
-  overflow-wrap: break-word; /* Break words and wrap onto the next line */
-  word-wrap: break-word; /* Ensure word wrapping for older browsers */
-  max-width: 100%; /* Limit the width to prevent horizontal expansion */
+.song-properties {
+  flex: 1;
+  padding: 20px;
 }

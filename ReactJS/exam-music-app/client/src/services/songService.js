@@ -16,13 +16,18 @@ export const createSong = async (
   youtubeUrl,
   description
 ) => {
+  const videoIdRegex =
+    /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const matches = youtubeUrl.match(videoIdRegex);
+  const youtubeId = matches && matches[1];
+
   const songTemplate = {
     ownerId: token.userId,
     title: title,
     artist: artist,
     album: album,
     creationYear: creationYear,
-    youtubeUrl: youtubeUrl,
+    youtubeId: youtubeId,
     description: description,
     createdAt: new Date().toISOString(),
   };
