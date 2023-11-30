@@ -1447,29 +1447,43 @@
   };
   var seedData = {
     music: {
-      'f9dc2580-4ab3-4da0-8d09-3de9ff58699e': {
+      'd44a1b72-b55b-48aa-bf61-3802fa62248a': {
         ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
-        title: 'GTG',
-        artist: 'Freddie',
-        album: 'Dredd',
-        creationYear: '2022',
-        youtubeId: 'fslK9YTkcc0',
+        title: 'Never Too Old (feat. Emily Makis)',
+        artist: 'Monrroe',
+        album: '15 Years of Shogun Audio',
+        creationYear: 2019,
         youtubeUrl:
-          'https://www.youtube.com/watch?v=fslK9YTkcc0&ab_channel=FreddieDredd',
-        description: 'asdffdsafsdafasd',
-        createdAt: '2023-11-29T19:27:03.997Z',
+          'https://www.youtube.com/watch?v=LeBf0wh9n0E&ab_channel=ShogunAudio',
+        youtubeId: 'LeBf0wh9n0E',
+        description:
+          "Jungle/Drum'n'bass style song my personal preference for music style",
+        createdAt: '2023-11-30T18:47:47.996Z',
       },
-      '1aa54b8b-cf2f-4b8c-9355-8059557c7769': {
-        ownerId: '847ec027-f659-4086-8032-5173e2f9c93a',
-        title: 'R32',
-        artist: 'Kringe',
-        album: 'GTR Goo Brr',
-        creationYear: '2022',
-        youtubeId: 'cOm1zjAABfI',
+      '949b5ade-40b4-4adb-935f-fbfe7bdcb88f': {
+        ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
+        title: 'Tsubaki',
+        artist: 'Monrroe',
+        album: 'Ikebana - EP',
+        creationYear: 2023,
         youtubeUrl:
-          'https://www.youtube.com/watch?v=cOm1zjAABfI&ab_channel=%EF%BC%B4%EF%BC%B2%EF%BC%A1%EF%BC%B3%EF%BC%A8%E6%96%B0%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3',
-        description: 'Very cool song def reccommend it',
-        createdAt: '2023-11-30T14:34:42.355Z',
+          'https://www.youtube.com/watch?v=gtC5CCo6jXE&ab_channel=ShogunAudio',
+        youtubeId: 'gtC5CCo6jXE',
+        description: 'DnB style song with unusal bass',
+        createdAt: '2023-11-30T18:50:30.946Z',
+      },
+      '8b952d4e-8d70-4786-b026-c9e521067833': {
+        ownerId: '847ec027-f659-4086-8032-5173e2f9c93a',
+        title: 'Ecifircas',
+        artist: 'Sewerslvt',
+        album: 'Draining Love Story',
+        creationYear: 2020,
+        youtubeUrl:
+          'https://www.youtube.com/watch?v=3dxwZSQhiiY&ab_channel=Sewerslvt',
+        youtubeId: '3dxwZSQhiiY',
+        description:
+          "Breakcore DnB style of music I 'George' really like this one.",
+        createdAt: '2023-11-30T19:06:29.852Z',
       },
     },
     likes: {},
