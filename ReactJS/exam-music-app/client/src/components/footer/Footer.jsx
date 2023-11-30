@@ -8,6 +8,7 @@ const Footer = () => {
         <p className="footer-p">
           This website is made for educational purposes
         </p>
+        <p>(For some reason seeded data cannot be edited nor deleted)</p>
       </Container>
     </footer>
   );
