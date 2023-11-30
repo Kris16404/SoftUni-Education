@@ -96,3 +96,12 @@ export const editSong = async (
   console.log(result);
   return result;
 };
+
+export const deleteSong = async (songId, token) => {
+  const res = await fetch(`${url}/${songId}`, {
+    method: 'DELETE',
+    headers: {
+      'X-Authorization': token.accessToken,
+    },
+  });
+};
