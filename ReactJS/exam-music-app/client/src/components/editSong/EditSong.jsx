@@ -7,7 +7,15 @@ import './editSong.css'; // Ensure that you create this CSS file for styling
 import { useEffect, useState } from 'react';
 
 const EditSong = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    title: '',
+    artist: '',
+    album: '',
+    creationYear: '',
+    youtubeUrl: '',
+    description: '',
+    _ownerId: '',
+  });
   const [validation, setValidation] = useState({
     title: false,
     description: false,
@@ -39,10 +47,7 @@ const EditSong = () => {
   }, []);
 
   useEffect(() => {
-    if (
-      formData._ownerId !== undefined &&
-      authToken.userId !== formData._ownerId
-    ) {
+    if (formData._ownerId !== '' && authToken.userId !== formData._ownerId) {
       console.log(formData._ownerId);
       navigate('/community/all');
     }
@@ -174,7 +179,7 @@ const EditSong = () => {
           <Form.Control
             type="text"
             name="album"
-            placeholder="Cool cover tho"
+            placeholder="Cool album tho"
             value={formData.album}
             onChange={handleChange}
           />

@@ -26,7 +26,7 @@ export const createSong = async (
     title: title,
     artist: artist,
     album: album,
-    creationYear: creationYear,
+    creationYear: Number(creationYear),
     youtubeUrl: youtubeUrl,
     youtubeId: youtubeId,
     description: description,
@@ -74,23 +74,25 @@ export const editSong = async (
     title: title,
     artist: artist,
     album: album,
-    creationYear: creationYear,
+    creationYear: Number(creationYear),
     youtubeUrl: youtubeUrl,
     youtubeId: youtubeId,
     description: description,
     createdAt: new Date().toISOString(),
   };
-
+  console.log(songTemplate);
   const res = await fetch(`${url}/${songId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'X-Authorization': token.accessToken,
+      'X-Requested-With': token.accessToken,
     },
     body: JSON.stringify(songTemplate),
   });
 
   const result = await res.json();
 
+  console.log(result);
   return result;
 };
