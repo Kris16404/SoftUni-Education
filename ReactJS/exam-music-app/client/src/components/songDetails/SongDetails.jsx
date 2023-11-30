@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/authContext.jsx';
+import { Button } from 'react-bootstrap';
 
 import * as songService from '../../services/songService.js';
 import './songDetails.css';
@@ -7,6 +9,8 @@ import './songDetails.css';
 const SongDetails = () => {
   const [song, setSong] = useState({});
   const { songId } = useParams();
+  const { authToken } = useAuth();
+  const showButtons = authToken.userId === song.ownerId;
 
   useEffect(() => {
     songService
@@ -26,7 +30,6 @@ const SongDetails = () => {
               height="315"
               src={`https://www.youtube.com/embed/${song.youtubeId}`}
               title="YouTube Video Player"
-              frameBorder="0"
               allowFullScreen
             />
           </div>
@@ -49,6 +52,24 @@ const SongDetails = () => {
           <p>
             <strong>Description:</strong> {song.description}
           </p>
+          {showButtons && (
+            <div style={{ textAlign: 'center', marginTop: '15px' }}>
+              <Button
+                as={Link}
+                to={`/songs/edit/${song._id}`}
+                variant="primary"
+              >
+                Edit
+              </Button>{' '}
+              <Button
+                as={Link}
+                to={`/songs/delete/${song._id}`}
+                variant="danger"
+              >
+                Delete
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

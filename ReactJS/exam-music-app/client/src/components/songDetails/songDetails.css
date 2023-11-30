@@ -31,3 +31,20 @@
   flex: 1;
   padding: 20px;
 }
+
+.song-properties button,
+.song-properties a {
+  margin: 5px;
+  transition: transform 0.2s ease-in-out;
+  pointer-events: auto;
+}
+
+.song-properties button:hover,
+.song-properties a:hover {
+  transform: translateY(-3px);
+}
+
+.song-properties a {
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -9,6 +9,7 @@ import PrivateRoute from './components/auth/PrivateRoute.jsx';
 import CreateSong from './components/createSong/CreateSong.jsx';
 import CommunityList from './components/communityList/CommunityList.jsx';
 import SongDetails from './components/songDetails/SongDetails.jsx';
+import EditSong from './components/editSong/EditSong.jsx';
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
         <Route
           path="/songs/add-song"
           element={<PrivateRoute element={<CreateSong />} />}
+        />
+        <Route
+          path="/songs/edit/:songId"
+          element={<PrivateRoute element={<EditSong />} />}
         />
       </Routes>
       <Footer />
