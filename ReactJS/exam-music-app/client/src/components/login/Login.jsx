@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const Login = () => {
   });
   const [submissionResult, setSubmissionResult] = useState(null);
 
-  const { setToken } = useAuth();
+  const { authToken, setToken } = useAuth();
   const navigate = useNavigate();
   const usernameFromEmailRegex = /([^@]+)@/;
   const handleChange = (e) => {
@@ -23,6 +23,14 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    const isValid = validateUser(authToken);
+
+    if (isValid) {
+      navigate('/');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,6 +53,12 @@ const Login = () => {
     }
   };
 
+  const validateUser = (token) => {
+    if (token) {
+      return true;
+    }
+    return false;
+  };
   return (
     <div className="login-container">
       <div className="login-box">

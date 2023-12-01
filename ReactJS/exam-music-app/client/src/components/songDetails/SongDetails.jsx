@@ -10,7 +10,6 @@ import './songDetails.css';
 const SongDetails = () => {
   const [song, setSong] = useState({});
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [isSongValid, setIsSongValid] = useState(false);
   const { songId } = useParams();
   const { authToken } = useAuth();
   const navigate = useNavigate();
@@ -25,8 +24,6 @@ const SongDetails = () => {
       .getSongById(songId)
       .then((song) => {
         const isValid = validateSong(song);
-
-        setIsSongValid(isValid);
 
         if (isValid) {
           setSong(song);

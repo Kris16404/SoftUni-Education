@@ -26,12 +26,20 @@ const Register = () => {
   const emailValidationRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  const { setToken } = useAuth();
+  const { authToken, setToken } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     validateForm();
   }, [formData]);
+
+  useEffect(() => {
+    const isValid = validateUser(authToken);
+
+    if (isValid) {
+      navigate('/');
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -110,6 +118,13 @@ const Register = () => {
   const isFormValid = () => {
     // Check if all fields are valid
     return Object.values(validation).every((isValid) => isValid);
+  };
+
+  const validateUser = (token) => {
+    if (token) {
+      return true;
+    }
+    return false;
   };
 
   return (
