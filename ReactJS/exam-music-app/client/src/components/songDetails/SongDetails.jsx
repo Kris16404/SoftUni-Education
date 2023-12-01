@@ -69,6 +69,9 @@ const SongDetails = () => {
           <p>
             <strong>Description:</strong> {song.description}
           </p>
+          <p>
+            <strong>Created By:</strong> {song.createdBy}
+          </p>
           {showButtons && (
             <div style={{ textAlign: 'center', marginTop: '15px' }}>
               <Button

@@ -31,6 +31,7 @@ export const createSong = async (
     youtubeId: youtubeId,
     description: description,
     createdAt: new Date().toISOString(),
+    createdBy: token.userUsername,
   };
 
   const res = await fetch(url, {
@@ -79,6 +80,7 @@ export const editSong = async (
     youtubeId: youtubeId,
     description: description,
     createdAt: new Date().toISOString(),
+    createdBy: token.userUsername,
   };
   console.log(songTemplate);
   const res = await fetch(`${url}/${songId}`, {
