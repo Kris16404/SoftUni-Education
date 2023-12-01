@@ -13,7 +13,7 @@ There are two folders (client) and ([server](https://github.com/softuni-practice
 For the client folder you do
 
 - npm i
-- npm npm run dev
+- npm run dev
 
 For the server folder you do
 
