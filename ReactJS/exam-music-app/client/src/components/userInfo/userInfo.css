@@ -37,7 +37,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .card {
@@ -65,17 +65,19 @@ body {
 
 .no-songs-message {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   text-align: center;
   margin-top: 20px;
+  padding-right: 1px;
   height: 100%; /* Ensure the height of the container is utilized */
 }
 
 .no-songs-message h2 {
   color: #555;
   font-size: 1.5em;
+  margin-right: 20px;
 }
 
 .no-songs-message strong {
