@@ -44,14 +44,7 @@ const Navigation = () => {
                 >
                   Hello, {authToken.userUsername}
                 </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to="/songs/my-songs"
-                  style={{ color: 'white' }}
-                  className="nav-link-with-animation"
-                >
-                  My Songs
-                </Nav.Link>
+
                 <Nav.Link
                   as={Link}
                   to="/songs/add-song"
