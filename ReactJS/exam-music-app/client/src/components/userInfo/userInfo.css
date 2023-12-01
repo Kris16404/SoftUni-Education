@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+}
+
+.user-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.left-box,
+.right-box {
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.left-box {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.right-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  flex-direction: column;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.6);
+  margin-right: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 10px;
+  min-width: 200px;
+  position: relative; /* Make the card a positioning context for absolute positioning */
+}
+
+.card .button-primary {
+  position: absolute;
+  bottom: 10px; /* Adjust the distance from the bottom */
+  left: 50%; /* Center the button horizontally */
+  transform: translateX(-50%); /* Center the button horizontally */
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.no-songs-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+  height: 100%; /* Ensure the height of the container is utilized */
+}
+
+.no-songs-message h2 {
+  color: #555;
+  font-size: 1.5em;
+}
+
+.no-songs-message strong {
+  color: #007bff;
+}
+
+.no-songs-message Button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 10px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.no-songs-message Button:hover {
+  background-color: #0056b3;
+}

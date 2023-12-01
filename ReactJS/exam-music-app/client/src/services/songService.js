@@ -105,3 +105,12 @@ export const deleteSong = async (songId, token) => {
     },
   });
 };
+
+export const getAllSongsByUserId = async (token) => {
+  const res = await fetch(url);
+  const songs = await res.json();
+
+  const userSongs = songs.filter((song) => song.ownerId === token.userId);
+
+  return userSongs;
+};

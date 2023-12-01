@@ -12,6 +12,7 @@ import SongDetails from './components/songDetails/SongDetails.jsx';
 import EditSong from './components/editSong/EditSong.jsx';
 import NotFound from './components/notFound/NotFound.jsx';
 import RedirectTo404 from './components/auth/RedirectTo404.jsx';
+import UserInfo from './components/userInfo/UserInfo.jsx';
 
 function App() {
   return (
@@ -19,7 +20,6 @@ function App() {
       <Navigation />
       <Routes>
         {/* Free for all Routes */}
-
         <Route path="/" element={<Home />} />
         <Route path="/users/login" element={<Login />} />
         <Route path="/users/register" element={<Register />} />
@@ -28,7 +28,6 @@ function App() {
         <Route path="/404" element={<NotFound />} />
 
         {/* Protected Routes */}
-
         <Route
           path="/songs/add-song"
           element={<PrivateRoute element={<CreateSong />} />}
@@ -36,6 +35,10 @@ function App() {
         <Route
           path="/songs/edit/:songId"
           element={<PrivateRoute element={<EditSong />} />}
+        />
+        <Route
+          path="/users/me"
+          element={<PrivateRoute element={<UserInfo />} />}
         />
         {/* Not found page */}
         <Route path="/*" element={<RedirectTo404 />}></Route>
