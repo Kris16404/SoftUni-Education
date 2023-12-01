@@ -15,8 +15,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: nowrap;
 }
 
 .register-box h2 {
