@@ -82,7 +82,6 @@ export const editSong = async (
     createdAt: new Date().toISOString(),
     createdBy: token.userUsername,
   };
-  console.log(songTemplate);
   const res = await fetch(`${url}/${songId}`, {
     method: 'PUT',
     headers: {
@@ -95,7 +94,6 @@ export const editSong = async (
 
   const result = await res.json();
 
-  console.log(result);
   return result;
 };
 
