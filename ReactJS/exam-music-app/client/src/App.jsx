@@ -10,6 +10,8 @@ import CreateSong from './components/createSong/CreateSong.jsx';
 import CommunityList from './components/communityList/CommunityList.jsx';
 import SongDetails from './components/songDetails/SongDetails.jsx';
 import EditSong from './components/editSong/EditSong.jsx';
+import NotFound from './components/notFound/NotFound.jsx';
+import RedirectTo404 from './components/auth/RedirectTo404.jsx';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/users/register" element={<Register />} />
         <Route path="/community/all" element={<CommunityList />} />
         <Route path="/songs/:songId" element={<SongDetails />} />
+        <Route path="/404" element={<NotFound />} />
+
         {/* Protected Routes */}
 
         <Route
@@ -33,6 +37,8 @@ function App() {
           path="/songs/edit/:songId"
           element={<PrivateRoute element={<EditSong />} />}
         />
+        {/* Not found page */}
+        <Route path="/*" element={<RedirectTo404 />}></Route>
       </Routes>
       <Footer />
     </>
