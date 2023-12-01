@@ -92,7 +92,7 @@ const EditSong = () => {
           formData.description
         );
 
-        navigate('/community/all');
+        navigate(`/songs/${songId}`);
       } catch (err) {
         console.log(err);
       }
