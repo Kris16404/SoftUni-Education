@@ -62,7 +62,6 @@ const Login = () => {
             placeholder="name@example.com"
             value={formData.email}
             onChange={handleChange}
-            className={submissionResult === false ? 'form-control-failed' : ''}
           />
         </FloatingLabel>
         <FloatingLabel
@@ -78,7 +77,6 @@ const Login = () => {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            className={submissionResult === false ? 'form-control-failed' : ''}
           />
         </FloatingLabel>
         <Button
