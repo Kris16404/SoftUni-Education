@@ -10,6 +10,7 @@ import './songDetails.css';
 const SongDetails = () => {
   const [song, setSong] = useState({});
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isSongValid, setIsSongValid] = useState(false);
   const { songId } = useParams();
   const { authToken } = useAuth();
   const navigate = useNavigate();
@@ -22,9 +23,26 @@ const SongDetails = () => {
   useEffect(() => {
     songService
       .getSongById(songId)
-      .then((song) => setSong(song))
+      .then((song) => {
+        const isValid = validateSong(song);
+
+        setIsSongValid(isValid);
+
+        if (isValid) {
+          setSong(song);
+        } else {
+          navigate('/404');
+        }
+      })
       .catch((err) => console.log(err));
   }, []);
+
+  const validateSong = (song) => {
+    if (song.code) {
+      return false;
+    }
+    return true;
+  };
 
   const handleShowDeleteModal = () => setShowDeleteModal(true);
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
