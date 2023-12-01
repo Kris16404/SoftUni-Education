@@ -32,6 +32,13 @@
 .register-box .form-group:last-child {
   margin-bottom: 0;
 }
+.register-box .invalid .form-control {
+  border-color: red !important;
+}
+
+.egister-box .invalid .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25) !important;
+}
 
 .form-control-failed {
   border: 1px solid red;

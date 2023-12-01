@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,13 +14,24 @@ const Register = () => {
     rePass: '',
   });
 
-  const [submissionResult, setSubmissionResult] = useState(null);
   const [submissionResultRePass, setSubmissionResultRePass] = useState(null);
   const [emailExists, setEmailExists] = useState(false);
+  const [validation, setValidation] = useState({
+    email: false,
+    password: false,
+  });
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   const usernameFromEmailRegex = /([^@]+)@/;
+  const emailValidationRegex =
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const { setToken } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    validateForm();
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -28,42 +39,77 @@ const Register = () => {
       ...prevData,
       [name]: value,
     }));
+    isFormValid();
+    // Reset validation status when the user types
+    setValidation((prevValidation) => {
+      if (name === 'rePass') {
+        // If it is "rePass", skip adding it to the state
+        return prevValidation;
+      }
+
+      // For other names, update the state
+      return {
+        ...prevValidation,
+        [name]: false,
+      };
+    });
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setSubmissionResult(null);
     setSubmissionResultRePass(null);
     setEmailExists(false);
-    try {
-      if (formData.email === '' || formData.password === '') {
-        throw new Error('Lol');
-      }
-      if (formData.password !== formData.rePass) {
-        setSubmissionResultRePass(false);
-        return;
-      }
-      const token = await userService.register(
-        formData.email,
-        formData.password
-      );
-      if (token.alreadyExists) {
-        setEmailExists(true);
-        return;
-      }
-      const userInfo = {
-        userEmail: token.email,
-        userUsername: token.email.match(usernameFromEmailRegex)[1],
-        userId: token._id,
-        accessToken: token.accessToken,
-      };
+    setIsFormSubmitted(true);
 
-      setToken(userInfo);
-      navigate('/');
-    } catch (err) {
-      setSubmissionResult(false);
-      console.log(err);
+    validateForm();
+    if (isFormValid()) {
+      try {
+        if (formData.email === '' || formData.password === '') {
+          throw new Error('Lol');
+        }
+        if (formData.password !== formData.rePass) {
+          setSubmissionResultRePass(false);
+          return;
+        }
+        const token = await userService.register(
+          formData.email,
+          formData.password
+        );
+        if (token.alreadyExists) {
+          setEmailExists(true);
+          return;
+        }
+        const userInfo = {
+          userEmail: token.email,
+          userUsername: token.email.match(usernameFromEmailRegex)[1],
+          userId: token._id,
+          accessToken: token.accessToken,
+        };
+
+        setToken(userInfo);
+        navigate('/');
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log('Form validation failed');
     }
+  };
+
+  const validateForm = () => {
+    const newValidation = { ...validation };
+
+    // Add your validation logic here
+    newValidation.email = emailValidationRegex.test(formData.email);
+    newValidation.password =
+      formData.password.trim() !== '' && !(formData.password.trim().length < 4);
+
+    setValidation(newValidation);
+  };
+
+  const isFormValid = () => {
+    // Check if all fields are valid
+    return Object.values(validation).every((isValid) => isValid);
   };
 
   return (
@@ -74,7 +120,7 @@ const Register = () => {
           controlId="floatingInput"
           label="Email address"
           className={`mb-3 ${
-            submissionResult === false ? 'form-control-failed' : ''
+            isFormSubmitted && !validation.email ? 'invalid' : ''
           }`}
         >
           <Form.Control
@@ -89,8 +135,8 @@ const Register = () => {
         <FloatingLabel
           controlId="floatingPassword"
           label="Password"
-          className={`${
-            submissionResult === false ? 'form-control-failed' : ''
+          className={`mb-3 ${
+            isFormSubmitted && !validation.password ? 'invalid' : ''
           }`}
         >
           <Form.Control
