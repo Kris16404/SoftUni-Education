@@ -1,5 +1,6 @@
 import { Button, Form, FloatingLabel } from 'react-bootstrap';
 
+import Spinner from '../spinner/Spinner.jsx';
 import * as songService from '../../services/songService.js';
 import { useAuth } from '../../contexts/authContext.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -25,6 +26,8 @@ const EditSong = () => {
     artist: false,
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const { authToken } = useAuth();
   const { songId } = useParams();
   const navigate = useNavigate();
@@ -43,6 +46,7 @@ const EditSong = () => {
           _ownerId: song.ownerId,
         })
       )
+      .then(() => setLoading(false))
       .catch((err) => console.log(err));
   }, []);
 
@@ -136,105 +140,110 @@ const EditSong = () => {
     return Object.values(validation).every((isValid) => isValid);
   };
   return (
-    <div className="edit-song-container">
-      <h2>Edit Song</h2>
-      <Form onSubmit={handleSubmit}>
-        <FloatingLabel
-          controlId="formSongName"
-          label="Song Title"
-          className={`mb-3 ${
-            isFormSubmitted && !validation.title ? 'invalid' : ''
-          }`}
-        >
-          <Form.Control
-            type="text"
-            name="title"
-            placeholder="Freddie Dredd"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="formAlbum"
-          label="Artist"
-          className={`mb-3 ${
-            isFormSubmitted && !validation.artist ? 'invalid' : ''
-          }`}
-        >
-          <Form.Control
-            type="text"
-            name="artist"
-            placeholder="Cool cover tho"
-            value={formData.artist}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="formAlbum"
-          label="Album"
-          className={`mb-3 ${
-            isFormSubmitted && !validation.album ? 'invalid' : ''
-          }`}
-        >
-          <Form.Control
-            type="text"
-            name="album"
-            placeholder="Cool album tho"
-            value={formData.album}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="formCreationYear"
-          label="Creation Year"
-          className={`mb-3 ${
-            isFormSubmitted && !validation.creationYear ? 'invalid' : ''
-          }`}
-        >
-          <Form.Control
-            type="number"
-            name="creationYear"
-            placeholder="2021"
-            value={formData.creationYear}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="formYoutubeUrl"
-          label="YouTube URL"
-          className={`mb-3 ${
-            isFormSubmitted && !validation.youtubeUrl ? 'invalid' : ''
-          }`}
-        >
-          <Form.Control
-            type="text"
-            name="youtubeUrl"
-            placeholder="https://www.youtube.com/watch?example"
-            value={formData.youtubeUrl}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-        <FloatingLabel
-          controlId="formDescription"
-          label="Description"
-          className={`mb-3 ${
-            isFormSubmitted && !validation.description ? 'invalid' : ''
-          }`}
-        >
-          <Form.Control
-            as="textarea"
-            rows={3}
-            name="description"
-            placeholder="It is indeed a very cool song"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-        <Button variant="primary" type="submit">
-          Save Changes
-        </Button>
-      </Form>
-    </div>
+    <>
+      {loading && <Spinner />}
+      {!loading && (
+        <div className="edit-song-container">
+          <h2>Edit Song</h2>
+          <Form onSubmit={handleSubmit}>
+            <FloatingLabel
+              controlId="formSongName"
+              label="Song Title"
+              className={`mb-3 ${
+                isFormSubmitted && !validation.title ? 'invalid' : ''
+              }`}
+            >
+              <Form.Control
+                type="text"
+                name="title"
+                placeholder="Freddie Dredd"
+                value={formData.title}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+            <FloatingLabel
+              controlId="formAlbum"
+              label="Artist"
+              className={`mb-3 ${
+                isFormSubmitted && !validation.artist ? 'invalid' : ''
+              }`}
+            >
+              <Form.Control
+                type="text"
+                name="artist"
+                placeholder="Cool cover tho"
+                value={formData.artist}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+            <FloatingLabel
+              controlId="formAlbum"
+              label="Album"
+              className={`mb-3 ${
+                isFormSubmitted && !validation.album ? 'invalid' : ''
+              }`}
+            >
+              <Form.Control
+                type="text"
+                name="album"
+                placeholder="Cool album tho"
+                value={formData.album}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+            <FloatingLabel
+              controlId="formCreationYear"
+              label="Creation Year"
+              className={`mb-3 ${
+                isFormSubmitted && !validation.creationYear ? 'invalid' : ''
+              }`}
+            >
+              <Form.Control
+                type="number"
+                name="creationYear"
+                placeholder="2021"
+                value={formData.creationYear}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+            <FloatingLabel
+              controlId="formYoutubeUrl"
+              label="YouTube URL"
+              className={`mb-3 ${
+                isFormSubmitted && !validation.youtubeUrl ? 'invalid' : ''
+              }`}
+            >
+              <Form.Control
+                type="text"
+                name="youtubeUrl"
+                placeholder="https://www.youtube.com/watch?example"
+                value={formData.youtubeUrl}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+            <FloatingLabel
+              controlId="formDescription"
+              label="Description"
+              className={`mb-3 ${
+                isFormSubmitted && !validation.description ? 'invalid' : ''
+              }`}
+            >
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="description"
+                placeholder="It is indeed a very cool song"
+                value={formData.description}
+                onChange={handleChange}
+              />
+            </FloatingLabel>
+            <Button variant="primary" type="submit">
+              Save Changes
+            </Button>
+          </Form>
+        </div>
+      )}
+    </>
   );
 };
 
