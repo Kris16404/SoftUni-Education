@@ -63,8 +63,6 @@ const Navigation = () => {
                 </Nav.Link>
 
                 <Nav.Link
-                  as={Link}
-                  to="/users/logout"
                   style={{ color: 'white' }}
                   className="nav-link-with-animation"
                   onClick={logout}
