@@ -1460,6 +1460,7 @@
           "Jungle/Drum'n'bass style song my personal preference for music style",
         createdAt: '2023-11-30T18:47:47.996Z',
         createdBy: 'peter',
+        likedBy: ['847ec027-f659-4086-8032-5173e2f9c93a'],
       },
       '949b5ade-40b4-4adb-935f-fbfe7bdcb88f': {
         ownerId: '35c62d76-8152-4626-8712-eeb96381bea8',
@@ -1473,6 +1474,7 @@
         description: 'DnB style song with unusal bass',
         createdAt: '2023-11-30T18:50:30.946Z',
         createdBy: 'peter',
+        likedBy: ['847ec027-f659-4086-8032-5173e2f9c93a'],
       },
       '8b952d4e-8d70-4786-b026-c9e521067833': {
         ownerId: '847ec027-f659-4086-8032-5173e2f9c93a',
@@ -1487,9 +1489,9 @@
           "Breakcore DnB style of music I 'George' really like this one.",
         createdAt: '2023-11-30T19:06:29.852Z',
         createdBy: 'george',
+        likedBy: ['35c62d76-8152-4626-8712-eeb96381bea8'],
       },
     },
-    likes: {},
   };
   var rules$1 = {
     users: {
