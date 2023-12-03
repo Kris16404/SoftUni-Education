@@ -35,3 +35,6 @@
 .edit-song-container button:hover {
   transform: translateY(-3px);
 }
+.cancel-button {
+  margin-left: 10px;
+}

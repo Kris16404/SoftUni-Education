@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/authContext.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import './editSong.css'; // Ensure that you create this CSS file for styling
 import { useEffect, useState } from 'react';
+import CancelEditSongModal from '../songModals/CancelEditSongModal.jsx';
 
 const EditSong = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,7 @@ const EditSong = () => {
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showCancelModal, setShowCancelModal] = useState(false);
 
   const { authToken } = useAuth();
   const { songId } = useParams();
@@ -139,6 +141,15 @@ const EditSong = () => {
     // Check if all fields are valid
     return Object.values(validation).every((isValid) => isValid);
   };
+
+  const handleShowCancelModal = () => setShowCancelModal(true);
+  const handleCloseCancelModal = () => setShowCancelModal(false);
+
+  const handleCancel = async () => {
+    handleCloseCancelModal();
+    navigate(`/songs/${songId}`);
+  };
+
   return (
     <>
       {loading && <Spinner />}
@@ -240,7 +251,20 @@ const EditSong = () => {
             <Button variant="primary" type="submit">
               Save Changes
             </Button>
+            <Button
+              variant="danger"
+              onClick={handleShowCancelModal}
+              className="cancel-button"
+            >
+              Cancel
+            </Button>
           </Form>
+
+          <CancelEditSongModal
+            show={showCancelModal}
+            handleClose={handleCloseCancelModal}
+            handleCancel={handleCancel}
+          />
         </div>
       )}
     </>

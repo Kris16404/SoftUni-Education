@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext.jsx';
 import { Button } from 'react-bootstrap';
 
-import DeleteSongModal from '../deleteSongModal/DeleteSongModal.jsx';
+import DeleteSongModal from '../songModals/DeleteSongModal.jsx';
 import Spinner from '../spinner/Spinner.jsx';
 import * as songService from '../../services/songService.js';
 import './songDetails.css';
