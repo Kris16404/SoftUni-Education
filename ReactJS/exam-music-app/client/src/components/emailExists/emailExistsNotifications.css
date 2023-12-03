@@ -1,7 +1,12 @@
 .ToastContainer {
   position: absolute;
-  margin-top: -500px;
+  top: 30%;
   right: 50%;
-  transform: translateX(50%);
+  transform: translate(50%, -50%);
   min-width: 200px;
+  background-color: #eee; /* Set your desired background color */
+  padding: 10px;
+  border: 1px solid #ccc; /* Set your desired border style */
+  transition: opacity 0.5s ease-in-out; /* Add a fade-out transition */
+  opacity: 1;
 }
