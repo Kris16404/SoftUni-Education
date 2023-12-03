@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import './register.css';
 import * as userService from '../../services/userService.js';
@@ -134,7 +134,7 @@ const Register = () => {
         <FloatingLabel
           controlId="floatingInput"
           label="Email address"
-          className={`mb-3 ${
+          className={`mb-4 ${
             isFormSubmitted && !validation.email ? 'invalid' : ''
           }`}
         >
@@ -146,7 +146,7 @@ const Register = () => {
             onChange={handleChange}
           />
         </FloatingLabel>
-        <br />
+
         <FloatingLabel
           controlId="floatingPassword"
           label="Password"
@@ -162,11 +162,11 @@ const Register = () => {
             onChange={handleChange}
           />
         </FloatingLabel>
-        <br />
+
         <FloatingLabel
           controlId="floatingRepeatPassword"
           label="Repeat Password"
-          className={`${
+          className={`mb-3 ${
             submissionResultRePass === false ? 'form-control-failed' : ''
           }`}
         >
@@ -186,6 +186,9 @@ const Register = () => {
         >
           Register
         </Button>
+        <p className="mt-3">
+          Already have an account? <Link to="/users/login">Login here</Link>.
+        </p>
         {emailExists && <EmailExistsNotification userEmail={formData.email} />}
       </div>
     </div>
