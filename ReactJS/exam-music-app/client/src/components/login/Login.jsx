@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Form, Button, FloatingLabel } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as userService from '../../services/userService.js';
 import { useAuth } from '../../contexts/authContext.jsx';
@@ -101,6 +101,10 @@ const Login = () => {
         >
           Login
         </Button>
+        <p className="mt-3">
+          Don't have an account? <Link to="/users/register">Register here</Link>
+          .
+        </p>
       </div>
     </div>
   );
