@@ -21,11 +21,11 @@ For the server folder you do
 
 # Images of the website
 
-- **Home Page For Guests** <br/>
+- **Home Page For Guests** (Get sarted redirects to Login) <br/>
 
   ![homePage.png](./readmePictures/homePage.png)
 
-- **Home Page For Users** <br/>
+- **Home Page For Users** (Get sarted redirects to Post Song) <br/>
 
   ![loggedInUserHomePage.png](./readmePictures/loggedInUserHomePage.png)
 
