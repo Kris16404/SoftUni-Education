@@ -22,7 +22,7 @@ For the server folder you do
 # Images of the website
 
 - **Home Page For Guests**
-  ![homePage.png](./readmePictures/homePage.png)
+- ![homePage.png](./readmePictures/homePage.png)
 - **Home Page For Users**
   ![loggedInUserHomePage.png](./readmePictures/loggedInUserHomePage.png)
 
