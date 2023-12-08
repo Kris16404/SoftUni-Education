@@ -21,12 +21,15 @@ For the server folder you do
 
 # Images of the website
 
-- **Home Page For Guests**
-- ![homePage.png](./readmePictures/homePage.png)
-- **Home Page For Users**
+- **Home Page For Guests** <br/>
+
+  ![homePage.png](./readmePictures/homePage.png)
+
+- **Home Page For Users** <br/>
+
   ![loggedInUserHomePage.png](./readmePictures/loggedInUserHomePage.png)
 
-- **Login Form**
+- **Login Form** <br/>
   ![loginForm.png](./readmePictures/loginForm.png)
 - **Login Form Validation**
   ![onLoginWrong.png](./readmePictures/onLoginWrong.png)
