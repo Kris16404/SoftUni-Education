@@ -73,14 +73,6 @@ For the server folder you do
 
   ![songDetailsOwnerOfSong.png](./readmePictures/songDetailsOwnerOfSong.png)
 
-- **Create Song Form** <br/>
-
-  ![createSongForm.png](./readmePictures/createSongForm.png)
-
-- **Create Song Form Validation** <br/>
-
-  ![onCreateWrong.png](./readmePictures/onCreateWrong.png)
-
 - **Delete Song Modal** <br/>
 
   ![delteSongModal.png](./readmePictures/delteSongModal.png)
