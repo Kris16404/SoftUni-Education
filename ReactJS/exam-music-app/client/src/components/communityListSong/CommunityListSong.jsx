@@ -6,7 +6,8 @@ import './communityListSong.css';
 
 const CommunityListSong = ({ song }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState('');
-  const apiKey = 'AIzaSyDs8EgOONeB4ePbbA4TrsDDRSd8zCAKtLM';
+  // !! Paste you youtube v3 api here
+  const apiKey = '';
   const youtubeId = song.youtubeId;
 
   useEffect(() => {
