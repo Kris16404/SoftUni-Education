@@ -8,7 +8,9 @@ This project uses [React](https://react.dev/) with the [Vite](https://vitejs.dev
 
 # Instructions when downloading or cloning this repo
 
-There are two folders (client) and ([server](https://github.com/softuni-practice-server/softuni-practice-server/tree/master))
+There are two folders (client) and ([server](https://github.com/softuni-practice-server/softuni-practice-server/tree/master))<br />
+
+**You need to set your youtube api in "CommunityListSong.jsx" file if you want to see thumnails.** <br />
 
 For the client folder you do
 
