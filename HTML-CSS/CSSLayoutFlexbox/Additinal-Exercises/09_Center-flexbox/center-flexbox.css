@@ -1,0 +1,21 @@
+body {
+  background-color: rgb(238, 238, 238);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card {
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 0 20px 10px rgb(0, 0, 0, 0.3);
+  border-radius: 5px;
+  width: 400px;
+  height: 150px;
+}
+.card-content {
+  margin: 1rem;
+}
