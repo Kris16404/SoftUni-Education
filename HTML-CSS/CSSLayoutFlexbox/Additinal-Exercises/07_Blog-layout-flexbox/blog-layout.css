@@ -13,6 +13,7 @@ body {
   border-bottom: 3px solid black;
   width: 100%;
   margin-bottom: 2rem;
+  font-size: 40px;
 }
 h1,
 h2,
@@ -22,6 +23,7 @@ blockquote {
 article h1 {
   font-size: 30px;
 }
+
 .page {
   display: flex;
   flex-wrap: wrap;
@@ -34,6 +36,7 @@ article h1 {
   padding: 0.5rem 0.5rem;
   border: 3px solid black;
   background-color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 10px 0px rgb(0, 0, 0, 0.3);
 }
 .media img {
   display: flex;
@@ -42,6 +45,13 @@ article h1 {
   object-fit: contain;
   justify-content: end;
   align-items: end;
+}
+article:last-child .media {
+  margin-right: 2rem;
+}
+article h1,
+article h2 {
+  margin-bottom: 1rem;
 }
 section {
   display: flex;
@@ -62,4 +72,31 @@ p {
 }
 aside {
   margin-left: 5em;
+}
+aside ul li {
+  margin-left: 2rem;
+}
+aside ul,
+aside ul h3 {
+  margin-bottom: 1rem;
+}
+a {
+  text-decoration: none;
+  color: rgb(10, 200, 40);
+}
+blockquote {
+  display: flex;
+  justify-content: start;
+  align-items: end;
+  flex-direction: column;
+  max-width: 30vw;
+  float: right;
+  border-left: 3px solid rgb(0, 0, 0, 0.2);
+  margin-left: 2rem;
+  padding-left: 2rem;
+  font-style: italic;
+  color: rgb(0, 0, 0, 0.5);
+}
+blockquote footer {
+  padding-top: 1rem;
 }
