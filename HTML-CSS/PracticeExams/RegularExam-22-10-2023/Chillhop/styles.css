@@ -8,8 +8,8 @@ body {
 }
 .wrapper {
   display: flex;
-  width: 70vw;
-  height: 50vh;
+  width: 900px;
+  height: 400px;
   flex-direction: column;
   border: 5px solid black;
   border-radius: 1rem;
