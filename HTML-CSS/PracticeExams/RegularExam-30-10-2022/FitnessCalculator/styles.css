@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans';
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80vw;
+  max-height: 100vw;
+  height: 60vh;
+  border: 1px solid #808080;
+  margin: 5em auto;
+  border-radius: 10px;
+  background-color: #f6f7f8;
+  overflow: hidden;
+  box-shadow: 0 10px 10px rgb(0, 0, 0, 0.5);
+}
+.media {
+  width: 50%;
+  height: 100%;
+}
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.form-wrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-wrapper h2 {
+  white-space: nowrap;
+  margin-top: -2em;
+}
+.form-wrapper .button-wrapper {
+  margin: 2em;
+}
+.form-wrapper .button-wrapper button {
+  border: 1px solid black;
+  background-color: #e0e0df;
+  padding: 0.4em 1.5em;
+  border-radius: 10px;
+}
+.form-wrapper .button-wrapper button:first-child {
+  background-color: #87d961;
+
+  margin-right: 5em;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gender input,
+.weight input,
+.height input {
+  border: 1px solid #767676;
+  border-radius: 1px;
+}
+.gender h4,
+.weight h4,
+.height h4 {
+  margin-bottom: 1em;
+  text-align: center;
+}
+.gender select {
+  padding-right: 6em;
+  margin-right: 2em;
+  margin-bottom: 1.5em;
+}
+.gender select option {
+  display: block;
+  border-radius: 50px;
+  border: 1px solid #fff;
+}
+.weight input {
+  width: 350px;
+  max-width: 350px;
+  margin-bottom: 1.5em;
+}
+.height {
+  margin-bottom: 3em;
+}
+.height input {
+  margin-right: 1em;
+  padding-right: 2.5em;
+}
+form button:last-child {
+  border: none;
+  padding: 0.5em;
+  border-radius: 20px;
+  box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.5);
+  width: 100%;
+  background-color: #05a2d3;
+  color: #fff;
+}
