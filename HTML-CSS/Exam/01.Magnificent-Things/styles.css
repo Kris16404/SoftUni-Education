@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter';
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  align-items: center;
+  background-color: #85dcff;
+  padding: 1.5em;
+  justify-content: space-between;
+}
+.container .heading {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin-right: 5em;
+}
+.container .heading h1 {
+  font-size: 40px;
+  margin-bottom: 0.7em;
+}
+.container .heading p {
+  font-size: 14px;
+  margin-bottom: 0.7em;
+}
+.container .buttons {
+  margin-top: 1em;
+}
+.container .buttons a {
+  text-decoration: none;
+  color: black;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 1em 2em;
+}
+.container .buttons a:last-child {
+  background-color: #fff;
+}
+.container .buttons a:first-child {
+  background-color: #42aa59;
+  border: 1px solid black;
+  margin-right: 0.8em;
+}
+.container .buttons a:first-child:hover {
+  background-color: black;
+  color: #fff;
+}
+.container .media {
+  max-width: 300px;
+  max-height: 700px;
+  padding: 1em 0;
+}
+.container .media img {
+  width: 100%;
+  height: auto;
+  box-shadow: 5px 5px 10px rgb(0, 0, 0);
+}

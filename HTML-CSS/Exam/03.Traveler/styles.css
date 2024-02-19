@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h5,
+h6 {
+  font-family: 'Cormorant Infant';
+}
+h4 {
+  font-family: 'Karla';
+}
+p,
+a {
+  font-family: 'Karla';
+}
+.nav-content {
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.heading-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-image: url('./images/poster.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  max-height: 668px;
+}
+.heading-wrapper .nav-content h1 {
+  text-align: center;
+  font-size: 90px;
+
+  padding: 1em;
+}
+.heading-wrapper .nav-content p {
+  text-align: center;
+  padding: 2em 0 8em;
+  max-width: 550px;
+  display: flex;
+  align-self: center;
+}
+.heading-wrapper .nav-content nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5em 4em;
+}
+.heading-wrapper .nav-content nav ul {
+  display: flex;
+  list-style: none;
+}
+.heading-wrapper .nav-content nav ul li a {
+  margin-left: 3em;
+  text-decoration: none;
+  color: #fff;
+}
+.heading-wrapper-logo a {
+  display: block;
+  text-indent: -200vw;
+  overflow: hidden;
+  background-image: url('./images/logo.webp');
+  background-size: 70px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
+}
+.review-wrapper {
+  background-color: #f8f0e9;
+}
+.review p {
+  display: flex;
+  align-self: flex-start;
+  padding-top: 2em;
+}
+.review h2 {
+  display: flex;
+  align-self: flex-start;
+  font-size: 60px;
+  font-style: italic;
+  line-height: 0.8;
+  margin: 1em 0 2em;
+}
+.support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e14747;
+  color: #fff;
+}
+.support h4 {
+  font-size: 18px;
+  padding: 3em 0 2em;
+}
+.support p {
+  text-align: center;
+  max-width: 250px;
+  padding-bottom: 4em;
+}
+.article-section-wrapper {
+  background-color: #f8f0e9;
+}
+.article-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 3em 0;
+}
+.article-section button {
+  background-color: #fff;
+  border: 1px solid black;
+  color: black;
+  padding: 0.8em 1.5em;
+  border-radius: 3px;
+}
+.article-section article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+.article-section article h2 {
+  font-size: 50px;
+  max-width: 70%;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+.article-section article p {
+  margin-bottom: 3em;
+  max-width: 75%;
+}
+.article-section article button {
+  display: flex;
+  margin-right: 26em;
+  margin-bottom: 5em;
+}
+.article-section button {
+  margin-bottom: 1em;
+}
+.article-section .media {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 3em;
+}
+.article-section .media img {
+  width: 100%;
+  height: 100%;
+}
+.find-guide-wrapper {
+  background-color: #e14747;
+}
+.find-guide {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+}
+.find-guide h2 {
+  font-size: 38px;
+  padding: 2em 0;
+}
+.find-guide p {
+  max-width: 88%;
+  margin: 0 auto;
+  margin-bottom: 3em;
+}
+.find-guide button {
+  width: 17%;
+  margin: 0 auto;
+  padding: 0.8em 0.2em;
+  border-radius: 20px;
+  border: none;
+  background-color: #fcdb7c;
+  margin-bottom: 5em;
+}
+.site-footer {
+  background-color: #352b2a;
+  padding: 2em 5em;
+}
+.site-footer footer {
+  display: flex;
+  flex-direction: column;
+}
+.site-footer footer p:nth-child(2) {
+  max-width: 26%;
+  color: #fff;
+  margin-bottom: 1em;
+  font-size: 12px;
+}
+.site-footer footer p:last-child {
+  color: #76543e;
+  font-size: 10px;
+}
+.site-footer footer .footer-media a {
+  display: block;
+  text-indent: -200vw;
+  overflow: hidden;
+  background-image: url('./images/logo.webp');
+  background-size: 50px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 30px;
+  margin-bottom: 2em;
+}
