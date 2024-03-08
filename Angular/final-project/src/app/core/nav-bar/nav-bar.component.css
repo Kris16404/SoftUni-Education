@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+.nav-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e4f8fc;
+  font-family: "Chakra Petch", sans-serif;
+}
+.nav-wrap nav ul {
+  display: flex;
+  list-style-type: none;
+}
+.nav-wrap nav ul li {
+  margin-right: 1em;
+}
+.nav-wrap nav ul li a {
+  text-decoration: none;
+  color: #114260;
+  border-radius: 15px;
+  padding: 0.7em;
+
+  transition: 0.4s ease-in-out;
+}
+.nav-wrap nav ul li a:hover {
+  background-color: #1878a3;
+  color: #e4f8fc;
+
+  transition: 0.4s ease-in-out;
+}
+.nav-wrap .logo-wrapper a {
+  display: flex;
+  background-image: url("../../../assets/another-posible-logo.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+  text-indent: -200vw;
+}
