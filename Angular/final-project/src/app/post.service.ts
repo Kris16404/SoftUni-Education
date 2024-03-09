@@ -9,7 +9,7 @@ export class PostService {
   constructor(private db: AngularFireDatabase) {}
 
   getServices(): Observable<any> {
-    return this.db.object('services').valueChanges();
+    return this.db.list('services').valueChanges();
   }
   postService(data: any): Promise<void> {
     return this.db.object('services').set(data);
