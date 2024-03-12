@@ -4,17 +4,18 @@ import { AngularFireModule } from '@angular/fire/compat';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { CoreModule } from './core/core.module';
-import { environment } from 'src/environments/environment.development';
+import { environment } from '../environments/environment.development';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     CoreModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
