@@ -11,4 +11,6 @@ export const environment = {
     appId: '1:872424748827:web:d067a8cd6005be371ac5be',
     measurementId: 'G-WGKS1FXEEV',
   },
+  databseUrl:
+    'https://final-project-9b70a-default-rtdb.europe-west1.firebasedatabase.app',
 };
