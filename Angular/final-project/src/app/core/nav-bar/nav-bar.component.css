@@ -7,6 +7,9 @@
   align-items: center;
   background-color: #e4f8fc;
   font-family: "Chakra Petch", sans-serif;
+  position: fixed;
+  width: 100%;
+  top: 0;
 }
 .nav-wrap nav ul {
   display: flex;

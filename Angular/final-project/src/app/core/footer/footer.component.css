@@ -1,0 +1,22 @@
+.wrapper {
+  width: 100%;
+  background-color: #e4f8fc;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 3em 0;
+}
+
+.logo-wrapper a {
+  display: flex;
+  background-image: url("../../../assets/another-posible-logo.png");
+  background-position: center;
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+  text-indent: -200vw;
+}
+.socials a {
+  margin-left: 1em;
+  color: black;
+}
