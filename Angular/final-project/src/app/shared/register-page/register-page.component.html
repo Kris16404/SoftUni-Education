@@ -1,1 +1,69 @@
-<h1>REGISTER PAGE</h1>
+<div class="wrapper">
+  <div class="form-wrapper">
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <h1>Sign up</h1>
+      <div class="input-wrapper">
+        <label for="email"
+          ><span><i class="fa-regular fa-envelope"></i></span
+        ></label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          formControlName="email"
+          placeholder="Your Email"
+        />
+        <hr />
+      </div>
+      <div formGroupName="passGroup">
+        <div class="input-wrapper">
+          <label for="password"
+            ><span><i class="fa-solid fa-lock"></i></span
+          ></label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <hr />
+        </div>
+        <div class="input-wrapper">
+          <label for="rePassword"
+            ><span><i class="fa-solid fa-lock"></i></span
+          ></label>
+          <input
+            type="password"
+            name="rePassword"
+            id="rePassword"
+            formControlName="rePassword"
+            placeholder="Repeat your password"
+          />
+          <hr />
+        </div>
+      </div>
+      <div class="input-wrapper">
+        <input
+          type="checkbox"
+          name="terms-checkbox"
+          id="terms-checkbox"
+          formControlName="termsCheckbox"
+        />
+        <label for="terms-checkbox"
+          >I agree all statements in <a href="#">Terms of service</a></label
+        >
+      </div>
+      <button
+        [disabled]="form.invalid"
+        [style]="{ opacity: form.invalid ? '50%' : '100%' }"
+      >
+        REGISTER
+      </button>
+    </form>
+    <div class="image-wrapper">
+      <img src="../../../assets/clean-laptop.png" alt="" />
+      <a href="/user/login">I am already member</a>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { ServicesComponent } from './services-page/services.component';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServiceCardComponent } from './services-page/service-card/service-card.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ServiceCardComponent } from './services-page/service-card/service-card.
     ErrorPageComponent,
     ServiceCardComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
     HomePageComponent,
     LoginPageComponent,
