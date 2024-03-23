@@ -40,6 +40,11 @@
 .our-services h2 {
   padding: 1em 0;
 }
+.our-services img {
+  margin-top: 1em;
+  width: 400px;
+  height: 400px;
+}
 .our-services-wrapper {
   display: flex;
   justify-content: space-around;
@@ -54,7 +59,12 @@
   text-align: center;
   margin-bottom: 3em;
 }
-
+.our-services-wrapper p:first-child {
+  background-color: #7d8b87;
+}
+.our-services-wrapper p:last-child {
+  background-color: #83a2c0;
+}
 .why-choose-us {
   display: flex;
   flex-direction: column;
