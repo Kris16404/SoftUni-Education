@@ -6,6 +6,8 @@ import { RegisterPageComponent } from './shared/register-page/register-page.comp
 import { AboutUsPageComponent } from './shared/about-us-page/about-us-page.component';
 import { ServicesComponent } from './shared/services-page/services.component';
 import { HomePageComponent } from './shared/home-page/home-page.component';
+import { CartPageComponent } from './shared/cart-page/cart-page.component';
+import { ProfilePageComponent } from './shared/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,14 @@ const routes: Routes = [
   {
     path: 'user/register',
     component: RegisterPageComponent,
+  },
+  {
+    path: 'user/cart',
+    component: CartPageComponent,
+  },
+  {
+    path: 'user/profile',
+    component: ProfilePageComponent,
   },
   {
     path: 'about-us',
