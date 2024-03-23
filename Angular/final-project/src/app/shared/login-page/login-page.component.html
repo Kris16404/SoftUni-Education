@@ -1,1 +1,45 @@
-<h1>LOGIN PAGE</h1>
+<div class="wrapper">
+  <div class="form-wrapper">
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <h1>Login</h1>
+      <div class="input-wrapper">
+        <label for="email"
+          ><span><i class="fa-regular fa-envelope"></i></span
+        ></label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          formControlName="email"
+          placeholder="Your Email"
+        />
+        <hr />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="password"
+          ><span><i class="fa-solid fa-lock"></i></span
+        ></label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <hr />
+      </div>
+
+      <button
+        [disabled]="form.invalid"
+        [style]="{ opacity: form.invalid ? '50%' : '100%' }"
+      >
+        LOGIN
+      </button>
+    </form>
+    <div class="image-wrapper">
+      <img src="../../../assets/motherboard-image.png" alt="" />
+      <a href="/user/register">Don't have an account?</a>
+    </div>
+  </div>
+</div>
