@@ -1,7 +1,11 @@
-<div>
+<div class="wrapper">
   <img src="{{ service.imageUrl }}" alt="" />
-  <h2>{{ service.name }}</h2>
-  <p>{{ service.description }}</p>
-  <h3>{{ service.price }}$</h3>
-  <button>BUY</button>
+  <div class="content-wrapper">
+    <h2>{{ service.name }}</h2>
+    <h3>{{ service.price }}$</h3>
+    <div class="button-wrapper">
+      <button>ADD TO CART</button>
+      <button>DETAILS</button>
+    </div>
+  </div>
 </div>
