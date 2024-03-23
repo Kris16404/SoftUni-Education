@@ -8,6 +8,8 @@ import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ServiceCardComponent } from './services-page/service-card/service-card.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartPageComponent } from './cart-page/cart-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AboutUsPageComponent,
     ErrorPageComponent,
     ServiceCardComponent,
+    CartPageComponent,
+    ProfilePageComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
