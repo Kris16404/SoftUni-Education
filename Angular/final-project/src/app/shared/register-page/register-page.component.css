@@ -12,7 +12,7 @@
   align-items: center;
   width: 80%;
   height: 70%;
-  background-color: #fff;
+  background-color: #d1cab8;
   border-radius: 15px;
   box-shadow: 0px 10px 25px 5px rgb(0, 0, 0, 0.2);
 }
@@ -31,6 +31,7 @@ input {
   padding: 1em;
   outline: none;
   font-size: 16px;
+  background-color: #d1cab8;
 }
 label:last-child {
   margin-left: 1em;
