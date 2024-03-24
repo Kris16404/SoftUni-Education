@@ -13,9 +13,12 @@ export class UserService implements OnDestroy {
   userSubscription: Subscription;
 
   get isLogged(): boolean {
-    return !!this.user;
+    return !!sessionStorage.getItem('user');
   }
 
+  isAuthenticated(): boolean {
+    return !!sessionStorage.getItem('user');
+  }
   constructor(private afAuth: AngularFireAuth) {
     this.userSubscription = this.user$.subscribe((user) => {
       this.user = user;
