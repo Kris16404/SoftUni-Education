@@ -10,20 +10,20 @@
       <li>
         <a routerLink="/about-us">About us</a>
       </li>
-      <li *ngIf="!isAuthenticated">
+      <li *ngIf="!isLoggedIn">
         <a routerLink="/user/register">Register</a>
       </li>
-      <li *ngIf="!isAuthenticated">
+      <li *ngIf="!isLoggedIn">
         <a routerLink="/user/login">Login</a>
       </li>
 
-      <li *ngIf="isAuthenticated">
+      <li *ngIf="isLoggedIn">
         <a routerLink="/user/cart">My Cart</a>
       </li>
-      <li *ngIf="isAuthenticated">
+      <li *ngIf="isLoggedIn">
         <a routerLink="/user/profile">My Profile</a>
       </li>
-      <li *ngIf="isAuthenticated">
+      <li *ngIf="isLoggedIn">
         <a routerLink="/user/logout" (click)="logout()">Logout</a>
       </li>
     </ul>
