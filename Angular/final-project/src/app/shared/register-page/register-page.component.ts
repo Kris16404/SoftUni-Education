@@ -45,22 +45,8 @@ export class RegisterPageComponent {
         this.form.get('email')?.value!,
         this.form.get('passGroup')?.get('password')?.value!
       )
-      .then((res) => {
-        const user = res.user;
-        const userId = user?.uid;
-        const userEmail = user?.email;
-
-        user?.getIdToken().then((token) => {
-          this.user = {
-            email: userEmail!,
-            id: userId!,
-            token: token!,
-          };
-          sessionStorage.setItem('user', JSON.stringify(user));
-        });
-
+      .subscribe(() => {
         this.router.navigate(['/']);
-      })
-      .catch((err) => console.error(err));
+      });
   }
 }
