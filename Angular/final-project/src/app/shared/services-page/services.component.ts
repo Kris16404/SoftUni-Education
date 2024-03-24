@@ -15,7 +15,7 @@ export class ServicesComponent implements OnInit {
       console.log(data);
 
       Object.keys(data).forEach((key: any) => {
-        const temp: Service = { id: key, ...data[key] };
+        const temp: Service = { ...data[key] };
         this.services.push(temp);
       });
     });
