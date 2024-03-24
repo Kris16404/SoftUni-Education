@@ -1,21 +1,63 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { BehaviorSubject, Subscription, from, tap } from 'rxjs';
+import { UserForAuth } from '../types/User';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
-  constructor(private afAuth: AngularFireAuth) {}
+export class UserService implements OnDestroy {
+  private user$$ = new BehaviorSubject<UserForAuth | undefined>(undefined);
+  private user$ = this.user$$.asObservable();
+
+  user: UserForAuth | undefined;
+  userSubscription: Subscription;
+
+  get isLogged(): boolean {
+    return !!this.user;
+  }
+
+  constructor(private afAuth: AngularFireAuth) {
+    this.userSubscription = this.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   register(email: string, password: string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password);
+    return from(
+      this.afAuth.createUserWithEmailAndPassword(email, password)
+    ).pipe(
+      tap(async (userCredential) => {
+        const token = await userCredential.user?.getIdToken();
+        const tempUser: UserForAuth = {
+          email: userCredential.user?.email!,
+          id: userCredential.user?.uid!,
+          token: token!,
+        };
+        sessionStorage.setItem('user', JSON.stringify(tempUser));
+        return this.user$$.next(tempUser);
+      })
+    );
   }
-  signIn(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+  login(email: string, password: string) {
+    return from(this.afAuth.signInWithEmailAndPassword(email, password)).pipe(
+      tap(async (userCredential) => {
+        const token = await userCredential.user?.getIdToken();
+        const tempUser: UserForAuth = {
+          email: userCredential.user?.email!,
+          id: userCredential.user?.uid!,
+          token: token!,
+        };
+        sessionStorage.setItem('user', JSON.stringify(tempUser));
+        return this.user$$.next(tempUser);
+      })
+    );
   }
   signOut() {
-    return this.afAuth.signOut();
+    return from(this.afAuth.signOut()).pipe(
+      tap(() => this.user$$.next(undefined))
+    );
   }
-  isLogged(): boolean {
-    return !!sessionStorage.getItem('user');
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
   }
 }
