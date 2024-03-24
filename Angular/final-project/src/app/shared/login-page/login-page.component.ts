@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,7 +9,11 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -19,6 +25,8 @@ export class LoginPageComponent {
       return;
     }
 
-    console.log(this.form.value);
+    this.userService
+      .login(this.form.get('email')?.value!, this.form.get('password')?.value!)
+      .subscribe(() => this.router.navigate(['/']));
   }
 }
