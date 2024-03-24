@@ -10,6 +10,7 @@ import { CartPageComponent } from './shared/cart-page/cart-page.component';
 import { ProfilePageComponent } from './shared/profile-page/profile-page.component';
 import { AuthGuardService } from './shared/utils/auth-guard.service';
 import { AuthRedirectGuardService } from './shared/utils/auth-redirect-guard.service';
+import { AddServiceComponent } from './shared/add-service/add-service.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
   {
     path: 'services/catalog',
     component: ServicesComponent,
+  },
+  {
+    path: 'services/add',
+    component: AddServiceComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: '404',
