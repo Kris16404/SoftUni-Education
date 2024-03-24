@@ -10,20 +10,21 @@
       <li>
         <a routerLink="/about-us">About us</a>
       </li>
-      <li>
+      <li *ngIf="!isAuthenticated">
         <a routerLink="/user/register">Register</a>
       </li>
-      <li>
+      <li *ngIf="!isAuthenticated">
         <a routerLink="/user/login">Login</a>
       </li>
-      <li>
-        <a routerLink="/user/login" (click)="logout()">Logout</a>
-      </li>
-      <li>
+
+      <li *ngIf="isAuthenticated">
         <a routerLink="/user/cart">My Cart</a>
       </li>
-      <li>
+      <li *ngIf="isAuthenticated">
         <a routerLink="/user/profile">My Profile</a>
+      </li>
+      <li *ngIf="isAuthenticated">
+        <a routerLink="/user/logout" (click)="logout()">Logout</a>
       </li>
     </ul>
   </nav>

@@ -15,4 +15,7 @@ export class UserService {
   signOut() {
     return this.afAuth.signOut();
   }
+  isLogged(): boolean {
+    return !!sessionStorage.getItem('user');
+  }
 }
