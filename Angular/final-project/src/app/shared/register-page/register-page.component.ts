@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { matchPasswordsValidator } from '../utils/match-pass-validator';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-
+import { UserForAuth } from 'src/app/types/User';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -15,6 +15,8 @@ export class RegisterPageComponent {
     private userService: UserService,
     private router: Router
   ) {}
+
+  user: UserForAuth | undefined;
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -43,8 +45,22 @@ export class RegisterPageComponent {
         this.form.get('email')?.value!,
         this.form.get('passGroup')?.get('password')?.value!
       )
-      .then((res) => console.log(res.user))
-      .then(() => this.router.navigate(['/']))
+      .then((res) => {
+        const user = res.user;
+        const userId = user?.uid;
+        const userEmail = user?.email;
+
+        user?.getIdToken().then((token) => {
+          this.user = {
+            email: userEmail!,
+            id: userId!,
+            token: token!,
+          };
+          sessionStorage.setItem('user', JSON.stringify(user));
+        });
+
+        this.router.navigate(['/']);
+      })
       .catch((err) => console.error(err));
   }
 }
