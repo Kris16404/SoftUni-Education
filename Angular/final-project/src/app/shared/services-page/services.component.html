@@ -1,5 +1,24 @@
 <div class="wrapper">
   <div class="dimmer"></div>
+  <div class="toggle-container">
+    <button
+      class="toggle-button"
+      [class.active-left]="buttonState === 'left'"
+      (click)="toggleLeft()"
+      [@buttonState]="'left'"
+    >
+      OUR SERVICES
+    </button>
+    <button
+      class="toggle-button"
+      [class.active-right]="buttonState === 'right'"
+      (click)="toggleRight()"
+      [@buttonState]="'right'"
+    >
+      COMMUNITY SERVICES
+    </button>
+  </div>
+
   <div class="content-wrapper" *ngFor="let service of services">
     <app-service-card [service]="service" />
   </div>
