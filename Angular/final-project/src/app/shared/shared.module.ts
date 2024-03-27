@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AddServiceComponent } from './add-service/add-service.component';
-
 @NgModule({
   declarations: [
     HomePageComponent,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { Service } from '../types/Service';
 
@@ -21,9 +21,24 @@ export class PostService {
   }
 
   getServices(): Observable<Service[]> {
-    return this.http.get<Service[]>(`${environment.databseUrl}/services.json`);
+    return this.http
+      .get<Service[]>(`${environment.databseUrl}/services.json`)
+      .pipe(
+        tap((data) => {
+          return this.services$$.next(data);
+        })
+      );
   }
   postService(data: any): Promise<void> {
     return this.db.object('services').set(data);
+  }
+  getCommunityServices() {
+    return this.http
+      .get<Service[]>(`${environment.databseUrl}/community.json`)
+      .pipe(
+        tap((data) => {
+          return this.services$$.next(data);
+        })
+      );
   }
 }

@@ -1,11 +1,5 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { PostService } from 'src/app/services/post.service';
 import { Service } from 'src/app/types/Service';
 
@@ -13,45 +7,43 @@ import { Service } from 'src/app/types/Service';
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css'],
-  animations: [
-    trigger('buttonState', [
-      state(
-        'left',
-        style({
-          transform: 'translateX(0)',
-        })
-      ),
-      state(
-        'right',
-        style({
-          transform: 'translateX(100%)',
-        })
-      ),
-      transition('* => *', animate('300ms ease-in-out')),
-    ]),
-  ],
 })
 export class ServicesComponent implements OnInit {
-  constructor(private postService: PostService) {}
   services: Service[] = [];
-  buttonState: 'left' | 'right' = 'left';
+  buttonState$$ = new BehaviorSubject<string>('left');
+  buttonState$ = this.buttonState$$.asObservable();
 
+  constructor(private postService: PostService) {}
   ngOnInit(): void {
+    this.ourServicesLoad();
+  }
+  ourServicesLoad() {
     this.postService.getServices().subscribe((data) => {
-      console.log(data);
+      this.writeToServices(data);
+    });
+  }
+  communityServicesLoad() {
+    this.postService.getCommunityServices().subscribe((data) => {
+      this.writeToServices(data);
+    });
+  }
 
-      Object.keys(data).forEach((key: any) => {
-        const temp: Service = { ...data[key] };
-        this.services.push(temp);
-      });
+  writeToServices(data: any) {
+    return Object.keys(data).forEach((key: any) => {
+      const temp: Service = { ...data[key] };
+      this.services.push(temp);
     });
   }
 
   toggleLeft() {
-    this.buttonState = 'left';
+    this.services = [];
+    this.ourServicesLoad();
+    this.buttonState$$.next('left');
   }
 
   toggleRight() {
-    this.buttonState = 'right';
+    this.services = [];
+    this.communityServicesLoad();
+    this.buttonState$$.next('right');
   }
 }

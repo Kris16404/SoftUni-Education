@@ -3,17 +3,15 @@
   <div class="toggle-container">
     <button
       class="toggle-button"
-      [class.active-left]="buttonState === 'left'"
+      [class.active-left]="(buttonState$ | async) === 'left'"
       (click)="toggleLeft()"
-      [@buttonState]="'left'"
     >
       OUR SERVICES
     </button>
     <button
       class="toggle-button"
-      [class.active-right]="buttonState === 'right'"
+      [class.active-right]="(buttonState$ | async) === 'right'"
       (click)="toggleRight()"
-      [@buttonState]="'right'"
     >
       COMMUNITY SERVICES
     </button>
