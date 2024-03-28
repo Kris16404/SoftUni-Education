@@ -15,8 +15,6 @@ export class WeatherService {
     const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${environment.weatherApiKey}&units=metric`;
     return this.http.get<Weather>(apiUrl).pipe(
       tap((data) => {
-        console.log(data);
-
         return this.weather$$.next(data);
       })
     );

@@ -1,3 +1,79 @@
 <div class="wrapper">
-  <form [formGroup]="form"></form>
+  <div class="form-wrapper">
+    <form [formGroup]="form">
+      <h1>Post Your Services</h1>
+      <div class="input-wrapper">
+        <label for="name"
+          ><span><i class="fa-solid fa-font"></i></span
+        ></label>
+        <input
+          type="text"
+          name="service-name"
+          id="service-name"
+          formControlName="name"
+          placeholder="Your Service Name"
+        />
+        <hr />
+      </div>
+      <div class="input-wrapper">
+        <label for="imageUrl"
+          ><span><i class="fa-solid fa-image"></i></span
+        ></label>
+        <input
+          type="text"
+          name="service-imageUrl"
+          id="service-imageUrl"
+          formControlName="imageUrl"
+          placeholder="Your Service Image"
+        />
+        <hr />
+      </div>
+      <div class="input-wrapper">
+        <label for="price"
+          ><span><i class="fa-solid fa-tag"></i></span
+        ></label>
+        <input
+          type="number"
+          name="service-price"
+          id="service-price"
+          formControlName="price"
+          placeholder="Your Service Price"
+        />
+        <hr />
+      </div>
+      <div class="input-wrapper">
+        <label for="description"
+          ><span><i class="fa-solid fa-circle-info"></i></span
+        ></label>
+        <input
+          type="text"
+          name="service-description"
+          id="service-description"
+          formControlName="description"
+          placeholder="Your Service Description"
+        />
+        <hr />
+      </div>
+      <div class="input-wrapper">
+        <input
+          type="checkbox"
+          name="terms-checkbox"
+          id="terms-checkbox"
+          formControlName="termsCheckbox"
+        />
+        <label for="terms-checkbox"
+          >I agree all statements in <a href="#">Terms of service</a></label
+        >
+      </div>
+      <button
+        [disabled]="form.invalid"
+        [style]="{ opacity: form.invalid ? '50%' : '100%' }"
+      >
+        REGISTER
+      </button>
+    </form>
+    <div class="image-wrapper">
+      <img src="../../../assets/tower-computer.png" alt="" />
+    </div>
+  </div>
 </div>
