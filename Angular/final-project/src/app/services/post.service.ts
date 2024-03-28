@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { Service } from '../types/Service';
-import { UserForAuth } from '../types/User';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +10,11 @@ import { UserForAuth } from '../types/User';
 export class PostService {
   private services$$ = new BehaviorSubject<Service[] | undefined>(undefined);
   private service$ = this.services$$.asObservable();
-  private authToken: string;
+  private authToken: string | undefined;
   services: Service[] | undefined;
   servicesSubscription: Subscription;
 
-  constructor(private http: HttpClient, private db: AngularFireDatabase) {
+  constructor(private http: HttpClient) {
     this.servicesSubscription = this.service$.subscribe((services) => {
       this.services = services;
     });
@@ -25,7 +23,7 @@ export class PostService {
       const authData = JSON.parse(session);
       this.authToken = authData.token;
     } else {
-      this.authToken = '';
+      this.authToken = undefined;
     }
   }
 
@@ -39,6 +37,9 @@ export class PostService {
       );
   }
   postService(data: any) {
+    const session = sessionStorage.getItem('user');
+    const authData = JSON.parse(session!);
+    this.authToken = authData.token;
     const headers = new HttpHeaders().set(
       'Authorization',
       'Bearer ' + this.authToken
