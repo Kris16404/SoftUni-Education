@@ -47,6 +47,10 @@
   display: flex;
   align-items: center;
 }
+.weather h3 {
+  border-right: 2px solid #000;
+  padding: 1em;
+}
 .weather ul {
   list-style: none;
   margin-left: 2em;
