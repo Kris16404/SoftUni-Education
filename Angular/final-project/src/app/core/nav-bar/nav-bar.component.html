@@ -2,6 +2,20 @@
   <div class="logo-wrapper">
     <a routerLink="/home">logo</a>
   </div>
+  <div class="weather">
+    <h3>Current Weather</h3>
+    <ul>
+      <li><i class="fa-solid fa-location-dot"></i> City: {{ weather.name }}</li>
+      <li>
+        <i class="fa-solid fa-temperature-three-quarters"></i> Temp:
+        {{ weather.main?.temp | degrees }}&deg;
+      </li>
+      <li>
+        <i class="fa-solid fa-droplet"></i> Humidity:
+        {{ weather.main?.humidity }}%
+      </li>
+    </ul>
+  </div>
   <nav>
     <ul>
       <li>

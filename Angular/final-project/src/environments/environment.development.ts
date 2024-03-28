@@ -13,4 +13,5 @@ export const environment = {
   },
   databseUrl:
     'https://final-project-9b70a-default-rtdb.europe-west1.firebasedatabase.app',
+  weatherApiKey: 'd803a19dd6845cb89aec48a7aaa48604',
 };
