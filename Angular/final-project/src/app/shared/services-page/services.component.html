@@ -16,8 +16,9 @@
       COMMUNITY SERVICES
     </button>
   </div>
-
-  <div class="content-wrapper" *ngFor="let service of services">
-    <app-service-card [service]="service" />
+  <div class="card-wrapper">
+    <div class="content-wrapper" *ngFor="let service of services">
+      <app-service-card [service]="service" />
+    </div>
   </div>
 </div>
