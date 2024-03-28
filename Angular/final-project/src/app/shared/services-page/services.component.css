@@ -15,7 +15,6 @@
 .toggle-container {
   width: 100%;
   display: flex;
-  justify-content: end;
   width: 300px;
   margin: 50px 0;
   z-index: 100;
