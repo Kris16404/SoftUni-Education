@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { urlCheck } from '../utils/url-check-validator';
+import { ServiceForPostReq } from 'src/app/types/Service';
+import { PostService } from 'src/app/services/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-service',
@@ -8,7 +11,11 @@ import { urlCheck } from '../utils/url-check-validator';
   styleUrls: ['./add-service.component.css'],
 })
 export class AddServiceComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private postService: PostService,
+    private router: Router
+  ) {}
 
   form = this.fb.group(
     {
@@ -23,9 +30,21 @@ export class AddServiceComponent {
     }
   );
 
-  postService() {
+  postSubmit() {
     if (this.form.invalid) {
       return;
     }
+    const session = JSON.parse(sessionStorage.getItem('user')!);
+    const userId = session.id;
+    const tempService: ServiceForPostReq = {
+      name: this.form.get('name')?.value!,
+      imageUrl: this.form.get('imageUrl')?.value!,
+      price: +this.form.get('price')?.value!,
+      description: this.form.get('description')?.value!,
+      ownerId: userId,
+    };
+    this.postService
+      .postService(tempService)
+      .subscribe(() => this.router.navigate(['/services/catalog']));
   }
 }

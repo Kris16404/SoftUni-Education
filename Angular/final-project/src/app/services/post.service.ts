@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, from, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
-import { Service } from '../types/Service';
+import { Service, ServiceForPostReq } from '../types/Service';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class PostService {
   services: Service[] | undefined;
   servicesSubscription: Subscription;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private db: AngularFireDatabase) {
     this.servicesSubscription = this.service$.subscribe((services) => {
       this.services = services;
     });
@@ -36,7 +37,7 @@ export class PostService {
         })
       );
   }
-  postService(data: any) {
+  postService(data: ServiceForPostReq) {
     const session = sessionStorage.getItem('user');
     const authData = JSON.parse(session!);
     this.authToken = authData.token;
@@ -44,9 +45,15 @@ export class PostService {
       'Authorization',
       'Bearer ' + this.authToken
     );
-    return this.http
-      .post<any>(`${environment.databseUrl}/community.json`, data, { headers })
-      .pipe(tap((data) => console.log(data)));
+    // return this.http
+    //   .post<any>(`${environment.databseUrl}/community.json`, data, { headers })
+    //   .pipe(
+    //     tap((data) => {
+    //       console.log(data);
+    //       return this.services$$.next(data);
+    //     })
+    //   );
+    return from(this.db.list('/community').push(data));
   }
   getCommunityServices() {
     return this.http
