@@ -10,12 +10,12 @@ import { Service } from 'src/app/types/Service';
 })
 export class ServicesComponent implements OnInit {
   services: Service[] = [];
-  buttonState$$ = new BehaviorSubject<string>('left');
+  buttonState$$ = new BehaviorSubject<string>('right');
   buttonState$ = this.buttonState$$.asObservable();
 
   constructor(private postService: PostService) {}
   ngOnInit(): void {
-    this.ourServicesLoad();
+    this.communityServicesLoad();
   }
   ourServicesLoad() {
     this.postService.getServices().subscribe((data) => {
