@@ -58,6 +58,7 @@
   border-radius: 5px;
 
   transition: 0.2s ease-in-out;
+  box-shadow: 10px 10px 25px 5px rgb(0, 0, 0, 0.5);
 }
 .buttons .edit {
   background-color: #fdd732;
@@ -74,4 +75,5 @@
   background-color: gray;
   transition: 0.2s ease-in-out;
   color: #e4f8fc;
+  box-shadow: 10px 20px 15px 5px rgb(0, 0, 0, 0.5);
 }

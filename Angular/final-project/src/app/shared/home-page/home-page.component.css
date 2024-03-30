@@ -113,10 +113,12 @@
   padding: 3em;
   border-radius: 10px;
   transition: 0.4s ease-in-out;
+  box-shadow: 10px 10px 25px 5px rgb(0, 0, 0, 0.5);
 }
 .get-started a:hover {
   background-color: #657b7f;
   transition: 0.4s ease-in-out;
+  box-shadow: 10px 20px 15px 5px rgb(0, 0, 0, 0.5);
 }
 .dimmer {
   position: absolute;

@@ -40,12 +40,14 @@
   border-radius: 5px;
   cursor: pointer;
   transition: 0.4s ease-in-out;
+  box-shadow: 10px 10px 25px 5px rgb(0, 0, 0, 0.5);
 }
 .button-wrapper button:hover {
   background-color: #1878a3;
   color: #e4f8fc;
 
   transition: 0.4s ease-in-out;
+  box-shadow: 10px 20px 15px 5px rgb(0, 0, 0, 0.5);
 }
 .button-wrapper button:last-child {
   margin-left: 1em;

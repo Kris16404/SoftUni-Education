@@ -120,8 +120,10 @@
   border-radius: 10px;
   font-size: 22px;
   transition: 0.4s ease-in-out;
+  box-shadow: 10px 10px 25px 5px rgb(0, 0, 0, 0.5);
 }
 .involved-wrapper a:hover {
   background-color: #102b4f;
   transition: 0.4s ease-in-out;
+  box-shadow: 10px 20px 15px 5px rgb(0, 0, 0, 0.5);
 }
