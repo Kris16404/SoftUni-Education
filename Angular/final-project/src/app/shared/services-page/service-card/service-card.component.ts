@@ -14,7 +14,7 @@ export class ServiceCardComponent {
 
   @Input() service = {} as Service;
   exceptionRoutes: string[] = ['/refresh'];
-  cart = JSON.parse(sessionStorage.getItem('cart')!) || [];
+  cart = JSON.parse(sessionStorage.getItem('cart')!) || undefined;
 
   handleDetails() {
     this.router.navigate(['/services', this.service.id]);
