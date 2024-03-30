@@ -6,6 +6,7 @@
   align-items: center;
   background-color: grey;
   border-radius: 15px;
+  word-wrap: break-word;
 }
 .wrapper img {
   width: 100%;
@@ -15,6 +16,7 @@
 }
 .wrapper h2 {
   margin: 1em 0;
+  max-width: 80%;
 }
 
 .content-wrapper {
