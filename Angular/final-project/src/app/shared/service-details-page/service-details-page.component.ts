@@ -21,14 +21,32 @@ export class ServiceDetailsPageComponent implements OnInit {
   user: UserForAuth | undefined;
   service: Service = {} as Service;
   serviceId: string = '';
+
   ngOnInit(): void {
     this.serviceId = this.route.snapshot.params['serviceId'];
     this.postService
       .getCommunityServiceById(this.serviceId)
       .subscribe((data) => {
+        if (this.isEmptyCheck(data)) {
+          this.postService.getServiceById(this.serviceId).subscribe((data) => {
+            this.service = data;
+            this.service.id = this.serviceId;
+            return;
+          });
+          return;
+        }
         this.service = data;
         this.service.id = this.serviceId;
         return;
       });
+  }
+  isEmptyCheck(obj: any) {
+    if (obj === null || typeof obj === 'undefined') {
+      return true;
+    }
+    if (typeof obj !== 'object') {
+      return true;
+    }
+    return Object.keys(obj).length === 0;
   }
 }

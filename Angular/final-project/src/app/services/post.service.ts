@@ -60,4 +60,8 @@ export class PostService {
     const url = `${environment.databseUrl}/community/${id}.json`;
     return this.http.get<Service>(url);
   }
+  getServiceById(id: string) {
+    const url = `${environment.databseUrl}/services/${id}.json`;
+    return this.http.get<Service>(url);
+  }
 }
