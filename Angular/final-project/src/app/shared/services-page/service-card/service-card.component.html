@@ -4,7 +4,15 @@
     <h2>{{ service.name }}</h2>
     <h3>{{ service.price }}$</h3>
     <div class="button-wrapper">
-      <button>ADD TO CART</button>
+      <button
+        (click)="handleAddToCart()"
+        *ngIf="cart && !checkIfAvailableInCart()"
+      >
+        ADD TO CART
+      </button>
+      <button (click)="removeItemFromCart()" *ngIf="checkIfAvailableInCart()">
+        REMOVE FROM CART
+      </button>
       <button (click)="handleDetails()">DETAILS</button>
     </div>
   </div>

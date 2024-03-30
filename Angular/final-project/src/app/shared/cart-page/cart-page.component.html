@@ -1,1 +1,18 @@
-<p>cart-page works!</p>
+<div class="wrapper">
+  <div class="box">
+    <div *ngIf="services.length > 0" class="content-wrapper">
+      <div *ngFor="let service of services" class="card">
+        <app-service-card [service]="service" />
+      </div>
+    </div>
+    <div class="buttons-wrapper">
+      <div *ngIf="services.length === 0" class="no-items">
+        <h1>NO ITEMS IN CART</h1>
+        <a href="/services/catalog">Browse Services</a>
+      </div>
+      <button *ngIf="services.length > 0" (click)="handleCheckout()">
+        CHECKOUT
+      </button>
+    </div>
+  </div>
+</div>

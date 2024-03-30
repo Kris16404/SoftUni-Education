@@ -37,6 +37,7 @@ export class UserService implements OnDestroy {
           token: token!,
         };
         sessionStorage.setItem('user', JSON.stringify(tempUser));
+        sessionStorage.setItem('cart', JSON.stringify([]));
         return this.user$$.next(tempUser);
       })
     );
@@ -51,6 +52,8 @@ export class UserService implements OnDestroy {
           token: token!,
         };
         sessionStorage.setItem('user', JSON.stringify(tempUser));
+        sessionStorage.setItem('cart', JSON.stringify([]));
+
         return this.user$$.next(tempUser);
       })
     );
