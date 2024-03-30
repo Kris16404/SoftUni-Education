@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { PostService } from 'src/app/services/post.service';
 import { Service } from 'src/app/types/Service';
@@ -10,6 +10,7 @@ import { Service } from 'src/app/types/Service';
 })
 export class ServicesComponent implements OnInit {
   services: Service[] = [];
+  isLoading: boolean = false;
   buttonState$$ = new BehaviorSubject<string>('right');
   buttonState$ = this.buttonState$$.asObservable();
 
@@ -18,13 +19,18 @@ export class ServicesComponent implements OnInit {
     this.communityServicesLoad();
   }
   ourServicesLoad() {
+    this.isLoading = true;
     this.postService.getServices().subscribe((data) => {
       this.writeToServices(data);
+      this.isLoading = false;
     });
   }
   communityServicesLoad() {
+    this.isLoading = true;
+
     this.postService.getCommunityServices().subscribe((data) => {
       this.writeToServices(data);
+      this.isLoading = false;
     });
   }
 

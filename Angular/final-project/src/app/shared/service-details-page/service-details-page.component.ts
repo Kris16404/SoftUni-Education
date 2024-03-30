@@ -21,8 +21,9 @@ export class ServiceDetailsPageComponent implements OnInit {
   user: UserForAuth | undefined;
   service: Service = {} as Service;
   serviceId: string = '';
-
+  isLoading: boolean = false;
   ngOnInit(): void {
+    this.isLoading = true;
     this.serviceId = this.route.snapshot.params['serviceId'];
     this.postService
       .getCommunityServiceById(this.serviceId)
@@ -31,12 +32,19 @@ export class ServiceDetailsPageComponent implements OnInit {
           this.postService.getServiceById(this.serviceId).subscribe((data) => {
             this.service = data;
             this.service.id = this.serviceId;
+            console.log(this.isLoading);
+
+            this.isLoading = false;
+
             return;
           });
+
           return;
         }
         this.service = data;
         this.service.id = this.serviceId;
+        this.isLoading = false;
+
         return;
       });
   }

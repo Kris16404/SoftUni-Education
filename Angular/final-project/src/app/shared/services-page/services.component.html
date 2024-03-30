@@ -17,6 +17,7 @@
     </button>
   </div>
   <div class="card-wrapper">
+    <app-spinner [isLoading]="isLoading" />
     <div class="content-wrapper" *ngFor="let service of services">
       <app-service-card [service]="service" />
     </div>

@@ -13,6 +13,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ServiceDetailsPageComponent } from './service-details-page/service-details-page.component';
 import { RouterModule } from '@angular/router';
+import { SpinnerComponent } from './spinner/spinner.component';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -26,6 +27,7 @@ import { RouterModule } from '@angular/router';
     ProfilePageComponent,
     AddServiceComponent,
     ServiceDetailsPageComponent,
+    SpinnerComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   exports: [
