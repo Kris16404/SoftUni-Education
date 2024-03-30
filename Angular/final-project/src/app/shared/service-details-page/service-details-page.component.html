@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <div class="box">
+    <div class="content-warpper">
+      <img src="{{ service.imageUrl }}" alt="" />
+      <div class="separator"></div>
+      <div class="content">
+        <h2>Name Of Service: {{ service.name }}</h2>
+        <h3>Price: {{ service.price }}</h3>
+        <p><strong>Description: </strong>{{ service.description }}</p>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button *ngIf="user && service.ownerId == user?.id" class="edit">
+        EDIT
+      </button>
+      <button *ngIf="user && service.ownerId == user?.id" class="delete">
+        DELETE
+      </button>
+      <button *ngIf="user && service.ownerId !== user?.id" class="buy">
+        BUY
+      </button>
+    </div>
+  </div>
+</div>

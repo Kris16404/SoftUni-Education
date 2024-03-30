@@ -1,0 +1,74 @@
+.wrapper {
+  width: 100%;
+  height: 77.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  flex-direction: column;
+  width: 80%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e4f8fc;
+  border-radius: 15px;
+  box-shadow: 10px 10px 25px 5px rgb(0, 0, 0, 0.5);
+}
+.content-warpper {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content-warpper img {
+  border-radius: 15px;
+  width: 400px;
+  max-width: 400px;
+  height: auto;
+  max-height: 400px;
+}
+
+.content {
+  line-height: 2;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.separator {
+  border: 1px solid rgb(0, 0, 0, 0.3);
+  height: 100%;
+}
+
+.buttons {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5em;
+}
+.buttons button {
+  padding: 1em;
+  border: none;
+  border-radius: 5px;
+
+  transition: 0.2s ease-in-out;
+}
+.buttons .edit {
+  background-color: #fdd732;
+}
+.buttons .delete {
+  background-color: #ba1526;
+  color: #e4f8fc;
+}
+.buttons .buy {
+  background-color: #124502;
+  color: #e4f8fc;
+}
+.buttons button:hover {
+  background-color: gray;
+  transition: 0.2s ease-in-out;
+  color: #e4f8fc;
+}

@@ -30,7 +30,7 @@ export class ServicesComponent implements OnInit {
 
   writeToServices(data: any) {
     return Object.keys(data).forEach((key: any) => {
-      const temp: Service = { ...data[key] };
+      const temp: Service = { id: key, ...data[key] };
       this.services.push(temp);
     });
   }

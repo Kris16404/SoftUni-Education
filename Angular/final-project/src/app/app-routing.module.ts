@@ -11,6 +11,7 @@ import { ProfilePageComponent } from './shared/profile-page/profile-page.compone
 import { AuthGuardService } from './shared/utils/auth-guard.service';
 import { AuthRedirectGuardService } from './shared/utils/auth-redirect-guard.service';
 import { AddServiceComponent } from './shared/add-service/add-service.component';
+import { ServiceDetailsPageComponent } from './shared/service-details-page/service-details-page.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
     path: 'services/add',
     component: AddServiceComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'services/:serviceId',
+    component: ServiceDetailsPageComponent,
   },
   {
     path: '404',

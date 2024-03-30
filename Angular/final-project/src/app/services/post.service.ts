@@ -45,14 +45,6 @@ export class PostService {
       'Authorization',
       'Bearer ' + this.authToken
     );
-    // return this.http
-    //   .post<any>(`${environment.databseUrl}/community.json`, data, { headers })
-    //   .pipe(
-    //     tap((data) => {
-    //       console.log(data);
-    //       return this.services$$.next(data);
-    //     })
-    //   );
     return from(this.db.list('/community').push(data));
   }
   getCommunityServices() {
@@ -63,5 +55,9 @@ export class PostService {
           return this.services$$.next(data);
         })
       );
+  }
+  getCommunityServiceById(id: string) {
+    const url = `${environment.databseUrl}/community/${id}.json`;
+    return this.http.get<Service>(url);
   }
 }

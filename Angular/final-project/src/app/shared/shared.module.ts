@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AddServiceComponent } from './add-service/add-service.component';
+import { ServiceDetailsPageComponent } from './service-details-page/service-details-page.component';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -23,6 +24,7 @@ import { AddServiceComponent } from './add-service/add-service.component';
     CartPageComponent,
     ProfilePageComponent,
     AddServiceComponent,
+    ServiceDetailsPageComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [
