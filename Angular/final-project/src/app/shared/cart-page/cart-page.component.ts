@@ -21,6 +21,7 @@ export class CartPageComponent implements OnInit {
   services: Service[] = [];
   cart: string[];
   isLoading: boolean = false;
+
   ngOnInit(): void {
     this.isLoading = true;
     this.postService.getCommunityServices().subscribe((services) => {
@@ -32,7 +33,6 @@ export class CartPageComponent implements OnInit {
       this.isLoading = false;
     });
   }
-
   writeFilterdServices(services: any) {
     Object.keys(services).forEach((key: any) => {
       const temp: Service = { id: key, ...services[key] };
@@ -59,5 +59,10 @@ export class CartPageComponent implements OnInit {
   }
   isExceptionRoute(route: string): boolean {
     return this.exceptionRoutes.includes(route);
+  }
+  getTotalPrice(): number {
+    let sum = 0;
+    this.services.forEach((service) => (sum += service.price));
+    return sum;
   }
 }

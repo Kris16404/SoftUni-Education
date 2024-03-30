@@ -11,9 +11,14 @@
         <h1>NO ITEMS IN CART</h1>
         <a routerLink="/services/catalog">Browse Services</a>
       </div>
-      <button *ngIf="services.length > 0" (click)="handleCheckout()">
-        CHECKOUT
-      </button>
+      <div class="end-wrapper">
+        <h3 *ngIf="services.length > 0">
+          Total Price Of Services: {{ getTotalPrice() }}$
+        </h3>
+        <button *ngIf="services.length > 0" (click)="handleCheckout()">
+          CHECKOUT
+        </button>
+      </div>
     </div>
   </div>
 </div>

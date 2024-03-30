@@ -61,3 +61,12 @@
   transition: 0.2s ease-in-out;
   color: #e4f8fc;
 }
+
+.end-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.end-wrapper h3 {
+  margin-bottom: 1em;
+}
