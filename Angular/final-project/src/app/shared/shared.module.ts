@@ -12,6 +12,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ServiceDetailsPageComponent } from './service-details-page/service-details-page.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -26,7 +27,7 @@ import { ServiceDetailsPageComponent } from './service-details-page/service-deta
     AddServiceComponent,
     ServiceDetailsPageComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   exports: [
     HomePageComponent,
     LoginPageComponent,
