@@ -6,7 +6,7 @@
     <div class="button-wrapper">
       <button
         (click)="handleAddToCart()"
-        *ngIf="cart && !checkIfAvailableInCart()"
+        *ngIf="cart && !checkIfAvailableInCart() && !isOwner()"
       >
         ADD TO CART
       </button>

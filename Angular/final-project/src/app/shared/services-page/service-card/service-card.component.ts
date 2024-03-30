@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Service } from 'src/app/types/Service';
+import { UserForAuth } from 'src/app/types/User';
 
 @Component({
   selector: 'app-service-card',
@@ -53,5 +54,17 @@ export class ServiceCardComponent {
 
   isExceptionRoute(route: string): boolean {
     return this.exceptionRoutes.includes(route);
+  }
+  isOwner(): boolean {
+    const session = sessionStorage.getItem('user');
+    if (session) {
+      const user: UserForAuth = JSON.parse(session);
+
+      if (user.id === this.service.ownerId) {
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 }
