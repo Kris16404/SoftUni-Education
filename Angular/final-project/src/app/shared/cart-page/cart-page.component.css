@@ -24,6 +24,9 @@
   justify-content: space-around;
   align-items: center;
 }
+.card {
+  margin: 1em;
+}
 .buttons-wrapper {
   width: 90%;
   display: flex;
