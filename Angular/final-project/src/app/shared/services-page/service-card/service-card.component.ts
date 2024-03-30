@@ -10,24 +10,22 @@ import { UserForAuth } from 'src/app/types/User';
   styleUrls: ['./service-card.component.css'],
 })
 export class ServiceCardComponent {
-  constructor(private router: Router) {
-    const cart = sessionStorage.getItem('cart');
-    if (cart) {
-      this.cart = JSON.parse(cart);
-    } else {
-      this.cart = undefined;
-    }
-  }
+  constructor(private router: Router) {}
+
   @Input() service = {} as Service;
   exceptionRoutes: string[] = ['/refresh'];
-  cart: string[] | undefined;
+  cart = JSON.parse(sessionStorage.getItem('cart')!) || [];
+
   handleDetails() {
     this.router.navigate(['/services', this.service.id]);
   }
+
   handleAddToCart() {
-    this.cart?.push(this.service.id);
+    this.cart = JSON.parse(sessionStorage.getItem('cart')!);
+    this.cart.push(this.service.id);
     sessionStorage.setItem('cart', JSON.stringify(this.cart));
   }
+
   checkIfAvailableInCart(): boolean {
     if (this.cart?.includes(this.service.id)) {
       return true;
@@ -35,8 +33,9 @@ export class ServiceCardComponent {
       return false;
     }
   }
+
   removeItemFromCart() {
-    this.cart = this.cart?.filter((item) => item !== this.service.id);
+    this.cart = this.cart?.filter((item: string) => item !== this.service.id);
     sessionStorage.setItem('cart', JSON.stringify(this.cart));
 
     const currentRoute = this.router.url;
