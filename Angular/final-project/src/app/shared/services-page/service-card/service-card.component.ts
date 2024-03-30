@@ -22,8 +22,6 @@ export class ServiceCardComponent {
   exceptionRoutes: string[] = ['/refresh'];
   cart: string[] | undefined;
   handleDetails() {
-    console.log(this.service);
-
     this.router.navigate(['/services', this.service.id]);
   }
   handleAddToCart() {

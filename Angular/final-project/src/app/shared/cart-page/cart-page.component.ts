@@ -35,9 +35,7 @@ export class CartPageComponent implements OnInit {
 
       if (this.cart?.includes(temp.id)) {
         this.services.push(temp);
-        console.log(temp);
       } else {
-        console.log('ELSE,', this.services);
       }
     });
   }

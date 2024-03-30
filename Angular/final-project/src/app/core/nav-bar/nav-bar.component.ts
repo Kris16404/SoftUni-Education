@@ -24,7 +24,6 @@ export class NavBarComponent implements OnInit {
     this.weatherService
       .getWeather('sofia')
       .subscribe((res) => (this.weather = res));
-    console.log(this.weather);
   }
   logout() {
     this.userService.signOut().subscribe({
