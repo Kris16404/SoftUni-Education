@@ -20,13 +20,17 @@ export class CartPageComponent implements OnInit {
   exceptionRoutes: string[] = ['/refresh'];
   services: Service[] = [];
   cart: string[];
+  isLoading: boolean = false;
   ngOnInit(): void {
-    this.postService
-      .getCommunityServices()
-      .subscribe((services) => this.writeFilterdServices(services));
-    this.postService
-      .getServices()
-      .subscribe((services) => this.writeFilterdServices(services));
+    this.isLoading = true;
+    this.postService.getCommunityServices().subscribe((services) => {
+      this.writeFilterdServices(services);
+      this.isLoading = false;
+    });
+    this.postService.getServices().subscribe((services) => {
+      this.writeFilterdServices(services);
+      this.isLoading = false;
+    });
   }
 
   writeFilterdServices(services: any) {

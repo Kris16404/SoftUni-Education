@@ -1,11 +1,12 @@
 <div class="wrapper">
   <div class="box">
-    <div *ngIf="services.length > 0" class="content-wrapper">
+    <app-spinner [isLoading]="isLoading" />
+    <div *ngIf="services.length > 0 && !isLoading" class="content-wrapper">
       <div *ngFor="let service of services" class="card">
         <app-service-card [service]="service" />
       </div>
     </div>
-    <div class="buttons-wrapper">
+    <div *ngIf="!isLoading" class="buttons-wrapper">
       <div *ngIf="services.length === 0" class="no-items">
         <h1>NO ITEMS IN CART</h1>
         <a routerLink="/services/catalog">Browse Services</a>
