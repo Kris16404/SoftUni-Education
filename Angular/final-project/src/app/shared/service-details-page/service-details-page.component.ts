@@ -32,7 +32,6 @@ export class ServiceDetailsPageComponent implements OnInit {
           this.postService.getServiceById(this.serviceId).subscribe((data) => {
             this.service = data;
             this.service.id = this.serviceId;
-            console.log(this.isLoading);
 
             this.isLoading = false;
 
