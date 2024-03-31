@@ -67,7 +67,7 @@
   background-color: #ba1526;
   color: #e4f8fc;
 }
-.buttons .buy {
+.buttons .add-to-cart {
   background-color: #124502;
   color: #e4f8fc;
 }
@@ -76,4 +76,8 @@
   transition: 0.2s ease-in-out;
   color: #e4f8fc;
   box-shadow: 10px 20px 15px 5px rgb(0, 0, 0, 0.5);
+}
+.remove-from-cart {
+  background-color: #ba1526;
+  color: #e4f8fc;
 }

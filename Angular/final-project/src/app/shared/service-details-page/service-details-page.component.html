@@ -19,8 +19,21 @@
       <button *ngIf="user && service.ownerId == user?.id" class="delete">
         DELETE
       </button>
-      <button *ngIf="user && service.ownerId !== user?.id" class="buy">
-        BUY
+      <button
+        (click)="handleAddToCart()"
+        *ngIf="
+          user && service.ownerId !== user?.id && !checkIfAvailableInCart()
+        "
+        class="add-to-cart"
+      >
+        ADD TO CART
+      </button>
+      <button
+        *ngIf="checkIfAvailableInCart()"
+        (click)="removeItemFromCart()"
+        class="remove-from-cart"
+      >
+        REMOVE FROM CART
       </button>
     </div>
   </div>

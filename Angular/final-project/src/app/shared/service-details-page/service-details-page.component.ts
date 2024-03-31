@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 import { Service } from 'src/app/types/Service';
 import { UserForAuth } from 'src/app/types/User';
@@ -10,7 +10,11 @@ import { UserForAuth } from 'src/app/types/User';
   styleUrls: ['./service-details-page.component.css'],
 })
 export class ServiceDetailsPageComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private postService: PostService) {
+  constructor(
+    private route: ActivatedRoute,
+    private postService: PostService,
+    private router: Router
+  ) {
     const session = sessionStorage.getItem('user');
     if (session) {
       this.user = JSON.parse(session);
@@ -18,6 +22,8 @@ export class ServiceDetailsPageComponent implements OnInit {
       this.user = undefined;
     }
   }
+  exceptionRoutes: string[] = ['/refresh'];
+  cart = JSON.parse(sessionStorage.getItem('cart')!) || undefined;
   user: UserForAuth | undefined;
   service: Service = {} as Service;
   serviceId: string = '';
@@ -46,6 +52,35 @@ export class ServiceDetailsPageComponent implements OnInit {
 
         return;
       });
+  }
+  checkIfAvailableInCart(): boolean {
+    if (this.cart?.includes(this.service.id)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  handleAddToCart() {
+    this.cart = JSON.parse(sessionStorage.getItem('cart')!);
+    this.cart.push(this.service.id);
+    sessionStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+  removeItemFromCart() {
+    this.cart = this.cart?.filter((item: string) => item !== this.service.id);
+    sessionStorage.setItem('cart', JSON.stringify(this.cart));
+
+    const currentRoute = this.router.url;
+
+    if (!this.isExceptionRoute(currentRoute) && currentRoute === '/user/cart') {
+      this.router
+        .navigateByUrl('/refresh', { skipLocationChange: true })
+        .then(() => {
+          this.router.navigate([currentRoute]);
+        });
+    }
+  }
+  isExceptionRoute(route: string): boolean {
+    return this.exceptionRoutes.includes(route);
   }
   isEmptyCheck(obj: any) {
     if (obj === null || typeof obj === 'undefined') {
