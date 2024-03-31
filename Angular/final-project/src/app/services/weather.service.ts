@@ -7,7 +7,7 @@ import { Weather } from '../types/Weather';
   providedIn: 'root',
 })
 export class WeatherService {
-  private weather$$ = new BehaviorSubject<any>(undefined);
+  private weather$$ = new BehaviorSubject<Weather | undefined>(undefined);
   private weather$ = this.weather$$.asObservable();
 
   constructor(private http: HttpClient) {}
