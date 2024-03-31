@@ -13,6 +13,7 @@ export class ServicesComponent implements OnInit {
   isLoading: boolean = false;
   buttonState$$ = new BehaviorSubject<string>('right');
   buttonState$ = this.buttonState$$.asObservable();
+  isFailedToLoad: boolean = false;
 
   constructor(private postService: PostService) {}
   ngOnInit(): void {
@@ -20,15 +21,28 @@ export class ServicesComponent implements OnInit {
   }
   ourServicesLoad() {
     this.isLoading = true;
+    this.isFailedToLoad = false;
     this.postService.getServices().subscribe((data) => {
+      if (data === null) {
+        this.isLoading = false;
+        this.isFailedToLoad = true;
+        return;
+      }
+      this.isFailedToLoad = false;
+
       this.writeToServices(data);
       this.isLoading = false;
     });
   }
   communityServicesLoad() {
     this.isLoading = true;
-
+    this.isFailedToLoad = false;
     this.postService.getCommunityServices().subscribe((data) => {
+      if (data === null) {
+        this.isLoading = false;
+        this.isFailedToLoad = true;
+        return;
+      }
       this.writeToServices(data);
       this.isLoading = false;
     });

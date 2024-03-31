@@ -18,6 +18,9 @@
   </div>
   <div class="card-wrapper">
     <app-spinner [isLoading]="isLoading" />
+    <div class="fail-to-load" *ngIf="isFailedToLoad">
+      <h1>NO SERVICES ADDED YET</h1>
+    </div>
     <div class="content-wrapper" *ngFor="let service of services">
       <app-service-card [service]="service" />
     </div>
