@@ -29,8 +29,6 @@ export class ServiceDetailsPageComponent implements OnInit {
   serviceId: string = '';
   isLoading: boolean = false;
   ngOnInit(): void {
-    console.log(this.serviceId);
-
     this.isLoading = true;
     this.serviceId = this.route.snapshot.params['serviceId'];
     this.postService.getCommunityServiceById(this.serviceId).subscribe(
@@ -46,8 +44,6 @@ export class ServiceDetailsPageComponent implements OnInit {
               return;
             },
             () => {
-              console.log('from error');
-
               this.router.navigate(['/services/catalog']);
             }
           );
@@ -61,7 +57,6 @@ export class ServiceDetailsPageComponent implements OnInit {
         return;
       },
       () => {
-        console.log('from error');
         this.router.navigate(['/services/catalog']);
       }
     );

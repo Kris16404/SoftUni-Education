@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
-import { ServiceForPostReq } from 'src/app/types/Service';
+import { Service, ServiceForPostReq } from 'src/app/types/Service';
 
 @Component({
   selector: 'app-edit-service-page',
   templateUrl: './edit-service-page.component.html',
   styleUrls: ['./edit-service-page.component.css'],
 })
-export class EditServicePageComponent {
+export class EditServicePageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
-
+  service: Service = {} as Service;
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(5)]],
     imageUrl: [
@@ -31,11 +32,22 @@ export class EditServicePageComponent {
     description: ['', [Validators.required, Validators.minLength(10)]],
     termsCheckbox: [false, Validators.requiredTrue],
   });
+  ngOnInit(): void {
+    const serviceId = this.route.snapshot.params['serviceId'];
+    this.postService.getCommunityServiceById(serviceId).subscribe((data) => {
+      this.service = data;
+      this.service.id = serviceId;
 
-  log() {
-    console.log(this.form.get('imageUrl')?.errors);
+      console.log(this.service);
+
+      this.form.get('name')?.setValue(this.service.name);
+      this.form.get('imageUrl')?.setValue(this.service.imageUrl);
+      this.form.get('price')?.setValue(this.service.price.toString());
+      this.form.get('description')?.setValue(this.service.description);
+    });
   }
-  postSubmit() {
+
+  editSubmit() {
     if (this.form.invalid) {
       return;
     }
@@ -49,7 +61,7 @@ export class EditServicePageComponent {
       ownerId: userId,
     };
     this.postService
-      .postService(tempService)
+      .updateCommunityServiceById(this.service.id, tempService)
       .subscribe(() => this.router.navigate(['/services/catalog']));
   }
 }

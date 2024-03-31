@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subscription, from, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { Service, ServiceForPostReq } from '../types/Service';
@@ -34,7 +34,6 @@ export class PostService {
     let data: Service = {} as Service;
     return this.getCommunityServiceById(id).subscribe((dataCom) => {
       data = dataCom;
-      console.log(data);
       if (data.id === user.id) {
         isOwner = true;
       }
@@ -72,5 +71,8 @@ export class PostService {
   }
   deleteCommunityServiceById(id: string) {
     return from(this.db.list('/community').remove(id));
+  }
+  updateCommunityServiceById(id: string, service: ServiceForPostReq) {
+    return from(this.db.object(`/community/${id}`).update(service));
   }
 }

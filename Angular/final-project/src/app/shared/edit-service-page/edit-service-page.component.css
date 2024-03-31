@@ -13,13 +13,14 @@
   flex-direction: row;
   width: 80%;
   height: 70%;
-  background-color: #ffeed2;
+  background-color: #39677f;
   border-radius: 15px;
   box-shadow: 0px 10px 25px 5px rgb(0, 0, 0, 0.2);
 }
 form {
   display: flex;
   flex-direction: column;
+  color: #feefd8;
 }
 form h1 {
   font-size: 40px;
@@ -33,7 +34,11 @@ input {
   padding-right: 6em;
   outline: none;
   font-size: 16px;
-  background-color: #ffeed2;
+  background-color: #39677f;
+  color: #feefd8;
+}
+input::placeholder {
+  color: #feefd8;
 }
 label:last-child {
   margin-left: 1em;

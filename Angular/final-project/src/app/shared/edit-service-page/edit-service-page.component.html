@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="form-wrapper">
-    <form [formGroup]="form" (ngSubmit)="postSubmit()">
+    <form [formGroup]="form" (ngSubmit)="editSubmit()">
       <h1>Post Your Services</h1>
       <div class="input-wrapper">
         <div
@@ -154,11 +154,11 @@
         [disabled]="form.invalid"
         [style]="{ opacity: form.invalid ? '50%' : '100%' }"
       >
-        REGISTER
+        EDIT SERVICE
       </button>
     </form>
     <div class="image-wrapper">
-      <img src="../../../assets/tower-computer.png" alt="" />
+      <img src="../../../assets/edit-service-image.png" alt="" />
     </div>
   </div>
 </div>

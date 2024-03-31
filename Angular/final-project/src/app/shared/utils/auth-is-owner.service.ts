@@ -30,16 +30,10 @@ export class AuthIsOwnerService implements CanActivate {
     | UrlTree {
     // Get the ID parameter from the URL
     const id = next.paramMap.get('serviceId');
-    console.log('id:', next);
-
     if (id) {
       const user = this.userService.getUser();
-      console.log('USER:', user);
-
       if (user) {
         const isOwner = !!this.postService.isOwner(id, user);
-        console.log('isOwner:', isOwner);
-
         if (isOwner) {
           return true;
         }
