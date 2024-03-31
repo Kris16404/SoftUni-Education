@@ -16,7 +16,11 @@
       <button *ngIf="user && service.ownerId == user?.id" class="edit">
         EDIT
       </button>
-      <button *ngIf="user && service.ownerId == user?.id" class="delete">
+      <button
+        (click)="handleDelete()"
+        *ngIf="user && service.ownerId == user?.id"
+        class="delete"
+      >
         DELETE
       </button>
       <button

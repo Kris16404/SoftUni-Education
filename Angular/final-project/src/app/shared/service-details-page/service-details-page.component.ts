@@ -91,4 +91,16 @@ export class ServiceDetailsPageComponent implements OnInit {
     }
     return Object.keys(obj).length === 0;
   }
+  handleDelete() {
+    const isConfirmed = window.confirm(
+      `Are You Sure You Want To DELETE ${this.service.name}`
+    );
+    if (isConfirmed) {
+      console.log('delete');
+      //delete
+    } else {
+      //noting
+      console.log('nothing');
+    }
+  }
 }
