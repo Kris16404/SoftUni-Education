@@ -30,7 +30,7 @@
 .nav-wrap nav ul li a:hover {
   background-color: #1878a3;
   color: #e4f8fc;
-
+  box-shadow: 10px 20px 15px 5px rgb(0, 0, 0, 0.5);
   transition: 0.4s ease-in-out;
 }
 .nav-wrap .logo-wrapper a {
