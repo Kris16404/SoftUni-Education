@@ -38,8 +38,6 @@ export class EditServicePageComponent implements OnInit {
       this.service = data;
       this.service.id = serviceId;
 
-      console.log(this.service);
-
       this.form.get('name')?.setValue(this.service.name);
       this.form.get('imageUrl')?.setValue(this.service.imageUrl);
       this.form.get('price')?.setValue(this.service.price.toString());

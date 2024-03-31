@@ -32,9 +32,6 @@ export class AddServiceComponent {
     termsCheckbox: [false, Validators.requiredTrue],
   });
 
-  log() {
-    console.log(this.form.get('imageUrl')?.errors);
-  }
   postSubmit() {
     if (this.form.invalid) {
       return;
