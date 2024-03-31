@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subscription, from, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { Service, ServiceForPostReq } from '../types/Service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { UserForAuth } from '../types/User';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +29,18 @@ export class PostService {
     }
   }
 
+  isOwner(id: string, user: UserForAuth) {
+    let isOwner = false;
+    let data: Service = {} as Service;
+    return this.getCommunityServiceById(id).subscribe((dataCom) => {
+      data = dataCom;
+      console.log(data);
+      if (data.id === user.id) {
+        isOwner = true;
+      }
+      return isOwner;
+    });
+  }
   getServices(): Observable<Service[]> {
     return this.http
       .get<Service[]>(`${environment.databseUrl}/services.json`)

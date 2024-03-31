@@ -12,6 +12,8 @@ import { AuthGuardService } from './shared/utils/auth-guard.service';
 import { AuthRedirectGuardService } from './shared/utils/auth-redirect-guard.service';
 import { AddServiceComponent } from './shared/add-service/add-service.component';
 import { ServiceDetailsPageComponent } from './shared/service-details-page/service-details-page.component';
+import { AuthIsOwnerService } from './shared/utils/auth-is-owner.service';
+import { EditServicePageComponent } from './shared/edit-service-page/edit-service-page.component';
 
 const routes: Routes = [
   {
@@ -59,6 +61,11 @@ const routes: Routes = [
   {
     path: 'services/:serviceId',
     component: ServiceDetailsPageComponent,
+  },
+  {
+    path: 'services/edit/:serviceId',
+    component: EditServicePageComponent,
+    canActivate: [AuthIsOwnerService],
   },
   {
     path: '404',

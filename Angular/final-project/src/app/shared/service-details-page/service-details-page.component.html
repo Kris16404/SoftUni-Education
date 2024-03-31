@@ -13,7 +13,11 @@
     </div>
 
     <div *ngIf="!isLoading" class="buttons">
-      <button *ngIf="user && service.ownerId == user?.id" class="edit">
+      <button
+        (click)="redirectToEdit()"
+        *ngIf="user && service.ownerId == user?.id"
+        class="edit"
+      >
         EDIT
       </button>
       <button

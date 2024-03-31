@@ -16,6 +16,15 @@ export class UserService implements OnDestroy {
     return !!sessionStorage.getItem('user');
   }
 
+  getUser(): UserForAuth | undefined {
+    const session = sessionStorage.getItem('user');
+    if (session) {
+      const user = JSON.parse(session);
+      return user;
+    } else {
+      return undefined;
+    }
+  }
   isAuthenticated(): boolean {
     return !!sessionStorage.getItem('user');
   }

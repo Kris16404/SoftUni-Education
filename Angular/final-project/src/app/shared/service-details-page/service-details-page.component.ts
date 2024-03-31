@@ -116,4 +116,7 @@ export class ServiceDetailsPageComponent implements OnInit {
         });
     }
   }
+  redirectToEdit() {
+    this.router.navigate([`/services/edit/${this.service.id}`]);
+  }
 }

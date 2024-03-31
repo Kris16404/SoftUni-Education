@@ -14,6 +14,7 @@ import { AddServiceComponent } from './add-service/add-service.component';
 import { ServiceDetailsPageComponent } from './service-details-page/service-details-page.component';
 import { RouterModule } from '@angular/router';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { EditServicePageComponent } from './edit-service-page/edit-service-page.component';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -28,6 +29,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     AddServiceComponent,
     ServiceDetailsPageComponent,
     SpinnerComponent,
+    EditServicePageComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule],
   exports: [
