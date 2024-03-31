@@ -29,20 +29,28 @@ export class ServiceDetailsPageComponent implements OnInit {
   serviceId: string = '';
   isLoading: boolean = false;
   ngOnInit(): void {
+    console.log(this.serviceId);
+
     this.isLoading = true;
     this.serviceId = this.route.snapshot.params['serviceId'];
-    this.postService
-      .getCommunityServiceById(this.serviceId)
-      .subscribe((data) => {
+    this.postService.getCommunityServiceById(this.serviceId).subscribe(
+      (data) => {
         if (this.isEmptyCheck(data)) {
-          this.postService.getServiceById(this.serviceId).subscribe((data) => {
-            this.service = data;
-            this.service.id = this.serviceId;
+          this.postService.getServiceById(this.serviceId).subscribe(
+            (data) => {
+              this.service = data;
+              this.service.id = this.serviceId;
 
-            this.isLoading = false;
+              this.isLoading = false;
 
-            return;
-          });
+              return;
+            },
+            () => {
+              console.log('from error');
+
+              this.router.navigate(['/services/catalog']);
+            }
+          );
 
           return;
         }
@@ -51,7 +59,12 @@ export class ServiceDetailsPageComponent implements OnInit {
         this.isLoading = false;
 
         return;
-      });
+      },
+      () => {
+        console.log('from error');
+        this.router.navigate(['/services/catalog']);
+      }
+    );
   }
   checkIfAvailableInCart(): boolean {
     if (this.cart?.includes(this.service.id)) {
@@ -96,11 +109,11 @@ export class ServiceDetailsPageComponent implements OnInit {
       `Are You Sure You Want To DELETE ${this.service.name}`
     );
     if (isConfirmed) {
-      console.log('delete');
-      //delete
-    } else {
-      //noting
-      console.log('nothing');
+      this.postService
+        .deleteCommunityServiceById(this.service.id)
+        .subscribe(() => {
+          this.router.navigate(['/services/catalog']);
+        });
     }
   }
 }

@@ -38,13 +38,6 @@ export class PostService {
       );
   }
   postService(data: ServiceForPostReq) {
-    const session = sessionStorage.getItem('user');
-    const authData = JSON.parse(session!);
-    this.authToken = authData.token;
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      'Bearer ' + this.authToken
-    );
     return from(this.db.list('/community').push(data));
   }
   getCommunityServices() {
@@ -56,12 +49,15 @@ export class PostService {
         })
       );
   }
-  getCommunityServiceById(id: string) {
+  getCommunityServiceById(id: string | '') {
     const url = `${environment.databseUrl}/community/${id}.json`;
     return this.http.get<Service>(url);
   }
-  getServiceById(id: string) {
+  getServiceById(id: string | '') {
     const url = `${environment.databseUrl}/services/${id}.json`;
     return this.http.get<Service>(url);
+  }
+  deleteCommunityServiceById(id: string) {
+    return from(this.db.list('/community').remove(id));
   }
 }
