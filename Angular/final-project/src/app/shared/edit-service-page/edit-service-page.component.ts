@@ -46,20 +46,27 @@ export class EditServicePageComponent implements OnInit {
   }
 
   editSubmit() {
-    if (this.form.invalid) {
+    const isConfirmed = window.confirm(
+      `Are You Sure You Want To Edit "${this.service.name}"`
+    );
+    if (isConfirmed) {
+      if (this.form.invalid) {
+        return;
+      }
+      const session = JSON.parse(sessionStorage.getItem('user')!);
+      const userId = session.id;
+      const tempService: ServiceForPostReq = {
+        name: this.form.get('name')?.value!,
+        imageUrl: this.form.get('imageUrl')?.value!,
+        price: +this.form.get('price')?.value!,
+        description: this.form.get('description')?.value!,
+        ownerId: userId,
+      };
+      this.postService
+        .updateCommunityServiceById(this.service.id, tempService)
+        .subscribe(() => this.router.navigate(['/services/catalog']));
+    } else {
       return;
     }
-    const session = JSON.parse(sessionStorage.getItem('user')!);
-    const userId = session.id;
-    const tempService: ServiceForPostReq = {
-      name: this.form.get('name')?.value!,
-      imageUrl: this.form.get('imageUrl')?.value!,
-      price: +this.form.get('price')?.value!,
-      description: this.form.get('description')?.value!,
-      ownerId: userId,
-    };
-    this.postService
-      .updateCommunityServiceById(this.service.id, tempService)
-      .subscribe(() => this.router.navigate(['/services/catalog']));
   }
 }
