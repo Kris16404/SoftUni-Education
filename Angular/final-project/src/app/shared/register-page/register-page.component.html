@@ -1,8 +1,25 @@
 <div class="wrapper">
   <div class="form-wrapper">
-    <form [formGroup]="form" (ngSubmit)="register()">
+    <form [formGroup]="form" (ngSubmit)="register()" (change)="checkPasses()">
       <h1>Sign up</h1>
       <div class="input-wrapper">
+        <div *ngIf="isRegisterFailed">
+          <span class="invalid">This Email Is Already In Use</span>
+        </div>
+        <div
+          *ngIf="
+            form.get('email')?.invalid &&
+            (form.get('email')?.dirty || form.get('email')?.touched)
+          "
+          class="invalid"
+        >
+          <span *ngIf="form.get('email')?.hasError('required')"
+            >Email Is Required</span
+          >
+          <span *ngIf="form.get('email')?.hasError('email')"
+            >Invalid Email</span
+          >
+        </div>
         <label for="email"
           ><span><i class="fa-regular fa-envelope"></i></span
         ></label>
@@ -13,10 +30,38 @@
           formControlName="email"
           placeholder="Your Email"
         />
-        <hr />
+        <hr
+          [ngClass]="
+            form.get('email')?.invalid &&
+            (form.get('email')?.dirty || form.get('email')?.touched)
+              ? 'wrong'
+              : ''
+          "
+        />
       </div>
       <div formGroupName="passGroup">
         <div class="input-wrapper">
+          <div
+            *ngIf="
+              form.get('passGroup')?.get('password')?.invalid &&
+              (form.get('passGroup')?.get('password')?.dirty ||
+                form.get('passGroup')?.get('password')?.touched)
+            "
+            class="invalid"
+          >
+            <span
+              *ngIf="
+                form.get('passGroup')?.get('password')?.hasError('required')
+              "
+              >Password Is Required</span
+            >
+            <span
+              *ngIf="
+                form.get('passGroup')?.get('password')?.hasError('minlength')
+              "
+              >Password Must Be Atleast 6 Characters</span
+            >
+          </div>
           <label for="password"
             ><span><i class="fa-solid fa-lock"></i></span
           ></label>
@@ -27,9 +72,37 @@
             formControlName="password"
             placeholder="Password"
           />
-          <hr />
+          <hr
+            [ngClass]="
+              form.get('passGroup')?.get('password')?.invalid &&
+              (form.get('passGroup')?.get('password')?.dirty ||
+                form.get('passGroup')?.get('password')?.touched)
+                ? 'wrong'
+                : ''
+            "
+          />
         </div>
         <div class="input-wrapper">
+          <div
+            *ngIf="
+              form.get('passGroup')?.get('rePassword')?.invalid &&
+              (form.get('passGroup')?.get('rePassword')?.dirty ||
+                form.get('passGroup')?.get('rePassword')?.touched)
+            "
+            class="invalid"
+          >
+            <span
+              *ngIf="
+                form.get('passGroup')?.get('rePassword')?.hasError('required')
+              "
+              >Repeat Password Is Required</span
+            >
+          </div>
+          <div>
+            <span *ngIf="!isPassMatch" class="invalid"
+              >Passwords Don't Match</span
+            >
+          </div>
           <label for="rePassword"
             ><span><i class="fa-solid fa-lock"></i></span
           ></label>
@@ -40,7 +113,15 @@
             formControlName="rePassword"
             placeholder="Repeat your password"
           />
-          <hr />
+          <hr
+            [ngClass]="
+              form.get('passGroup')?.get('rePassword')?.invalid &&
+              (form.get('passGroup')?.get('rePassword')?.dirty ||
+                form.get('passGroup')?.get('rePassword')?.touched)
+                ? 'wrong'
+                : ''
+            "
+          />
         </div>
       </div>
       <div class="input-wrapper">

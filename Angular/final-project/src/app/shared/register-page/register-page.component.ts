@@ -17,13 +17,14 @@ export class RegisterPageComponent {
   ) {}
 
   user: UserForAuth | undefined;
-
+  isPassMatch = true;
+  isRegisterFailed = false;
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     passGroup: this.fb.group(
       {
         password: ['', [Validators.required, Validators.minLength(6)]],
-        rePassword: ['', [Validators.required, Validators.minLength(6)]],
+        rePassword: ['', [Validators.required]],
       },
       {
         validators: [matchPasswordsValidator('password', 'rePassword')],
@@ -36,6 +37,16 @@ export class RegisterPageComponent {
     return this.form.get('passGroup');
   }
 
+  checkPasses() {
+    if (
+      this.form.get('passGroup')?.get('password')?.value !==
+      this.form.get('passGroup')?.get('rePassword')?.value
+    ) {
+      this.isPassMatch = false;
+      return;
+    }
+    this.isPassMatch = true;
+  }
   register(): void {
     if (this.form.invalid) {
       return;
@@ -45,8 +56,13 @@ export class RegisterPageComponent {
         this.form.get('email')?.value!,
         this.form.get('passGroup')?.get('password')?.value!
       )
-      .subscribe(() => {
-        this.router.navigate(['/']);
-      });
+      .subscribe(
+        () => {
+          this.router.navigate(['/']);
+        },
+        () => {
+          this.isRegisterFailed = true;
+        }
+      );
   }
 }
