@@ -72,3 +72,12 @@ form button {
   height: 100%;
   border-radius: 10px;
 }
+
+.invalid {
+  color: red;
+  display: flex;
+  flex-direction: column;
+}
+.wrong {
+  border-color: red;
+}

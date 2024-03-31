@@ -1,8 +1,28 @@
 <div class="wrapper">
   <div class="form-wrapper">
-    <form [formGroup]="form" (ngSubmit)="login()">
+    <form [formGroup]="form" (ngSubmit)="login()" (change)="updateFail()">
       <h1>Login</h1>
       <div class="input-wrapper">
+        <div
+          *ngIf="
+            form.get('email')?.invalid &&
+            (form.get('email')?.dirty || form.get('email')?.touched)
+          "
+          class="invalid"
+        >
+          <span *ngIf="form.get('email')?.hasError('required')"
+            >Email Is Required</span
+          >
+          <span *ngIf="form.get('email')?.hasError('email')"
+            >Invalid Email</span
+          >
+        </div>
+        <div>
+          <span *ngIf="isFailedToLogin" class="invalid"
+            >Invalid Email Or Password</span
+          >
+        </div>
+
         <label for="email"
           ><span><i class="fa-regular fa-envelope"></i></span
         ></label>
@@ -13,10 +33,31 @@
           formControlName="email"
           placeholder="Your Email"
         />
-        <hr />
+        <hr
+          [ngClass]="
+            form.get('email')?.invalid &&
+            (form.get('email')?.dirty || form.get('email')?.touched)
+              ? 'wrong'
+              : ''
+          "
+        />
       </div>
 
       <div class="input-wrapper">
+        <div
+          *ngIf="
+            form.get('password')?.invalid &&
+            (form.get('password')?.dirty || form.get('password')?.touched)
+          "
+          class="invalid"
+        >
+          <span *ngIf="form.get('password')?.hasError('required')"
+            >Password Is Required</span
+          >
+          <span *ngIf="form.get('password')?.hasError('minlength')"
+            >Password Must Be Atleast 6 Characters</span
+          >
+        </div>
         <label for="password"
           ><span><i class="fa-solid fa-lock"></i></span
         ></label>
@@ -27,7 +68,14 @@
           formControlName="password"
           placeholder="Password"
         />
-        <hr />
+        <hr
+          [ngClass]="
+            form.get('password')?.invalid &&
+            (form.get('password')?.dirty || form.get('password')?.touched)
+              ? 'wrong'
+              : ''
+          "
+        />
       </div>
 
       <button

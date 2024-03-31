@@ -17,9 +17,14 @@ export class LoginPageComponent {
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  isFailedToLogin = false;
+
+  updateFail() {
+    this.isFailedToLogin = false;
+  }
   login(): void {
     if (this.form.invalid) {
       return;
@@ -27,6 +32,11 @@ export class LoginPageComponent {
 
     this.userService
       .login(this.form.get('email')?.value!, this.form.get('password')?.value!)
-      .subscribe(() => this.router.navigate(['/']));
+      .subscribe(
+        () => this.router.navigate(['/']),
+        (err) => {
+          this.isFailedToLogin = true;
+        }
+      );
   }
 }
