@@ -86,12 +86,12 @@ Community Services Catalog (users posted services )
 
 - **Service Card:** Three types: Logged in not owner/Guest look - Owner/Logged in added to cart
 
-Logged in not owner
-![service-card-logged-in-not-owner.png](./pictures-for-readme/service-card-logged-in-not-owner.png)
-Guest look/Owner
-![service-card-guest-or-owner.png](./pictures-for-readme/service-card-guest-or-owner.png)
-Logged in added to cart
-![service-card-guest-or-owner.png](./pictures-for-readme/service-card-added-to-card.png.png)
+- Logged in not owner
+  ![service-card-logged-in-not-owner.png](./pictures-for-readme/service-card-logged-in-not-owner.png)
+- Guest look/Owner
+  ![service-card-guest-or-owner.png](./pictures-for-readme/service-card-guest-or-owner.png)
+- Logged in added to cart
+  ![service-card-guest-or-owner.png](./pictures-for-readme/service-card-added-to-card.png)
 
 - **My Profile Page:** This page shows every posted service that the user posted
 
