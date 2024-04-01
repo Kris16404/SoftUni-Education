@@ -8,7 +8,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server - Required to start the project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Run npm install.
+- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Technologies Used
 
@@ -31,7 +32,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 - Registerd/Logged User cannot go to Register/Login page
 - Registerd/Logged User cannot go to Edit page or delete Post that he doesnt own
-- Guset User cannot go to Cart/Add Service/My Profile pages and doesn't see Logout button
+- Guest User cannot go to Cart/Add Service/My Profile pages and doesn't see Logout button
 - Guest User cannot add to cart, can only see details
 
 - **Home Page For Guests** (Get sarted redirects to Services)
@@ -72,7 +73,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
   ![delte-service-modal](./pictures-for-readme/delete-service-modal.png)
 
 - **Cart Functionality:** Users can add services to their cart for later purchase or reference. **Owners Cannot Add Their Services To Cart**
-  Empty Cart (Browse Services Redirects To Servcies Catalog)
+- Empty Cart (Browse Services Redirects To Servcies Catalog)
   ![empty-cart.png](./pictures-for-readme/empty-cart.png)
   Cart With Services (Checkout Empties Cart)
   ![cart-with-two-services.png](./pictures-for-readme/cart-with-two-services.png)
@@ -100,13 +101,13 @@ User has created service
 User has not created service
 ![my-profile-has-not-posted.png](./pictures-for-readme/my-profile-has-not-posted.png)
 
-- **About US Page:** Get Involved Button Redirects To Home Page
+- **About Us Page:** Get Involved Button Redirects To Home Page
   ![/about-us-page.png](./pictures-for-readme/about-us-page.png)
 
 - **Error Page (404)** Redirected when invalid url is entered
   ![/error-page.png](./pictures-for-readme/error-page.png)
 
-- **Current Weather:** Current Weather Is Show In The Nav Bar Regardless Of The User Authenitcation
+- **Current Weather:** Current Weather Is Shown In The Nav Bar Regardless Of The User Authenitcation
   ![/current-weather.png](./pictures-for-readme/current-weather.png)
 
 - **Loading Spinner**
