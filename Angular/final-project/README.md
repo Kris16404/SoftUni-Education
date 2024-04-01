@@ -108,6 +108,8 @@ User has not created service
   ![/error-page.png](./pictures-for-readme/error-page.png)
 
 - **Current Weather:** Current Weather Is Shown In The Nav Bar Regardless Of The User Authenitcation
+- It uses the openweathermap api
+  [https://openweathermap.org/]
   ![/current-weather.png](./pictures-for-readme/current-weather.png)
 
 - **Loading Spinner**
