@@ -1,6 +1,7 @@
 <div class="wrapper">
   <div class="form-wrapper">
-    <form [formGroup]="form" (ngSubmit)="editSubmit()">
+    <app-spinner [isLoading]="isLoading" *ngIf="isLoading" />
+    <form *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="editSubmit()">
       <h1>Edit {{ service.name }}</h1>
       <div class="input-wrapper">
         <div
@@ -157,7 +158,7 @@
         EDIT SERVICE
       </button>
     </form>
-    <div class="image-wrapper">
+    <div class="image-wrapper" *ngIf="!isLoading">
       <img src="../../../assets/edit-service-image.png" alt="" />
     </div>
   </div>

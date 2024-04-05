@@ -16,6 +16,7 @@ export class EditServicePageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
+  isLoading: boolean = false;
   service: Service = {} as Service;
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(5)]],
@@ -34,6 +35,7 @@ export class EditServicePageComponent implements OnInit {
   });
   ngOnInit(): void {
     const serviceId = this.route.snapshot.params['serviceId'];
+    this.isLoading = true;
     this.postService.getCommunityServiceById(serviceId).subscribe((data) => {
       this.service = data;
       this.service.id = serviceId;
@@ -42,6 +44,7 @@ export class EditServicePageComponent implements OnInit {
       this.form.get('imageUrl')?.setValue(this.service.imageUrl);
       this.form.get('price')?.setValue(this.service.price.toString());
       this.form.get('description')?.setValue(this.service.description);
+      this.isLoading = false;
     });
   }
 
