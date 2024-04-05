@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="form-wrapper">
     <form [formGroup]="form" (ngSubmit)="editSubmit()">
-      <h1>Post Your Services</h1>
+      <h1>Edit {{ service.name }}</h1>
       <div class="input-wrapper">
         <div
           *ngIf="
